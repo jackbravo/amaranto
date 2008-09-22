@@ -1,5 +1,6 @@
 cache
 log
 *.swp
-*generated*
+lib/model/doctrine/generated*
+lib/form/doctrine/base*
 *.svn*
