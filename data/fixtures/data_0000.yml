@@ -1,0 +1,38 @@
+Person: 
+  fulanito: 
+    name: Fulanito de Tal
+    Phonenumbers:
+      Phonenumber_1:
+        number: 3631 7436
+        type: 2
+      Phonenumber_2:
+        number: +52 (33) 3873 3742
+        type: 1
+    Emails:
+      Email_1:
+        email: fulanito@gmail.com
+        type: 1
+  perengano: 
+    name: Perengano de Aquel
+    Phonenumbers:
+      Phonenumber_3: 
+        number: 333 105 6988
+        type: 3
+    Emails:
+      Email_2:
+        email: perengano@mail.com
+        type: 1
+      Email_3:
+        email: perengano@hotmail.com
+        type: 2
+  jack: 
+    name: Jack Daniels
+  johny: 
+    name: Johny Walker
+  julio: 
+    name: Don Julio
+
+Company:
+  axai:
+    name: Acme Inc.
+    People: [fulanito, perengano]
