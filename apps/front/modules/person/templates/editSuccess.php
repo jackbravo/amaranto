@@ -1,7 +1,7 @@
 <?php $person = $form->getObject() ?>
 <h1><?php echo $form->isNew() ? 'New' : 'Edit' ?> Person</h1>
 
-<?php echo $form->renderFormTag('/person/update') ?>
+<?php echo $form->renderFormTag(url_for('person/update')) ?>
 <?php echo $form ?>
 
     <tfoot>
