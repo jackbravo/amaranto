@@ -11,8 +11,6 @@ class PersonForm extends BasePersonForm
 {
   public function configure()
   {
-    unset($this['created_at']);
-    unset($this['updated_at']);
-    unset($this['type']);
+    unset($this['created_at'], $this['updated_at'], $this['type']);
   }
 }
