@@ -8,9 +8,18 @@
 
 <div id="emails" class="form-item">
 <label>Emails</label>
-<?php foreach ($form['Emails'] as $email): ?>
+<?php foreach ($form['Emails'] as $field): ?>
   <div class="item-row">
-    <?php echo $email['email'] . $email['type'] ?>
+    <?php echo $field['email'] . $field['type'] ?>
+  </div>
+<?php endforeach; ?>
+</div>
+
+<div id="phones" class="form-item">
+<label>Phone numbers</label>
+<?php foreach ($form['Phonenumbers'] as $field): ?>
+  <div class="item-row">
+    <?php echo $field['number'] . $field['type'] ?>
   </div>
 <?php endforeach; ?>
 </div>

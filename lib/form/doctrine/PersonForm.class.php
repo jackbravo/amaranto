@@ -9,21 +9,10 @@
  */
 class PersonForm extends BasePersonForm
 {
-  public function __construct($object = null, $options = array(), $CSRFSecret = null)
-  {
-    parent::__construct($object, $options, $CSRFSecret);
-
-    // embed for each email
-    if (is_null($object) || $object->Emails->count() < 1)
-    {
-      $this->embedFormForEach('Emails', new EmailForm(), 1);
-    }
-    else
-    {
-      $this->embedFormForEach('Emails', new EmailForm(), $object->Emails->count());
-      $this->setDefault('Emails', $object->Emails);
-    } 
-  }
+  public $embeddedForms = array(
+    'Emails' => array('form' => 'EmailForm', 'min' => 1),
+    'Phonenumbers' => array('form' => 'PhonenumberForm', 'min' => 1),
+  );
 
   public function configure()
   {
@@ -42,11 +31,5 @@ class PersonForm extends BasePersonForm
     if ($object['code'] == '') $object['code'] = null;
 
     return $object;
-  }
-
-  public function bind(array $taintedValues = null, array $taintedFiles = null)
-  {
-    $this->embedFormForEach('Emails', new EmailForm(), count($taintedValues['Emails']));
-    parent::bind($taintedValues, $taintedFiles);
   }
 }

@@ -8,16 +8,51 @@
  */
 abstract class BaseFormDoctrine extends sfFormDoctrine
 {
+  /**
+   * array of related forms that can be embedded with this one
+   */
+  public $embeddedForms = array();
+
   public function setup()
   {
     sfWidgetFormSchema::setDefaultFormFormatterName('div');
   }
 
-  /**
-   * Updates the values of the object with the cleaned up values.
-   *
-   * @return BaseObject The current updated object
-   */
+  public function __construct($object = null, $options = array(), $CSRFSecret = null)
+  {
+    parent::__construct($object, $options, $CSRFSecret);
+
+    foreach ($this->embeddedForms as $key => $options)
+    {
+      if (count($options['min']) > 0 && (is_null($object) || count($object[$key]) < 1))
+      {
+        $this->embedFormForEach($key, new $options['form'], $options['min']);
+      }
+      else
+      {
+        $this->embedFormForEach($key, new $options['form'], count($object[$key]));
+        $this->setDefault($key, $object[$key]);
+      }
+    }
+  }
+
+  public function bind(array $taintedValues = null, array $taintedFiles = null)
+  {
+    foreach ($this->embeddedForms as $key => $options)
+    {
+      if (array_key_exists($key, $taintedValues) && count($taintedValues[$key]) > 0)
+      {
+        $this->embedFormForEach($key, new $options['form'], count($taintedValues[$key]));
+      }
+      else
+      {
+        unset($this[$key]);
+      }
+    }
+
+    parent::bind($taintedValues, $taintedFiles);
+  }
+
   public function updateObject()
   {
     if (!$this->isValid())
