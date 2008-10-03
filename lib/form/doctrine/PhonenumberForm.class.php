@@ -12,7 +12,7 @@ class PhonenumberForm extends BasePhonenumberForm
   public function configure()
   {
     // this is set when saving the entity
-    unset($this['entity_id']);
+    unset($this['id'], $this['entity_id']);
 
     // use choices from the Phonenumber class
     $types = Phonenumber::$types;
