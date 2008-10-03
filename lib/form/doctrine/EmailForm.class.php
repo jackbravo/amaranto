@@ -11,16 +11,20 @@ class EmailForm extends BaseEmailForm
 {
   public function configure()
   {
-    $types = Email::$types;
+    // this is set when saving the entity
+    unset($this['entity_id']);
 
-    $this->widgetSchema['entity_id'] = new sfWidgetFormInputHidden();
+    // use choices from the Email class
+    $types = Email::$types;
     $this->widgetSchema['type'] = new sfWidgetFormChoice(array(
       'choices' => $types,
     ));
-
     $this->validatorSchema['type'] = new sfValidatorChoice(array(
       'choices' => array_keys($types),
+      'required' => false,
     ));
+
+    // email field must be an email ;-)
     $this->validatorSchema['email'] = new sfValidatorAnd(array(
       $this->validatorSchema['email'],
       new sfValidatorEmail(),

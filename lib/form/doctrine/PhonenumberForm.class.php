@@ -11,9 +11,11 @@ class PhonenumberForm extends BasePhonenumberForm
 {
   public function configure()
   {
-    $types = Phonenumber::$types;
+    // this is set when saving the entity
+    unset($this['entity_id']);
 
-    $this->widgetSchema['entity_id'] = new sfWidgetFormInputHidden();
+    // use choices from the Phonenumber class
+    $types = Phonenumber::$types;
     $this->widgetSchema['type'] = new sfWidgetFormChoice(array(
       'choices' => $types,
     ));
