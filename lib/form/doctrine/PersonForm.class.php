@@ -43,4 +43,10 @@ class PersonForm extends BasePersonForm
 
     return $object;
   }
+
+  public function bind(array $taintedValues = null, array $taintedFiles = null)
+  {
+    $this->embedFormForEach('Emails', new EmailForm(), count($taintedValues['Emails']));
+    parent::bind($taintedValues, $taintedFiles);
+  }
 }
