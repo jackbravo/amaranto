@@ -5,5 +5,14 @@
  */
 class Email extends BaseEmail
 {
+  static $types = array(
+    1 => 'Work',
+    2 => 'Home',
+    3 => 'Other',
+  );
 
+  public function getTypeName()
+  {
+    return self::$types[$this->type];
+  }
 }

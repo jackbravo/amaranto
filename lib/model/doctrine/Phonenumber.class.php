@@ -5,5 +5,18 @@
  */
 class Phonenumber extends BasePhonenumber
 {
+  static $types = array(
+    1 => 'Work',
+    2 => 'Mobile',
+    3 => 'Home',
+    4 => 'Fax',
+    5 => 'Pager',
+    6 => 'Skype',
+    7 => 'Other',
+  );
 
+  public function getTypeName()
+  {
+    return self::$types[$this->type];
+  }
 }
