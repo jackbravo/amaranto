@@ -2,7 +2,17 @@
 <h1><?php echo $form->isNew() ? 'New' : 'Edit' ?> Person</h1>
 
 <?php echo $form->renderFormTag(url_for('person/update')) ?>
-<?php echo $form ?>
+<?php echo $form['name']->renderRow(); ?>
+<?php echo $form['parent_id']->renderRow(); ?>
+
+<div id="emails" class="form-item">
+<label>Emails</label>
+<?php foreach ($form['Emails'] as $email): ?>
+  <div class="item:row">
+    <?php echo $email['email'] . $email['type'] ?>
+  </div>
+<?php endforeach; ?>
+</div>
 
     <tfoot>
       <tr>
