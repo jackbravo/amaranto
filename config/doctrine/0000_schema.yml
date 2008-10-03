@@ -18,6 +18,8 @@ Person:
   inheritance:
     extends:        Entity
     keyValue:       1
+  columns:
+    title:          string(255)
   relations:
     Company:
       foreignAlias: People

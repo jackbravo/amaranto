@@ -3,6 +3,7 @@
 
 <?php echo $form->renderFormTag(url_for('person/update')) ?>
 <?php echo $form['name']->renderRow(); ?>
+<?php echo $form['title']->renderRow(); ?>
 <?php echo $form['parent_id']->renderRow(); ?>
 
 <div id="emails" class="form-item">

@@ -17,6 +17,7 @@ class BaseEntityForm extends BaseFormDoctrine
       'code'       => new sfWidgetFormInput(),
       'type'       => new sfWidgetFormInput(),
       'parent_id'  => new sfWidgetFormInput(),
+      'title'      => new sfWidgetFormInput(),
       'created_at' => new sfWidgetFormDateTime(),
       'updated_at' => new sfWidgetFormDateTime(),
     ));
@@ -27,6 +28,7 @@ class BaseEntityForm extends BaseFormDoctrine
       'code'       => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'type'       => new sfValidatorInteger(array('required' => false)),
       'parent_id'  => new sfValidatorInteger(array('required' => false)),
+      'title'      => new sfValidatorString(array('max_length' => 255, 'required' => false)),
       'created_at' => new sfValidatorDateTime(array('required' => false)),
       'updated_at' => new sfValidatorDateTime(array('required' => false)),
     ));
