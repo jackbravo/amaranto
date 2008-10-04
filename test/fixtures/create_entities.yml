@@ -1,0 +1,38 @@
+---
+Entity:
+  entity_01:
+    name: John Dow
+    title: Consultant
+    Emails:
+      0:
+        email: john@hotmail.com
+        type: 1
+    Phonenumbers:
+      1:
+        number: 3631 8483
+        type: 1
+
+  entity_02:
+    name: Fulatino de Tal
+    Emails:
+      0:
+        email: fulanito@yahoo.com.mx
+        type: 1
+    Phonenumbers:
+      1:
+        number: (33) 3242 7328
+        type: 1
+      2:
+        number: (33) 1123 8320
+        type: 2
+
+  entity_03:
+    name: Perengano Perez
+    Emails:
+      0:
+        email: perez@estrabajo.com
+        type: 2
+
+  entity_04:
+    name: zYne
+    title: Developer
