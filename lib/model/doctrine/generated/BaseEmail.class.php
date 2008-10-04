@@ -10,7 +10,7 @@ abstract class BaseEmail extends sfDoctrineRecord
     $this->setTableName('email');
     $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
     $this->hasColumn('entity_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('email', 'string', 50, array('type' => 'string', 'email' => true, 'notblank' => true, 'length' => '50'));
+    $this->hasColumn('email', 'string', 50, array('type' => 'string', 'email' => true, 'length' => '50'));
     $this->hasColumn('type', 'integer', 2, array('type' => 'integer', 'length' => '2'));
   }
 

@@ -37,9 +37,7 @@ Phonenumber:
       primary:      true
       autoincrement: true
     entity_id:      integer(4)
-    number:
-      type:         string(50)
-      notblank:     true
+    number:         string(50)
     type:           integer(2)
   relations:
     Entity:
@@ -56,7 +54,6 @@ Email:
     email:
       type:         string(50)
       email:        true
-      notblank:     true
     type:           integer(2)
   relations:
     Entity:

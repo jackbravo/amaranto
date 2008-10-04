@@ -10,7 +10,7 @@ abstract class BasePhonenumber extends sfDoctrineRecord
     $this->setTableName('phonenumber');
     $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
     $this->hasColumn('entity_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('number', 'string', 50, array('type' => 'string', 'notblank' => true, 'length' => '50'));
+    $this->hasColumn('number', 'string', 50, array('type' => 'string', 'length' => '50'));
     $this->hasColumn('type', 'integer', 2, array('type' => 'integer', 'length' => '2'));
   }
 

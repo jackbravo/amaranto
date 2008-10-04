@@ -21,7 +21,7 @@ class BasePhonenumberForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'        => new sfValidatorDoctrineChoice(array('model' => 'Phonenumber', 'column' => 'id', 'required' => false)),
       'entity_id' => new sfValidatorDoctrineChoice(array('model' => 'Entity', 'required' => false)),
-      'number'    => new sfValidatorString(array('max_length' => 50)),
+      'number'    => new sfValidatorString(array('max_length' => 50, 'required' => false)),
       'type'      => new sfValidatorInteger(array('required' => false)),
     ));
 
