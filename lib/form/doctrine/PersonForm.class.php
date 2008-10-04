@@ -28,7 +28,19 @@ class PersonForm extends BasePersonForm
   {
     $object = parent::updateObject();
 
+    // clean empty code field
     if ($object['code'] == '') $object['code'] = null;
+
+    // clean empty email and phone fields
+    foreach ($object['Emails'] as $key => $email) {
+      if ($email['email'] == '')
+        unset($object['Emails'][$key]);
+    }
+
+    foreach ($object['Phonenumbers'] as $key => $phone) {
+      if ($phone['number'] == '')
+        unset($object['Phonenumbers'][$key]);
+    }
 
     return $object;
   }
