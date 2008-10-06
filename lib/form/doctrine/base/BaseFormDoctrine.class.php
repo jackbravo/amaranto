@@ -78,4 +78,34 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
 
     return $this->object;
   }
+
+  public function renderFormTag($url, array $attributes = array(), $attach_identifiers = true)
+  {
+    if ($this->isNew())
+    {
+      $attributes['method'] = 'POST';
+    }
+    else
+    {
+      if ($attach_identifiers)
+      {
+        $url .= '?'.$this->getPrimaryKeyUrlParams();
+      }
+      $attributes['method'] = 'PUT';
+    }
+
+    return parent::renderFormTag($url, $attributes);
+  }
+
+  public function getPrimaryKeyUrlParams()
+  {
+    $params = array();
+    $identifiers = (array) $this->object->identifier();
+    foreach ($identifiers as $fieldName => $value)
+    {
+      $params[]  = "$fieldName=".$value;
+    }
+
+    return implode("&", $params);
+  }
 }
