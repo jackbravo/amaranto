@@ -15,3 +15,7 @@
 .form-item .error_list {
   color: red;
 }
+
+img {
+  border: none;
+}
