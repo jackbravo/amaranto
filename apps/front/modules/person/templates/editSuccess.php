@@ -4,6 +4,7 @@
 <h1><?php echo $form->isNew() ? 'New' : 'Edit' ?> Person</h1>
 
 <?php echo $form->renderFormTag(url_for('person/update')) ?>
+<?php echo $form->renderHiddenFields(); ?>
 <?php echo $form['name']->renderRow(); ?>
 <?php echo $form['title']->renderRow(); ?>
 <?php echo $form['parent_id']->renderRow(); ?>
