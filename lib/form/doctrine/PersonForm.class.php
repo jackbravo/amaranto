@@ -12,6 +12,7 @@ class PersonForm extends BasePersonForm
   public $embeddedForms = array(
     'Emails' => array('form' => 'EmailForm', 'min' => 1),
     'Phonenumbers' => array('form' => 'PhonenumberForm', 'min' => 1),
+    'Locations' => array('form' => 'LocationForm', 'min' => 1),
   );
 
   public function configure()
