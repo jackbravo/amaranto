@@ -3,6 +3,7 @@
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
 $b = new sfTestFunctional(new sfBrowser());
+$databaseManager = new sfDatabaseManager($configuration);
 
 $b->
   get('/person/index')->
@@ -68,18 +69,47 @@ $b->info('test basic validation and form refill')
   ->end()
 ;
 
-$testCases = sfYaml::load(dirname(__FILE__).'/../../fixtures/create_entities.yml');
+// test new company creation
+$company_name = uniqid('company_');
+$company_count_0 = Doctrine::getTable('Company')->createQuery()->count();
+$test_person = array('person' => array(
+  'name' => 'Freddy Mercury',
+  'company' => $company_name,
+));
+$b->info('test new company creation on create person')
+  ->get('/person/create')
+  ->click('Save', $test_person)
+  ->with('form')->begin()
+    ->hasErrors(false)
+  ->end()
+  ->isRedirected()
+  ->followRedirect()
+  ->with('response')->begin()
+    ->checkElement('form input[name="person[company]"][value="'.$company_name.'"]', true)
+  ->end()
+;
+$company_count_1 = Doctrine::getTable('Company')->createQuery()->count();
+$b->test()->is($company_count_1, $company_count_0 + 1, 'There is one new company');
 
-foreach ($testCases['Entity'] as $key => $person)
-{
-  $b->info("Saving $key")
-    ->get('/person/create')
-    ->click('Save', array('person' => $person))
-    ->with('form')->hasErrors(false)
-    ->isRedirected()
-    ->followRedirect()
-  ;
-}
+// test company search on new person
+$test_person = array('person' => array(
+  'name' => 'Jim Morrison',
+  'company' => $company_name,
+));
+$b->info('test company search on create person')
+  ->get('/person/create')
+  ->click('Save', $test_person)
+  ->with('form')->begin()
+    ->hasErrors(false)
+  ->end()
+  ->isRedirected()
+  ->followRedirect()
+  ->with('response')->begin()
+    ->checkElement('form input[name="person[company]"][value="'.$company_name.'"]', true)
+  ->end()
+;
+$company_count_2 = Doctrine::getTable('Company')->createQuery()->count();
+$b->test()->is($company_count_1, $company_count_2, 'There is NO new company');
 
 // TODO: missing testing for succesful deletion
 $b->info('test delete person')
@@ -87,4 +117,5 @@ $b->info('test delete person')
   ->click('Delete')
   ->isRedirected()
   ->followRedirect()
+  ->with('response')->checkElement('body', '!/Joaquin Bravo/')
 ;
