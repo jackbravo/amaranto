@@ -8,6 +8,7 @@
       <th>Code</th>
       <th>Type</th>
       <th>Company</th>
+      <th>Title</th>
       <th>Created at</th>
       <th>Updated at</th>
     </tr>
@@ -15,13 +16,14 @@
   <tbody>
     <?php foreach ($personList as $person): ?>
     <tr>
-      <td><a href="<?php echo url_for('person/edit?id='.$person->get('id')) ?>"><?php echo $person->getid() ?></a></td>
-      <td><?php echo $person->getname() ?></td>
-      <td><?php echo $person->getcode() ?></td>
-      <td><?php echo $person->gettype() ?></td>
-      <td><?php echo $person->getCompany() ?></td>
-      <td><?php echo $person->getcreated_at() ?></td>
-      <td><?php echo $person->getupdated_at() ?></td>
+      <td><a href="<?php echo url_for('person/show?id='.$person['id']) ?>"><?php echo $person['id'] ?></a></td>
+      <td><?php echo $person['name'] ?></td>
+      <td><?php echo $person['code'] ?></td>
+      <td><?php echo $person['type'] ?></td>
+      <td><?php echo $person['Company'] ?></td>
+      <td><?php echo $person['title'] ?></td>
+      <td><?php echo $person['created_at'] ?></td>
+      <td><?php echo $person['updated_at'] ?></td>
     </tr>
     <?php endforeach; ?>
   </tbody>

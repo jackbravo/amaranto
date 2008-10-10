@@ -15,6 +15,12 @@ class personActions extends sfActions
     $this->personList = $this->getPersonTable()->findAll();
   }
 
+  public function executeShow($request)
+  {
+    $this->person = $this->getPersonById($request->getParameter('id'));
+    $this->forward404Unless($this->person);
+  }
+
   public function executeCreate()
   {
     $this->form = new PersonForm();
@@ -38,7 +44,7 @@ class personActions extends sfActions
     {
       $person = $this->form->save();
 
-      $this->redirect('person/edit?id='.$person->get('id'));
+      $this->redirect('person/edit?id='.$person['id']);
     }
 
     $this->setTemplate('edit');
