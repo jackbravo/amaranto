@@ -35,7 +35,7 @@ class companyActions extends sfActions
 
   public function executeUpdate($request)
   {
-    $this->forward404Unless($request->isMethod('post'));
+    $this->forward404Unless($request->isMethod('post') || $request->isMethod('put'));
 
     $this->form = $this->getCompanyForm($request->getParameter('id'));
 
