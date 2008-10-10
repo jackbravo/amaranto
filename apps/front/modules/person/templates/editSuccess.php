@@ -10,7 +10,7 @@
 
 <?php echo $form['name']->renderRow() ?>
 <?php echo $form['title']->renderRow() ?>
-<?php echo $form['parent_id']->renderRow() ?>
+<?php echo $form['company']->renderRow() ?>
 
 <?php include_partial('edit_email', array('form' => $form)) ?>
 
