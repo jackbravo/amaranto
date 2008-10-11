@@ -45,8 +45,8 @@ $b->info('test insert person')
   ->isRedirected()
   ->followRedirect()
   ->with('response')->begin()
-    ->checkElement('form input[name="person[name]"][value="Joaquin Bravo"]', true)
-    ->checkElement('form #emails input[value="jackbravo@gmail.com"]', true)
+    ->checkElement('body', '/Joaquin Bravo/')
+    ->checkElement('body', '/jackbravo@gmail.com/')
   ->end()
   ->test()->like($b->getRequest()->getParameter('id'), '/\d+/', 'Id is number')
 ;
@@ -85,7 +85,7 @@ $b->info('test new company creation on create person')
   ->isRedirected()
   ->followRedirect()
   ->with('response')->begin()
-    ->checkElement('form input[name="person[company]"][value="'.$company_name.'"]', true)
+    ->checkElement('body', "/$company_name/")
   ->end()
 ;
 $company_count_1 = Doctrine::getTable('Company')->createQuery()->count();
@@ -105,7 +105,7 @@ $b->info('test company search on create person')
   ->isRedirected()
   ->followRedirect()
   ->with('response')->begin()
-    ->checkElement('form input[name="person[company]"][value="'.$company_name.'"]', true)
+    ->checkElement('body', "/$company_name/")
   ->end()
 ;
 $company_count_2 = Doctrine::getTable('Company')->createQuery()->count();

@@ -1,39 +1,15 @@
-<table>
-  <tbody>
-    <tr>
-      <th>Id:</th>
-      <td><?php echo $person['id'] ?></td>
-    </tr>
-    <tr>
-      <th>Name:</th>
-      <td><?php echo $person['name'] ?></td>
-    </tr>
-    <tr>
-      <th>Code:</th>
-      <td><?php echo $person['code'] ?></td>
-    </tr>
-    <tr>
-      <th>Type:</th>
-      <td><?php echo $person['type'] ?></td>
-    </tr>
-    <tr>
-      <th>Company:</th>
-      <td><?php echo $person['Company'] ?></td>
-    </tr>
-    <tr>
-      <th>Title:</th>
-      <td><?php echo $person['title'] ?></td>
-    </tr>
-    <tr>
-      <th>Created at:</th>
-      <td><?php echo $person['created_at'] ?></td>
-    </tr>
-    <tr>
-      <th>Updated at:</th>
-      <td><?php echo $person['updated_at'] ?></td>
-    </tr>
-  </tbody>
-</table>
+<h1><?php echo $person['name'] ?></h1>
+
+<p>
+  <?php echo $person['title'] ?>
+  <?php
+    if ($person['Company']['id'])
+    {
+      echo ' at ';
+      echo link_to($person['Company'],
+        'company/show?id=' . $person['Company']['id']);
+    }
+  ?>
 
 <hr />
 

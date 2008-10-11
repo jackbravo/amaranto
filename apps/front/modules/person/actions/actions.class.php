@@ -44,7 +44,7 @@ class personActions extends sfActions
     {
       $person = $this->form->save();
 
-      $this->redirect('person/edit?id='.$person['id']);
+      $this->redirect('person/show?id='.$person['id']);
     }
 
     $this->setTemplate('edit');
