@@ -5,5 +5,15 @@
  */
 class Company extends BaseCompany
 {
-
+  public function __toString()
+  {
+    if (is_null($this->name))
+    {
+      return ' - ';
+    }
+    else
+    {
+      return $this->name;
+    }
+  }
 }
