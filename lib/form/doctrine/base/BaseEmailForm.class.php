@@ -21,7 +21,7 @@ class BaseEmailForm extends BaseFormDoctrine
     $this->setValidators(array(
       'id'        => new sfValidatorDoctrineChoice(array('model' => 'Email', 'column' => 'id', 'required' => false)),
       'entity_id' => new sfValidatorDoctrineChoice(array('model' => 'Entity', 'required' => false)),
-      'email'     => new sfValidatorString(array('max_length' => 50, 'required' => false)),
+      'email'     => new sfValidatorEmail(array('max_length' => 50, 'required' => false)),
       'type'      => new sfValidatorInteger(array('required' => false)),
     ));
 
