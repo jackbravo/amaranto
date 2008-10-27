@@ -1,29 +1,20 @@
 <h1>Person List</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Name</th>
-      <th>Code</th>
-      <th>Type</th>
-      <th>Company</th>
-      <th>Title</th>
-      <th>Created at</th>
-      <th>Updated at</th>
-    </tr>
-  </thead>
+<table class="list">
   <tbody>
     <?php foreach ($personList as $person): ?>
     <tr>
-      <td><a href="<?php echo url_for('person/show?id='.$person['id']) ?>"><?php echo $person['id'] ?></a></td>
-      <td><?php echo $person['name'] ?></td>
-      <td><?php echo $person['code'] ?></td>
-      <td><?php echo $person['type'] ?></td>
-      <td><?php echo $person['Company'] ?></td>
-      <td><?php echo $person['title'] ?></td>
-      <td><?php echo $person['created_at'] ?></td>
-      <td><?php echo $person['updated_at'] ?></td>
+      <td class="info">
+        <h2><a href="<?php echo url_for('person/show?id='.$person['id']) ?>"><?php echo $person['name'] ?></a></h2>
+        <a href="<?php echo url_for('person/index?title='.$person['title']) ?>"><?php echo $person['title'] ?></a>
+        <?php if ($person['Company']['id']): ?>
+          at <a href="<?php echo url_for('company/show?id='.$person['Company']['id']) ?>"><?php echo $person['Company'] ?></a>
+        <?php endif; ?>
+      </td>
+      <td class="contact">
+        <?php if ($person['Phonenumbers'][0]['id']) echo $person['Phonenumbers'][0] ?><br/>
+        <?php if ($person['Emails'][0]['id']) echo $person['Emails'][0] ?>
+      </td>
     </tr>
     <?php endforeach; ?>
   </tbody>

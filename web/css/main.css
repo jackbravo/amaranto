@@ -19,3 +19,19 @@
 img {
   border: none;
 }
+
+table.list {
+  border-collapse: collapse;
+  border-top: 1px solid #eee;
+  width: 100%;
+}
+
+table.list td {
+  border-bottom: 1px solid #eee;
+  padding: .5em 0;
+}
+
+.info h2 {
+  font-size: 1em;
+  margin: 0 0 2px;
+}

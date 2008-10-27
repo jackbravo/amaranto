@@ -15,4 +15,9 @@ class Email extends BaseEmail
   {
     return self::$types[$this->type];
   }
+
+  public function __toString()
+  {
+    return $this->email . ' ' . $this->getTypeName();
+  }
 }

@@ -19,4 +19,9 @@ class Phonenumber extends BasePhonenumber
   {
     return self::$types[$this->type];
   }
+
+  public function __toString()
+  {
+    return $this->number . ' ' . $this->getTypeName();
+  }
 }
