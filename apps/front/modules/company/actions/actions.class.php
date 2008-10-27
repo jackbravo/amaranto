@@ -58,6 +58,18 @@ class companyActions extends sfActions
 
     $this->redirect('company/index');
   }
+
+  public function executeAjaxList($request)
+  {
+    $this->getResponse()->setContentType('application/json');
+
+    $companies = Doctrine::getTable('Company')->findForAjax(
+      $request->getParameter('q'),
+      $request->getParameter('limit')
+    );
+
+    return $this->renderText( json_encode($companies) );
+  }
   
   private function getCompanyTable()
   {

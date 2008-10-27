@@ -16,4 +16,22 @@ class CompanyTable extends EntityTable
       return $this->create(array('name' => $company_name));
     }
   }
+
+  public function findForAjax($q, $limit)
+  {
+    $companies = $this->createQuery('c')
+      ->select('c.name')
+      ->addWhere('c.name LIKE ?', $q . '%')
+      ->addOrderBy('c.name')
+      ->limit($limit)
+      ->execute();
+
+    $list = array();
+    foreach ($companies as $company)
+    {
+      $list[(string) $company] = (string) $company;
+    }
+
+    return $list;
+  }
 }
