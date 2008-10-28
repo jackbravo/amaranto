@@ -23,7 +23,7 @@ p
 #menu
 {
   font-size: 12px;
-  border: solid 1px #444;
+  border: solid 1px #ccc;
   border-top: none;
   background-color: #73A2CE;
   color: #fff;
@@ -76,13 +76,13 @@ p
 
 #menu ul li a:hover
 {
-	background-color: #777;
+	background-color: #84b3df;
 	color: #fff;
 }
 
 #menu ul li.active, #menu ul li.active a, #menu ul li.active a:hover
 {
-	background-color: #fff;
+	background-color: #84b3df;
 	color: #333;
 }
 
