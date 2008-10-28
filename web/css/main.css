@@ -18,6 +18,16 @@ p
   margin: .5em 0;
 }
 
+a
+{
+  text-decoration: none;
+}
+
+a:hover
+{
+  text-decoration: underline;
+}
+
 /* ---------- menu ----------- */
 
 #menu
