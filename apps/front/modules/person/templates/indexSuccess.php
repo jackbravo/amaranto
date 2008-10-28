@@ -20,4 +20,9 @@
   </tbody>
 </table>
 
-<a href="<?php echo url_for('person/create') ?>">Create</a>
+<?php slot('sidebar-right') ?>
+<div class="box">
+  <p><a href="<?php echo url_for('person/create') ?>">Add a new person</a></p>
+  <p><a href="<?php echo url_for('company/create') ?>">Add a new company</a></p>
+</div>
+<?php end_slot() ?>

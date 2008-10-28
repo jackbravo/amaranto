@@ -40,11 +40,7 @@
 
   <?php if (has_slot('sidebar-right')): ?>
   <div id="sidebar-right" class="column sidebar">
-
     <?php include_slot('sidebar-right') ?>
-
-    <?php include_component_slot('sidebar') ?>
-
   </div>
   <?php endif; ?>
 
