@@ -3,13 +3,14 @@
 	margin: 0px;
 }
 
-img {
+img
+{
   border: none;
 }
 
-.info h2 {
-  font-size: 1em;
-  margin: 0 0 2px;
+body
+{
+  font-size: .8em;
 }
 
 /* ---------- menu ----------- */
@@ -17,14 +18,16 @@ img {
 #menu
 {
   font-size: 12px;
-  border-bottom: solid 1px #444;
-	background-color: #73A2CE;
-	color: #fff;
+  border: solid 1px #444;
+  border-top: none;
+  background-color: #73A2CE;
+  color: #fff;
+  margin: 0 10px;
 }
 
 #menu div
 {
-	clear: both;
+  clear: both;
 }
 
 #menu a
@@ -37,13 +40,14 @@ img {
 #menu h1
 {
   float: left;
-  font-size: 1em;
+  font-size: 12px;
+  margin-right: 10px;
 }
 
 #menu h1 a
 {
   float: left;
-  padding: 10px;
+  padding: 5px;
 }
 
 #menu ul
@@ -62,7 +66,7 @@ img {
 #menu ul li a
 {
 	display: block;
-	padding: 10px;
+	padding: 5px;
 }
 
 #menu ul li a:hover
@@ -77,9 +81,27 @@ img {
 	color: #333;
 }
 
+/* ------------ container ------------ */
+
+#container h1, #container h2, #container h3
+{
+  color: #555;
+  padding: 3px 3px 3px 0;
+}
+
+/* ------------ footer ------------ */
+
+#footer
+{
+  text-align: center;
+  font-size: 12px;
+  padding: 15px 0;
+}
+
 /* ------------ tables ------------ */
 
 table.list {
+  margin: .5em 0 1em;
   border-collapse: collapse;
   border-top: 1px solid #eee;
   width: 100%;
@@ -108,5 +130,11 @@ table.list td {
 
 .form-item .error_list {
   color: red;
+}
+
+.info h2
+{
+  font-size: 1.2em;
+  margin: 0 0 2px;
 }
 
