@@ -1,0 +1,140 @@
+/**
+*  LAYOUT STYLES
+*
+*  Define CSS classes to create a table-free,
+*  3-column, 2-column, or single column layout 
+*  depending on whether blocks are enabled in the 
+*  left or right columns.
+*/
+
+/**
+ * Layout
+ */
+
+#container {
+  margin: 0 auto;
+  /*padding: 0 20px;*/
+  max-width: 1270px;
+}
+
+/* With 3 columns, require a minimum width of 1000px to ensure there is enough horizontal space. */
+body.both-sidebars {
+  /*min-width: 980px;*/
+}
+/* With 2 columsn, require a minimum width of 800px. */
+body.sidebar-left, body.sidebar-right {
+  /*min-width: 780px;*/
+}
+
+.top-right {
+  margin: 10px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  text-align: right;
+}
+
+/* We must define 100% width to avoid the body being too narrow for near-empty pages */
+#main {
+  float: left;
+  width: 100%;
+}
+
+/* So we move the #main container over the sidebars to compensate */
+body.sidebar-left #main {
+  margin-left: -250px;
+}
+body.sidebar-right #main {
+  margin-right: -250px;
+}
+body.both-sidebars #main {
+  margin: 0 -250px;
+}
+
+#squeeze {
+  position: relative;
+  padding: 0 1em;
+}
+
+/* And add blanks left and right for the sidebars to fill */
+body.sidebar-left #squeeze {
+  margin-left: 250px;
+}
+body.sidebar-right #squeeze {
+  margin-right: 250px;
+}
+body.both-sidebars #squeeze {
+  margin: 0 250px;
+}
+
+/* We ensure the sidebars are still clickable using z-index */
+#container .sidebar {
+  margin: 0 0 5em;
+  width: 250px;
+  float: left;
+  z-index: 2;
+  position: relative;
+}
+
+#container .sidebar .block {
+  margin: 0 0 1.5em 0;
+}
+
+#sidebar-left .block {
+  padding: 0 15px 0 0px;
+}
+
+#sidebar-right .block {
+  padding: 0 0px 0 15px;
+}
+
+.block .content {
+  margin: 0.5em 0;
+}
+
+#footer {
+  float: none;
+  clear: both;
+  margin: 50px 0 0 0;
+}
+
+
+/*
+body.sidebar-left  #footer {
+  margin-left: -210px;
+}
+
+body.sidebar-right #footer {
+  margin-right: -210px;
+}
+
+body.both-sidebars #footer {
+  margin: 0 -210px;
+}
+*/
+
+/* sf_admin_styles */
+#sf_admin_container #sf_admin_bar {
+  position: static;
+  margin: 0px;
+  width: 100%;
+}
+
+#sf_admin_container #sf_admin_content {
+  margin: 0px;
+}
+
+#sf_admin_bar fieldset {
+  border: 1px solid #ddd;
+}
+
+#sf_admin_bar .form-row {
+  float: left;
+  clear: none;
+  border-bottom: none;
+}
+
+#sf_admin_bar .form-row label {
+  width: auto;
+  font-size: 70%;
+}

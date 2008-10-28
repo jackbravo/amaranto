@@ -10,9 +10,50 @@
 <link rel="shortcut icon" href="/favicon.ico" />
 
 </head>
-<body>
+<?php if (has_slot('sidebar-right')): ?>
+<body class="sidebar-right">
+<?php else: ?>
+<body class="sidebar-none">
+<?php endif; ?>
 
-<?php echo $sf_content ?>
+<div id="menu">
+	<h1><?php echo link_to('Axai Manager', '@homepage') ?></h1>
+  <ul>
+    <li>
+      <?php echo link_to(__('Home'), '@homepage') ?>
+    </li>
+  </ul>
+
+  <div id="user-tools" class="top-right">
+    <?php // echo link_to(__('Sign out'), '@sf_guard_signout') ?>
+  </div>
+
+	<div></div>
+
+</div>
+
+<div id="container" class="clear-block">
+
+  <div id="main" class="column"><div id="squeeze">
+    <?php echo $sf_content ?>
+  </div></div> <!-- /squeeze /main -->
+
+  <?php if (has_slot('sidebar-right')): ?>
+  <div id="sidebar-right" class="column sidebar">
+
+    <?php include_slot('sidebar-right') ?>
+
+    <?php include_component_slot('sidebar') ?>
+
+  </div>
+  <?php endif; ?>
+
+</div>
+
+<div class="clearit"></div>
+<div id="footer">
+  Copyright ©2008 <?php echo link_to('Axai', 'http://axai.com.mx') ?>
+</div>
 
 </body>
 </html>

@@ -1,3 +1,97 @@
+*
+{
+	margin: 0px;
+}
+
+img {
+  border: none;
+}
+
+.info h2 {
+  font-size: 1em;
+  margin: 0 0 2px;
+}
+
+/* ---------- menu ----------- */
+
+#menu
+{
+  font-size: 12px;
+  border-bottom: solid 1px #444;
+	background-color: #73A2CE;
+	color: #fff;
+}
+
+#menu div
+{
+	clear: both;
+}
+
+#menu a
+{
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#menu h1
+{
+  float: left;
+  font-size: 1em;
+}
+
+#menu h1 a
+{
+  float: left;
+  padding: 10px;
+}
+
+#menu ul
+{
+  float: left;
+	list-style: none;
+	padding: 0px;
+}
+	
+#menu ul li
+{
+	float: left;
+	margin-right: 5px;
+}
+
+#menu ul li a
+{
+	display: block;
+	padding: 10px;
+}
+
+#menu ul li a:hover
+{
+	background-color: #777;
+	color: #fff;
+}
+
+#menu ul li.active, #menu ul li.active a, #menu ul li.active a:hover
+{
+	background-color: #fff;
+	color: #333;
+}
+
+/* ------------ tables ------------ */
+
+table.list {
+  border-collapse: collapse;
+  border-top: 1px solid #eee;
+  width: 100%;
+}
+
+table.list td {
+  border-bottom: 1px solid #eee;
+  padding: .5em 0;
+}
+
+/* ----------- forms ----------- */
+
 .form-item {
   margin: .5em 0;
 }
@@ -16,22 +110,3 @@
   color: red;
 }
 
-img {
-  border: none;
-}
-
-table.list {
-  border-collapse: collapse;
-  border-top: 1px solid #eee;
-  width: 100%;
-}
-
-table.list td {
-  border-bottom: 1px solid #eee;
-  padding: .5em 0;
-}
-
-.info h2 {
-  font-size: 1em;
-  margin: 0 0 2px;
-}
