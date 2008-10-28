@@ -19,7 +19,7 @@
 class sfWidgetFormSchemaFormatterDiv extends sfWidgetFormSchemaFormatter
 {
   protected
-    $rowFormat       = "%label%\n  %field%\n  <div class='description'>%error%%help%</div>\n  %hidden_fields%\n</div>\n",
+    $rowFormat       = "%label%\n  %field%\n  <div class='description'>%error%%help%</div>\n  %hidden_fields%\n",
     $errorRowFormat  = "<div class='errors'>\n%errors%</div>\n",
     $helpFormat      = "<div class='help-text'>%help%</div>",
     $decoratorFormat = "<div class='doctrine-form'>\n  %content%</div>",
@@ -32,7 +32,8 @@ class sfWidgetFormSchemaFormatterDiv extends sfWidgetFormSchemaFormatter
     $prepend = "<div class='form-item";
     $prepend .= (sizeof($errors) > 0) ? ' has-errors' : '';
     $prepend .= "'>";
-    return strtr($prepend . $this->getRowFormat() . '</div>', array(
+    $append = '</div>';
+    return strtr($prepend . $this->getRowFormat() . $append, array(
       '%label%'         => $label,
       '%field%'         => $field,
       '%error%'         => $this->formatErrorsForRow($errors),
