@@ -12,7 +12,7 @@ class personActions extends sfActions
 {
   public function executeIndex()
   {
-    $this->personList = $this->getPersonTable()->findAll();
+    $this->personList = $this->getPersonTable()->findForList();
   }
 
   public function executeShow($request)
