@@ -11,18 +11,15 @@
 /**
  * sfWidgetFormSelectDoubleList represents a multiple select displayed as a double list.
  *
- * This widget needs some JavaScript to work. So, you need to include:
+ * This widget needs some JavaScript to work. So, you need to include the JavaScripts
+ * files returned by the getJavaScripts() method.
  *
- *   /sfFormExtraPlugin/js/double_list.js
- *
- * You also need to add an "onsubmit" attribute to your form tag:
- *
- *   onsubmit="double_list_submit(this, 'double_list_select'); return true;"
+ * If you use symfony 1.2, it can be done automatically for you.
  *
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWidgetFormSelectDoubleList.class.php 11840 2008-09-29 09:23:27Z fabien $
+ * @version    SVN: $Id: sfWidgetFormSelectDoubleList.class.php 12412 2008-10-29 14:19:06Z fabien $
  */
 class sfWidgetFormSelectDoubleList extends sfWidgetForm
 {
@@ -79,12 +76,17 @@ class sfWidgetFormSelectDoubleList extends sfWidgetForm
     %unassociated%
   </div>
   <br style="clear: both" />
+  <script type="text/javascript">
+    sfDoubleList.init(document.getElementById('%id%'), '%class_select%');
+  </script>
 </div>
 EOF
 );
   }
 
   /**
+   * Renders the widget.
+   *
    * @param  string $name        The element name
    * @param  string $value       The value selected in this widget
    * @param  array  $attributes  An array of HTML attributes to be merged with the default HTML attributes
@@ -128,13 +130,25 @@ EOF
 
     return strtr($this->getOption('template'), array(
       '%class%'              => $this->getOption('class'),
+      '%class_select%'       => $this->getOption('class_select'),
+      '%id%'                 => $this->generateId($name),
       '%label_associated%'   => $this->getOption('label_associated'),
       '%label_unassociated%' => $this->getOption('label_unassociated'),
-      '%associate%'          => sprintf('<a href="#" onclick="%s">%s</a>', 'double_list_move(\'unassociated_'.$this->generateId($name).'\', \''.$this->generateId($name).'\'); return false;', $this->getOption('associate')),
-      '%unassociate%'        => sprintf('<a href="#" onclick="%s">%s</a>', 'double_list_move(\''.$this->generateId($name).'\', \'unassociated_'.$this->generateId($name).'\'); return false;', $this->getOption('unassociate')),
+      '%associate%'          => sprintf('<a href="#" onclick="%s">%s</a>', 'sfDoubleList.move(\'unassociated_'.$this->generateId($name).'\', \''.$this->generateId($name).'\'); return false;', $this->getOption('associate')),
+      '%unassociate%'        => sprintf('<a href="#" onclick="%s">%s</a>', 'sfDoubleList.move(\''.$this->generateId($name).'\', \'unassociated_'.$this->generateId($name).'\'); return false;', $this->getOption('unassociate')),
       '%associated%'         => $associatedWidget->render($name),
       '%unassociated%'       => $unassociatedWidget->render('unassociated_'.$name),
     ));
+  }
+
+  /**
+   * Gets the JavaScript paths associated with the widget.
+   *
+   * @return array An array of JavaScript paths
+   */
+  public function getJavascripts()
+  {
+    return array('/sfFormExtraPlugin/js/double_list.js');
   }
 
   public function __clone()

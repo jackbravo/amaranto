@@ -1,34 +1,63 @@
-function double_list_move(srcId, destId)
+var sfDoubleList =
 {
-  var src = document.getElementById(srcId);
-  var dest = document.getElementById(destId);
-  for (var i = 0; i < src.options.length; i++)
+  init: function(id, className)
   {
-    if (src.options[i].selected)
+    form = sfDoubleList.get_current_form(id);
+
+    callback = function() { sfDoubleList.submit(form, className) };
+
+    if (form.addEventListener)
     {
-      dest.options[dest.length] = new Option(src.options[i].text, src.options[i].value);
-      src.options[i] = null;
-      --i;
+      form.addEventListener("submit", callback, false);
     }
-  }
-}
-
-function double_list_submit(formElement, className)
-{
-  var element;
-
-  for (var i = 0; i < formElement.elements.length; i++)
-  {
-    element = formElement.elements[i];
-    if (element.type == 'select-multiple')
+    else if (form.attachEvent)
     {
-      if (element.className == className + '-selected')
+      var r = form.attachEvent("onsubmit", callback);
+    }
+  },
+
+  move: function(srcId, destId)
+  {
+    var src = document.getElementById(srcId);
+    var dest = document.getElementById(destId);
+    for (var i = 0; i < src.options.length; i++)
+    {
+      if (src.options[i].selected)
       {
-        for (var j = 0; j < element.options.length; j++)
+        dest.options[dest.length] = new Option(src.options[i].text, src.options[i].value);
+        src.options[i] = null;
+        --i;
+      }
+    }
+  },
+
+  submit: function(form, className)
+  {
+    var element;
+
+    for (var i = 0; i < form.elements.length; i++)
+    {
+      element = form.elements[i];
+      if (element.type == 'select-multiple')
+      {
+        if (element.className == className + '-selected')
         {
-          element.options[j].selected = true;
+          for (var j = 0; j < element.options.length; j++)
+          {
+            element.options[j].selected = true;
+          }
         }
       }
     }
+  },
+
+  get_current_form: function(el)
+  {
+    if ("form" != el.tagName.toLowerCase())
+    {
+      return sfDoubleList.get_current_form(el.parentNode);
+    }
+
+    return el;
   }
 }
