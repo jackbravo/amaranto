@@ -17,6 +17,15 @@ class partiesActions extends sfActions
   */
   public function executeIndex($request)
   {
-    $this->personList = Doctrine::getTable('Person')->findForList();
+    $this->show = $request->getParameter('show', 'people');
+
+    if ($this->show == 'companies')
+    {
+      $this->personList = Doctrine::getTable('Company')->findForList();
+    }
+    else
+    {
+      $this->personList = Doctrine::getTable('Person')->findForList();
+    }
   }
 }

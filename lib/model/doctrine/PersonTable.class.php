@@ -4,5 +4,12 @@
  */
 class PersonTable extends EntityTable
 {
-
+  public function findForList()
+  {
+    return $this->createQuery('p')
+      ->leftJoin('p.Company c')
+      ->leftJoin('p.Phonenumbers phones')
+      ->leftJoin('p.Emails emails')
+      ->execute();
+  }
 }

@@ -17,6 +17,14 @@ class CompanyTable extends EntityTable
     }
   }
 
+  public function findForList()
+  {
+    return $this->createQuery('c')
+      ->leftJoin('c.Phonenumbers phones')
+      ->leftJoin('c.Emails emails')
+      ->execute();
+  }
+
   public function findForAjax($q, $limit)
   {
     $companies = $this->createQuery('c')
