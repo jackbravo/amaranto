@@ -12,7 +12,7 @@ class companyActions extends sfActions
 {
   public function executeIndex()
   {
-    $this->companyList = $this->getCompanyTable()->findAll();
+    $this->redirect('parties/index');
   }
 
   public function executeShow($request)
@@ -56,7 +56,7 @@ class companyActions extends sfActions
 
     $company->delete();
 
-    $this->redirect('company/index');
+    $this->redirect('parties/index');
   }
 
   public function executeAjaxList($request)

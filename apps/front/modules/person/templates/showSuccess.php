@@ -30,4 +30,4 @@
 
 <a href="<?php echo url_for('person/edit?id='.$person['id']) ?>">Edit</a>
 &nbsp;
-<a href="<?php echo url_for('person/index') ?>">List</a>
+<a href="<?php echo url_for('parties/index') ?>">List</a>

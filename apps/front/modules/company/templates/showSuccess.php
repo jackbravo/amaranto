@@ -39,4 +39,4 @@
 
 <a href="<?php echo url_for('company/edit?id='.$company->get('id')) ?>">Edit</a>
 &nbsp;
-<a href="<?php echo url_for('company/index') ?>">List</a>
+<a href="<?php echo url_for('parties/index') ?>">List</a>

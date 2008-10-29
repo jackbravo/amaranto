@@ -12,7 +12,7 @@ class personActions extends sfActions
 {
   public function executeIndex()
   {
-    $this->personList = $this->getPersonTable()->findForList();
+    $this->redirect('parties/index');
   }
 
   public function executeShow($request)
@@ -56,7 +56,7 @@ class personActions extends sfActions
 
     $person->delete();
 
-    $this->redirect('person/index');
+    $this->redirect('parties/index');
   }
   
   private function getPersonTable()

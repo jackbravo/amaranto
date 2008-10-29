@@ -35,7 +35,7 @@
 <?php include_partial('edit_location', array('form' => $form)) ?>
 
 <div>
-  &nbsp;<a href="<?php echo url_for('person/index') ?>">Cancel</a>
+  &nbsp;<a href="<?php echo url_for('parties/index') ?>">Cancel</a>
   <?php if (!$form->isNew()): ?>
     &nbsp;<?php echo link_to('Delete', 'person/delete?id='.$person->get('id'), array('post' => true, 'confirm' => 'Are you sure?')) ?>
   <?php endif; ?>

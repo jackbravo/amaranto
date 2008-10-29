@@ -17,7 +17,7 @@
 <?php include_partial('person/edit_location', array('form' => $form)) ?>
 
 <div>
-  &nbsp;<a href="<?php echo url_for('company/index') ?>">Cancel</a>
+  &nbsp;<a href="<?php echo url_for('parties/index') ?>">Cancel</a>
   <?php if (!$form->isNew()): ?>
     &nbsp;<?php echo link_to('Delete', 'company/delete?id='.$company->get('id'), array('post' => true, 'confirm' => 'Are you sure?')) ?>
   <?php endif; ?>

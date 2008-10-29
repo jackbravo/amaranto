@@ -6,10 +6,10 @@ $b = new sfTestFunctional(new sfBrowser());
 $databaseManager = new sfDatabaseManager($configuration);
 
 $b->
-  get('/person/index')->
+  get('/parties/index')->
 
   with('request')->begin()->
-    isParameter('module', 'person')->
+    isParameter('module', 'parties')->
     isParameter('action', 'index')->
   end()->
 
