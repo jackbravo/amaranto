@@ -7,17 +7,11 @@
  * @subpackage Person
  * @version    SVN: $Id: sfPropelFormTemplate.php 6174 2007-11-27 06:22:40Z fabien $
  */
-class PersonForm extends BasePersonForm
+class PersonForm extends EntityForm
 {
-  public $embeddedForms = array(
-    'Emails' => array('form' => 'EmailForm', 'min' => 1),
-    'Phonenumbers' => array('form' => 'PhonenumberForm', 'min' => 1),
-    'Locations' => array('form' => 'LocationForm', 'min' => 1),
-  );
-
   public function configure()
   {
-    $this->widgetSchema['name']->setAttributes(array('size' => '40'));
+    $this->widgetSchema->setNameFormat('person[%s]');
 
     $this->widgetSchema['company'] = new sfWidgetFormInput();
     $this->validatorSchema['company'] = new sfValidatorString(array(
@@ -34,8 +28,7 @@ class PersonForm extends BasePersonForm
       'required' => false,
     ));
 
-    unset($this['created_at'], $this['updated_at'], $this['type']);
-    unset($this['parent_id']);
+    unset($this['type']);
   }
 
   public function updateCompany()
@@ -69,5 +62,10 @@ class PersonForm extends BasePersonForm
     }
 
     return $object;
+  }
+
+  public function getModelName()
+  {
+    return 'Person';
   }
 }
