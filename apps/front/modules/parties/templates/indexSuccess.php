@@ -1,5 +1,10 @@
 <h1>Person List</h1>
 
+<div class="tabs">
+  <?php echo link_to('People', 'parties/index?show=people', array('class' => 'active')) ?>
+  <?php echo link_to('Companies', 'parties/index?show=companies') ?>
+</div>
+
 <table class="list">
   <tbody>
     <?php foreach ($personList as $person): ?>
@@ -7,7 +12,7 @@
       <td class="info">
         <h2><a href="<?php echo url_for('person/show?id='.$person['id']) ?>"><?php echo $person['name'] ?></a></h2>
         <a href="<?php echo url_for('person/index?title='.$person['title']) ?>"><?php echo $person['title'] ?></a>
-        <?php if ($person['Company']['id']): ?>
+        <?php if ($show == 'people' && $person['Company']['id']): ?>
           at <a href="<?php echo url_for('company/show?id='.$person['Company']['id']) ?>"><?php echo $person['Company'] ?></a>
         <?php endif; ?>
       </td>
