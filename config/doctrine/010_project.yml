@@ -8,4 +8,5 @@ Project:
     name:
       type:         string(50)
       notblank:     true
+    description:    string
 

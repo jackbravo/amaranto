@@ -12,17 +12,19 @@ class BaseProjectForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'         => new sfWidgetFormInputHidden(),
-      'name'       => new sfWidgetFormInput(),
-      'created_at' => new sfWidgetFormDateTime(),
-      'updated_at' => new sfWidgetFormDateTime(),
+      'id'          => new sfWidgetFormInputHidden(),
+      'name'        => new sfWidgetFormInput(),
+      'description' => new sfWidgetFormInput(),
+      'created_at'  => new sfWidgetFormDateTime(),
+      'updated_at'  => new sfWidgetFormDateTime(),
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorDoctrineChoice(array('model' => 'Project', 'column' => 'id', 'required' => false)),
-      'name'       => new sfValidatorString(array('max_length' => 50)),
-      'created_at' => new sfValidatorDateTime(array('required' => false)),
-      'updated_at' => new sfValidatorDateTime(array('required' => false)),
+      'id'          => new sfValidatorDoctrineChoice(array('model' => 'Project', 'column' => 'id', 'required' => false)),
+      'name'        => new sfValidatorString(array('max_length' => 50)),
+      'description' => new sfValidatorString(array('max_length' => 2147483647, 'required' => false)),
+      'created_at'  => new sfValidatorDateTime(array('required' => false)),
+      'updated_at'  => new sfValidatorDateTime(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('project[%s]');
