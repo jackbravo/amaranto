@@ -11,5 +11,9 @@ class ProjectForm extends BaseProjectForm
 {
   public function configure()
   {
+    $this->widgetSchema['name']->setAttributes(array('size' => '40'));
+    $this->widgetSchema['description'] = new sfWidgetFormTextarea();
+
+    unset($this['created_at'], $this['updated_at']);
   }
 }

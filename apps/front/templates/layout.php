@@ -21,6 +21,7 @@
   <ul>
     <li><?php echo link_to(__('Home'), '@homepage') ?></li>
     <li><?php echo link_to(__('Contacts'), 'parties/index') ?></li>
+    <li><?php echo link_to(__('Projects'), 'project/index') ?></li>
   </ul>
 
   <div id="user-tools" class="top-right">
