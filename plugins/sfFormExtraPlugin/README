@@ -1,39 +1,47 @@
-= sfFormExtraPlugin =
+sfFormExtraPlugin
+=================
 
 The `sfFormExtraPlugin` packages useful validators, widgets, and forms.
 
 This collection holds validators, widgets, and forms which we don't want to include with the main symfony package
 because they are too specific or have external dependencies.
 
-== Installation ==
+Installation
+------------
 
   * Install the plugin
 
-    {{{
-      symfony plugin:install symfony/sfFormExtraPlugin
-    }}}
+        $ symfony plugin:install sfFormExtraPlugin
 
   * Clear the cache
 
-    {{{
-      symfony cache:clear
-    }}}
+        $ symfony cache:clear
 
-== Documentation ==
+Documentation
+-------------
 
 All classes have full API and usage documentation. The API documentation is available here.
 
-== Forms ==
+You will also find some articles on the symfony blog about this plugin:
+
+  * [Play with the user language](http://www.symfony-project.org/blog/2008/10/16/play-with-the-user-language)
+  * [Make your Choice!](http://www.symfony-project.org/blog/2008/10/14/new-in-symfony-1-2-make-your-choice)
+  * [Spice up your forms with some nice widgets and validators](http://www.symfony-project.org/blog/2008/10/18/spice-up-your-forms-with-some-nice-widgets-and-validators)
+
+Forms
+-----
 
   * sfFormLanguage: A form to change the symfony user culture
 
-== Validators ==
+Validators
+----------
 
   * sfValidatorReCaptcha: Validates a ReCaptcha (see sfWidgetFormReCaptcha)
   * sfValidatorBlacklist: Validates that a value is not one of the configured forbidden ones
   * sfValidatorSchemaTimeInterval: Validates a time interval between two dates provided by a widget schema
 
-== Widgets ==
+Widgets
+-------
 
   * sfWidgetFormReCaptcha: Displays a ReCaptcha widget (see sfValidatorReCaptcha)
   * sfWidgetFormSelectDoubleList: Displays a double list widget
@@ -42,7 +50,8 @@ All classes have full API and usage documentation. The API documentation is avai
   * sfWidgetFormPropelJQueryAutocompleter: Displays an autocomplete widget tied to a Propel model
   * sfWidgetFormTextareaTinyMCE: A rich textarea rendered with TinyMCE
 
-== How to contribute ==
+How to contribute.
+------------------
 
 If you want to contribute a validator, a widget, or a form, follow these steps:
 

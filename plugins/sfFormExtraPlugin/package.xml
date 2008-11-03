@@ -16,9 +16,9 @@
   <email>nicolas.perriault@symfony-project.com</email>
   <active>yes</active>
  </developer>
- <date>2008-10-29</date>
+ <date>2008-11-01</date>
  <version>
-   <release>1.0.5</release>
+   <release>1.0.6</release>
    <api>1.0.0</api>
  </version>
  <stability>
@@ -120,7 +120,7 @@
        <api>stable</api>
      </stability>
      <license uri="http://www.symfony-project.com/license">MIT license</license>
-     <date>2008-10-29</date>
+     <date>2008-11-01</date>
      <license>MIT</license>
      <notes>
        * added getJavascripts() and getStylesheets() method to the widgets that need
