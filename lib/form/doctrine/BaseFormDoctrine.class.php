@@ -11,7 +11,7 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
   /**
    * array of related forms that can be embedded with this one
    */
-  public $embeddedForms = array();
+  public $embeddedFormsDefinition = array();
 
   public function setup()
   {
@@ -22,7 +22,7 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
   {
     parent::__construct($object, $options, $CSRFSecret);
 
-    foreach ($this->embeddedForms as $key => $options)
+    foreach ($this->embeddedFormsDefinition as $key => $options)
     {
       if (count($options['min']) > 0 && (is_null($object) || count($object[$key]) < 1))
       {
@@ -38,7 +38,7 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
 
   public function bind(array $taintedValues = null, array $taintedFiles = null)
   {
-    foreach ($this->embeddedForms as $key => $options)
+    foreach ($this->embeddedFormsDefinition as $key => $options)
     {
       if (array_key_exists($key, $taintedValues) && count($taintedValues[$key]) > 0)
       {
@@ -53,27 +53,20 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
     parent::bind($taintedValues, $taintedFiles);
   }
 
-  public function updateObject()
+  public function updateObject($values = null)
   {
     if (!$this->isValid())
     {
       throw $this->getErrorSchema();
     }
 
-    $values = $this->getValues();
-
-    // remove special columns that are updated automatically
-    unset($values['id'], $values['updated_at'], $values['updated_on'], $values['created_at'], $values['created_on']);
-
-    // Move translations to the Translation key so that it will work with Doctrine_Record::fromArray()
-    foreach ($this->cultures as $culture)
+    if (is_null($values))
     {
-      $translation = $values[$culture];
-      $translation['lang'] = $culture;
-      unset($translation['id']);
-      $values['Translation'][$culture] = $translation;
-      unset($values[$culture]);
+      $values = $this->values;
     }
+
+    $values = $this->processValues($values);
+
     $this->object->synchronizeWithArray($values);
 
     return $this->object;
@@ -107,5 +100,12 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
     }
 
     return implode("&", $params);
+  }
+
+  /**
+   * we don't need this since we use synchronizeWithArray and Doctrine does the rest
+   */
+  public function saveEmbeddedForms($con = null)
+  {
   }
 }

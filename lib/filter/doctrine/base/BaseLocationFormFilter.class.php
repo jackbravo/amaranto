@@ -14,7 +14,6 @@ class BaseLocationFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'          => new sfWidgetFormFilterInput(),
       'entity_id'   => new sfWidgetFormDoctrineChoice(array('model' => 'Entity', 'add_empty' => true)),
       'type'        => new sfWidgetFormFilterInput(),
       'street'      => new sfWidgetFormFilterInput(),
@@ -25,7 +24,6 @@ class BaseLocationFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'id'          => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Location', 'column' => 'id')),
       'entity_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Entity', 'column' => 'id')),
       'type'        => new sfValidatorInteger(array('required' => false)),
       'street'      => new sfValidatorPass(array('required' => false)),
@@ -35,7 +33,7 @@ class BaseLocationFormFilter extends BaseFormFilterDoctrine
       'postal_code' => new sfValidatorPass(array('required' => false)),
     ));
 
-    $this->widgetSchema->setNameFormat('location[%s]');
+    $this->widgetSchema->setNameFormat('location_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -50,14 +48,14 @@ class BaseLocationFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'          => 'integer',
-      'entity_id'   => 'integer',
-      'type'        => 'integer',
-      'street'      => 'string',
-      'city'        => 'string',
-      'state'       => 'string',
-      'country'     => 'string',
-      'postal_code' => 'string',
+      'id'          => 'Text',
+      'entity_id'   => 'ForeignKey',
+      'type'        => 'Text',
+      'street'      => 'Text',
+      'city'        => 'Text',
+      'state'       => 'Text',
+      'country'     => 'Text',
+      'postal_code' => 'Text',
     );
   }
 }

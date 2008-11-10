@@ -14,7 +14,7 @@ class BaseProjectForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'          => new sfWidgetFormInputHidden(),
       'name'        => new sfWidgetFormInput(),
-      'description' => new sfWidgetFormInput(),
+      'description' => new sfWidgetFormTextarea(),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));

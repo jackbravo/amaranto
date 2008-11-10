@@ -7,6 +7,6 @@ Project:
       autoincrement: true
     name:
       type:         string(50)
-      notblank:     true
+      notnull:     true
     description:    string
 

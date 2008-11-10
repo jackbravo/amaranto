@@ -9,7 +9,7 @@
  */
 class EntityForm extends BaseEntityForm
 {
-  public $embeddedForms = array(
+  public $embeddedFormsDefinition = array(
     'Emails' => array('form' => 'EmailForm', 'min' => 1),
     'Phonenumbers' => array('form' => 'PhonenumberForm', 'min' => 1),
     'Locations' => array('form' => 'LocationForm', 'min' => 1),

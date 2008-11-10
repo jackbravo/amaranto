@@ -1,9 +1,9 @@
+CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, code VARCHAR(50) UNIQUE, type SMALLINT, parent_id INT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE email (id INT AUTO_INCREMENT, entity_id INT, email VARCHAR(50), type SMALLINT, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255), code VARCHAR(50) UNIQUE, type SMALLINT, parent_id INT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255), code VARCHAR(50) UNIQUE, type SMALLINT, parent_id INT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, INDEX parent_id_idx (parent_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, code VARCHAR(50) UNIQUE, type SMALLINT, parent_id INT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, INDEX parent_id_idx (parent_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE location (id INT AUTO_INCREMENT, entity_id INT, type SMALLINT, street VARCHAR(255), city VARCHAR(50), state VARCHAR(50), country VARCHAR(2), postal_code VARCHAR(10), INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE phonenumber (id INT AUTO_INCREMENT, entity_id INT, number VARCHAR(50), type SMALLINT, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE project (id INT AUTO_INCREMENT, name VARCHAR(50), description TEXT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE project (id INT AUTO_INCREMENT, name VARCHAR(50) NOT NULL, description TEXT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;
 ALTER TABLE email ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
 ALTER TABLE entity ADD FOREIGN KEY (parent_id) REFERENCES entity(id);
 ALTER TABLE location ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;

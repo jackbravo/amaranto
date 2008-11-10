@@ -14,20 +14,18 @@ class BasePhonenumberFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'        => new sfWidgetFormFilterInput(),
       'entity_id' => new sfWidgetFormDoctrineChoice(array('model' => 'Entity', 'add_empty' => true)),
       'number'    => new sfWidgetFormFilterInput(),
       'type'      => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'id'        => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Phonenumber', 'column' => 'id')),
       'entity_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Entity', 'column' => 'id')),
       'number'    => new sfValidatorPass(array('required' => false)),
       'type'      => new sfValidatorInteger(array('required' => false)),
     ));
 
-    $this->widgetSchema->setNameFormat('phonenumber[%s]');
+    $this->widgetSchema->setNameFormat('phonenumber_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -42,10 +40,10 @@ class BasePhonenumberFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'        => 'integer',
-      'entity_id' => 'integer',
-      'number'    => 'string',
-      'type'      => 'integer',
+      'id'        => 'Text',
+      'entity_id' => 'ForeignKey',
+      'number'    => 'Text',
+      'type'      => 'Text',
     );
   }
 }

@@ -7,7 +7,7 @@ Entity:
       autoincrement: true
     name:
       type:         string(255)
-      notblank:     true
+      notnull:     true
     code:
       type:         string(50)
       unique:       true

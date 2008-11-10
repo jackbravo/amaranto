@@ -41,9 +41,9 @@ class PersonForm extends EntityForm
     }
   }
 
-  public function updateObject()
+  public function updateObject($values = null)
   {
-    $object = parent::updateObject();
+    $object = parent::updateObject(null);
 
     $this->updateCompany();
 

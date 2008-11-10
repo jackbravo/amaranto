@@ -14,7 +14,6 @@ class BasePersonFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'         => new sfWidgetFormFilterInput(),
       'name'       => new sfWidgetFormFilterInput(),
       'code'       => new sfWidgetFormFilterInput(),
       'type'       => new sfWidgetFormFilterInput(),
@@ -25,7 +24,6 @@ class BasePersonFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'id'         => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Person', 'column' => 'id')),
       'name'       => new sfValidatorPass(array('required' => false)),
       'code'       => new sfValidatorPass(array('required' => false)),
       'type'       => new sfValidatorInteger(array('required' => false)),
@@ -35,7 +33,7 @@ class BasePersonFormFilter extends BaseFormFilterDoctrine
       'updated_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
 
-    $this->widgetSchema->setNameFormat('person[%s]');
+    $this->widgetSchema->setNameFormat('person_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -50,14 +48,14 @@ class BasePersonFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'         => 'integer',
-      'name'       => 'string',
-      'code'       => 'string',
-      'type'       => 'integer',
-      'parent_id'  => 'integer',
-      'title'      => 'string',
-      'created_at' => 'timestamp',
-      'updated_at' => 'timestamp',
+      'id'         => 'Text',
+      'name'       => 'Text',
+      'code'       => 'Text',
+      'type'       => 'Text',
+      'parent_id'  => 'ForeignKey',
+      'title'      => 'Text',
+      'created_at' => 'Date',
+      'updated_at' => 'Date',
     );
   }
 }
