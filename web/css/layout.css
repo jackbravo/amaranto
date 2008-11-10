@@ -113,28 +113,3 @@ body.both-sidebars #footer {
 }
 */
 
-/* sf_admin_styles */
-#sf_admin_container #sf_admin_bar {
-  position: static;
-  margin: 0px;
-  width: 100%;
-}
-
-#sf_admin_container #sf_admin_content {
-  margin: 0px;
-}
-
-#sf_admin_bar fieldset {
-  border: 1px solid #ddd;
-}
-
-#sf_admin_bar .form-row {
-  float: left;
-  clear: none;
-  border-bottom: none;
-}
-
-#sf_admin_bar .form-row label {
-  width: auto;
-  font-size: 70%;
-}
