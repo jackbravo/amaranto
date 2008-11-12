@@ -28,6 +28,6 @@
 
 <hr />
 
-<a href="<?php echo url_for('person/edit?id='.$person['id']) ?>">Edit</a>
+<a href="<?php echo url_for('@people_edit?id='.$person['id']) ?>">Edit</a>
 &nbsp;
 <a href="<?php echo url_for('parties/index') ?>">List</a>

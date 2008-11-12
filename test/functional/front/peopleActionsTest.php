@@ -21,11 +21,11 @@ $b->
 
 // test edit page
 $b->info('test edit page')
-  ->get('/person/create')
+  ->get('/people/new')
   ->with('response')->isStatusCode()
   ->with('request')->begin()
-    ->isParameter('module', 'person')
-    ->isParameter('action', 'create')
+    ->isParameter('module', 'people')
+    ->isParameter('action', 'new')
     ->isParameter('id', false)
   ->end()
 ;
@@ -57,7 +57,7 @@ $new_person_id = $b->getRequest()->getParameter('id');
 $test_person['person']['name'] = '';
 $test_person['id'] = $new_person_id;
 $b->info('test basic validation and form refill')
-  ->get('/person/edit/' . $new_person_id)
+  ->get('/people/' . $new_person_id . '/edit')
   ->click('Save', $test_person)
   ->with('form')->begin()
     ->hasErrors(1)
@@ -77,7 +77,7 @@ $test_person = array('person' => array(
   'company' => $company_name,
 ));
 $b->info('test new company creation on create person')
-  ->get('/person/create')
+  ->get('/people/new')
   ->click('Save', $test_person)
   ->with('form')->begin()
     ->hasErrors(false)
@@ -97,7 +97,7 @@ $test_person = array('person' => array(
   'company' => $company_name,
 ));
 $b->info('test company search on create person')
-  ->get('/person/create')
+  ->get('/people/new')
   ->click('Save', $test_person)
   ->with('form')->begin()
     ->hasErrors(false)
@@ -113,8 +113,8 @@ $b->test()->is($company_count_1, $company_count_2, 'There is NO new company');
 
 // TODO: missing testing for succesful deletion
 $b->info('test delete person')
-  ->get('/person/edit/id/' . $new_person_id)
-  ->click('Delete')
+  ->get('/people/' . $new_person_id . '/edit')
+  ->click('Delete', array(), array('method' => 'delete'))
   ->isRedirected()
   ->followRedirect()
   ->with('response')->checkElement('body', '!/Joaquin Bravo/')

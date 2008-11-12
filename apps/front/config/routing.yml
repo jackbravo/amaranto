@@ -3,6 +3,27 @@ homepage:
   url:   /
   param: { module: default, action: index }
 
+people:
+  class: sfDoctrineRouteCollection
+  options:
+    model:      Person
+    with_show:  true
+    collection_actions: { filter: post, batch: post }
+
+companies:
+  class: sfDoctrineRouteCollection
+  options:
+    model:      Company
+    with_show:  true
+    collection_actions: { filter: post, batch: post }
+
+projects:
+  class: sfDoctrineRouteCollection
+  options:
+    model:      Project
+    with_show:  true
+    collection_actions: { filter: post, batch: post }
+
 default_symfony:
   url:   /symfony/:action/*
   param: { module: default }
