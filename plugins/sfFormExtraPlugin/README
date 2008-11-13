@@ -20,7 +20,8 @@ Installation
 Documentation
 -------------
 
-All classes have full API and usage documentation. The API documentation is available here.
+All classes have full API and usage documentation. The best way to learn each widget or validator
+is to read the API.
 
 You will also find some articles on the symfony blog about this plugin:
 
@@ -49,6 +50,9 @@ Widgets
   * sfWidgetFormJQueryAutocompleter: Displays an input tag with autocomplete support using JQuery
   * sfWidgetFormPropelJQueryAutocompleter: Displays an autocomplete widget tied to a Propel model
   * sfWidgetFormTextareaTinyMCE: A rich textarea rendered with TinyMCE
+
+As no third party libraries is bundled in the plugin, you need to install and load the required
+dependencies like JQuery, JQuery UI, or TinyMCE by yourself.
 
 How to contribute.
 ------------------

@@ -16,7 +16,7 @@
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWidgetFormJQueryDate.class.php 12206 2008-10-15 17:46:46Z fabien $
+ * @version    SVN: $Id: sfWidgetFormJQueryDate.class.php 12875 2008-11-10 12:22:33Z fabien $
  */
 class sfWidgetFormJQueryDate extends sfWidgetFormDate
 {
@@ -65,12 +65,7 @@ class sfWidgetFormJQueryDate extends sfWidgetFormDate
     $image = '';
     if (false !== $this->getOption('image'))
     {
-      $image = sprintf(<<<EOF
-    buttonImage:     %s,
-    buttonImageOnly: true
-EOF
-        , $this->getOption('image')
-      );
+      $image = sprintf(', buttonImage: %s, buttonImageOnly: true', $this->getOption('image'));
     }
 
     return parent::render($name, $value, $attributes, $errors).
@@ -96,7 +91,7 @@ EOF
     maxDate:    new Date(%s, 12 - 1, 31),
     beforeShow: %s_read_linked,
     onSelect:   %s_update_linked,
-    showOn:     "both",
+    showOn:     "both"
     %s
   }, \$.datepicker.regional["%s"], %s));
 </script>
