@@ -9,4 +9,8 @@ Project:
       type:         string(50)
       notnull:     true
     description:    string
+    entity_id:      integer(4)
+  relations:
+    Entity:
+      foreignAlias: Projects
 
