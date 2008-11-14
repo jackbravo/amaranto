@@ -1,4 +1,4 @@
-<h1>Person List</h1>
+<h1>Contacts</h1>
 
 <div class="tabs">
   <?php echo link_to('People', 'parties/index?show=people', array('class' => 'active')) ?>
