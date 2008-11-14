@@ -1,7 +1,7 @@
 # default rules
 homepage:
   url:   /
-  param: { module: default, action: index }
+  param: { module: dashboard, action: index }
 
 people:
   class: sfDoctrineRouteCollection
@@ -23,10 +23,6 @@ projects:
     model:      Project
     with_show:  true
     collection_actions: { filter: post, batch: post }
-
-default_symfony:
-  url:   /symfony/:action/*
-  param: { module: default }
 
 default_index:
   url:   /:module
