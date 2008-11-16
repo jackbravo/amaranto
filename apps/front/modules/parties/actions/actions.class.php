@@ -18,14 +18,39 @@ class partiesActions extends sfActions
   public function executeIndex($request)
   {
     $this->show = $request->getParameter('show', 'people');
+    $table = $this->getShowTable($this->show);
 
-    if ($this->show == 'companies')
+    $this->personList = Doctrine::getTable($table)->findForList();
+  }
+
+  public function executeAjaxList(sfWebRequest $request)
+  {
+    $this->show = $request->getParameter('show', 'all');
+    $table = $this->getShowTable($this->show);
+
+    $this->getResponse()->setContentType('application/json');
+
+    $entities = Doctrine::getTable($table)->findForAjax(
+      $request->getParameter('q'),
+      $request->getParameter('limit')
+    );
+
+    return $this->renderText( json_encode($entities) );
+  }
+
+  protected function getShowTable($show)
+  {
+    if ($show == 'companies')
     {
-      $this->personList = Doctrine::getTable('Company')->findForList();
+      return 'Company';
+    }
+    else if ($show == 'people')
+    {
+      return 'Person';
     }
     else
     {
-      $this->personList = Doctrine::getTable('Person')->findForList();
+      return 'Entity';
     }
   }
 }

@@ -50,6 +50,7 @@ $b->info('test insert person')
   ->end()
   ->test()->like($b->getRequest()->getParameter('id'), '/\d+/', 'Id is number')
 ;
+// TODO: test for number of Phones, Locations and Emails created
 
 $new_person_id = $b->getRequest()->getParameter('id');
 
