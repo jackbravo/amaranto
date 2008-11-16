@@ -4,4 +4,21 @@
  */
 class EntityTable extends Doctrine_Table
 {
+  public function findForAjax($q, $limit)
+  {
+    $entities = $this->createQuery('e')
+      ->select('e.name')
+      ->addWhere('e.name LIKE ?', $q . '%')
+      ->addOrderBy('e.name')
+      ->limit($limit)
+      ->execute();
+
+    $list = array();
+    foreach ($entities as $entity)
+    {
+      $list[(string) $entity] = (string) $entity;
+    }
+
+    return $list;
+  }
 }

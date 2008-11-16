@@ -24,22 +24,4 @@ class CompanyTable extends EntityTable
       ->leftJoin('c.Emails emails')
       ->execute();
   }
-
-  public function findForAjax($q, $limit)
-  {
-    $companies = $this->createQuery('c')
-      ->select('c.name')
-      ->addWhere('c.name LIKE ?', $q . '%')
-      ->addOrderBy('c.name')
-      ->limit($limit)
-      ->execute();
-
-    $list = array();
-    foreach ($companies as $company)
-    {
-      $list[(string) $company] = (string) $company;
-    }
-
-    return $list;
-  }
 }
