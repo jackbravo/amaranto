@@ -105,7 +105,7 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
   /**
    * we don't need this since we use synchronizeWithArray and Doctrine does the rest
    */
-  public function saveEmbeddedForms($con = null)
+  public function saveEmbeddedForms($con = null, $forms = null)
   {
   }
 }

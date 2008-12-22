@@ -33,6 +33,10 @@ class BasePersonForm extends BaseFormDoctrine
       'updated_at' => new sfValidatorDateTime(array('required' => false)),
     ));
 
+    $this->validatorSchema->setPostValidator(
+      new sfValidatorDoctrineUnique(array('model' => 'Person', 'column' => array('code')))
+    );
+
     $this->widgetSchema->setNameFormat('person[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);

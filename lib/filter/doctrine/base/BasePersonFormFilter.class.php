@@ -1,6 +1,6 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/base/BaseFormFilterDoctrine.class.php');
+require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
 
 /**
  * Person filter form base class.
@@ -48,10 +48,10 @@ class BasePersonFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'         => 'Text',
+      'id'         => 'Number',
       'name'       => 'Text',
       'code'       => 'Text',
-      'type'       => 'Text',
+      'type'       => 'Number',
       'parent_id'  => 'ForeignKey',
       'title'      => 'Text',
       'created_at' => 'Date',

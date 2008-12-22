@@ -1,6 +1,6 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/base/BaseFormFilterDoctrine.class.php');
+require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
 
 /**
  * Location filter form base class.
@@ -48,9 +48,9 @@ class BaseLocationFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'          => 'Text',
+      'id'          => 'Number',
       'entity_id'   => 'ForeignKey',
-      'type'        => 'Text',
+      'type'        => 'Number',
       'street'      => 'Text',
       'city'        => 'Text',
       'state'       => 'Text',

@@ -1,6 +1,6 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/base/BaseFormFilterDoctrine.class.php');
+require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
 
 /**
  * Phonenumber filter form base class.
@@ -40,10 +40,10 @@ class BasePhonenumberFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'        => 'Text',
+      'id'        => 'Number',
       'entity_id' => 'ForeignKey',
       'number'    => 'Text',
-      'type'      => 'Text',
+      'type'      => 'Number',
     );
   }
 }

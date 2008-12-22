@@ -1,6 +1,6 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/base/BaseFormFilterDoctrine.class.php');
+require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
 
 /**
  * Project filter form base class.
@@ -44,7 +44,7 @@ class BaseProjectFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'          => 'Text',
+      'id'          => 'Number',
       'name'        => 'Text',
       'description' => 'Text',
       'entity_id'   => 'ForeignKey',

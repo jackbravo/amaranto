@@ -1,6 +1,6 @@
 <?php
 
-require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/base/BaseFormFilterDoctrine.class.php');
+require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
 
 /**
  * Entity filter form base class.
@@ -48,11 +48,11 @@ class BaseEntityFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'         => 'Text',
+      'id'         => 'Number',
       'name'       => 'Text',
       'code'       => 'Text',
-      'type'       => 'Text',
-      'parent_id'  => 'Text',
+      'type'       => 'Number',
+      'parent_id'  => 'Number',
       'title'      => 'Text',
       'created_at' => 'Date',
       'updated_at' => 'Date',
