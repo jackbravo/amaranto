@@ -1,0 +1,7 @@
+Project:
+  base:
+    name: Proyecto Muestra
+  
+  amaranto:
+    name: Amaranto
+    Entity: fulanito
