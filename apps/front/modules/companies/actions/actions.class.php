@@ -59,7 +59,7 @@ class companiesActions extends sfActions
 
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
-    $form->bind($request->getParameter('person'));
+    $form->bind($request->getParameter('company'));
     if ($form->isValid())
     {
       $company = $form->save();

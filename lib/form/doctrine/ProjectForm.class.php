@@ -32,6 +32,16 @@ class ProjectForm extends BaseProjectForm
     unset($this['created_at'], $this['updated_at']);
   }
 
+  public function updateEntity()
+  {
+    $entity_name = $this->getValue('entity');
+    if ($entity_name != $this->object->Entity->name)
+    {
+      $this->object->Entity = Doctrine::getTable('Entity')
+        ->getOrCreate($entity_name);
+    }
+  }
+
   public function updateObject($values = null)
   {
     $object = parent::updateObject(null);
