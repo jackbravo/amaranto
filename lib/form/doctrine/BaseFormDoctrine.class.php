@@ -53,13 +53,11 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
     parent::bind($taintedValues, $taintedFiles);
   }
 
+  /**
+   * we override this to use synchronizeWithArray instead of fromArray
+   */
   public function updateObject($values = null)
   {
-    if (!$this->isValid())
-    {
-      throw $this->getErrorSchema();
-    }
-
     if (is_null($values))
     {
       $values = $this->values;
