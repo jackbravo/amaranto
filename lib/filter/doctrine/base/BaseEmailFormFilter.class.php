@@ -22,7 +22,7 @@ class BaseEmailFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'entity_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Entity', 'column' => 'id')),
       'email'     => new sfValidatorPass(array('required' => false)),
-      'type'      => new sfValidatorInteger(array('required' => false)),
+      'type'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('email_filters[%s]');

@@ -26,8 +26,8 @@ class BaseEntityFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'name'       => new sfValidatorPass(array('required' => false)),
       'code'       => new sfValidatorPass(array('required' => false)),
-      'type'       => new sfValidatorInteger(array('required' => false)),
-      'parent_id'  => new sfValidatorInteger(array('required' => false)),
+      'type'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'parent_id'  => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'title'      => new sfValidatorPass(array('required' => false)),
       'created_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'updated_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),

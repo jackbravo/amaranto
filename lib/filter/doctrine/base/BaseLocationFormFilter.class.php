@@ -25,7 +25,7 @@ class BaseLocationFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'entity_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Entity', 'column' => 'id')),
-      'type'        => new sfValidatorInteger(array('required' => false)),
+      'type'        => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
       'street'      => new sfValidatorPass(array('required' => false)),
       'city'        => new sfValidatorPass(array('required' => false)),
       'state'       => new sfValidatorPass(array('required' => false)),

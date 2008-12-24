@@ -22,7 +22,7 @@ class BasePhonenumberFormFilter extends BaseFormFilterDoctrine
     $this->setValidators(array(
       'entity_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Entity', 'column' => 'id')),
       'number'    => new sfValidatorPass(array('required' => false)),
-      'type'      => new sfValidatorInteger(array('required' => false)),
+      'type'      => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
     ));
 
     $this->widgetSchema->setNameFormat('phonenumber_filters[%s]');
