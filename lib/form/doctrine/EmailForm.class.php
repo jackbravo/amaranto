@@ -23,11 +23,5 @@ class EmailForm extends BaseEmailForm
       'choices' => array_keys($types),
       'required' => false,
     ));
-
-    // email field must be an email ;-)
-    $this->validatorSchema['email'] = new sfValidatorAnd(array(
-      $this->validatorSchema['email'],
-      new sfValidatorEmail(),
-    ));
   }
 }
