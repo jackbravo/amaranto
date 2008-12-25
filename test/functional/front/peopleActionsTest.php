@@ -2,7 +2,8 @@
 
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
-$b = new sfTestFunctional(new sfBrowser());
+$b = new CrmTestFunctional(new sfBrowser());
+$b->loadData();
 $databaseManager = new sfDatabaseManager($configuration);
 
 $b->
