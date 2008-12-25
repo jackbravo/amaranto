@@ -1,3 +1,5 @@
+<div class="grid_8">
+
 <h1>Contacts</h1>
 
 <div class="tabs">
@@ -28,10 +30,11 @@
     <?php endforeach; ?>
   </tbody>
 </table>
-
-<?php slot('sidebar-right') ?>
-<div class="box">
-  <p><a href="<?php echo url_for('@people_new') ?>">Add a new person</a></p>
-  <p><a href="<?php echo url_for('@companies_new') ?>">Add a new company</a></p>
 </div>
-<?php end_slot() ?>
+
+<div class="grid_4">
+  <div class="box">
+    <p><a href="<?php echo url_for('@people_new') ?>">Add a new person</a></p>
+    <p><a href="<?php echo url_for('@companies_new') ?>">Add a new company</a></p>
+  </div>
+</div>

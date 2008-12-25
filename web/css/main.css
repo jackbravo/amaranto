@@ -1,13 +1,3 @@
-*
-{
-	margin: 0px;
-}
-
-img
-{
-  border: none;
-}
-
 body
 {
   font-size: .8em;
@@ -38,7 +28,11 @@ a:hover
   border-top: none;
   background-color: #73A2CE;
   color: #fff;
-  margin: 0 10px;
+}
+
+#menu *
+{
+  margin: 0;
 }
 
 #menu div
@@ -132,14 +126,6 @@ a:hover
   border-width: 1px;
   padding-bottom: 4px;
   font-size: 13px;
-}
-
-/* ------------ container ------------ */
-
-#container h1, #container h2, #container h3
-{
-  color: #555;
-  padding: 3px 3px 3px 0;
 }
 
 /* ------------ footer ------------ */

@@ -1,6 +1,8 @@
+<div class="grid_8">
+
 <h1>Projects List</h1>
 
-<table>
+<table class="list">
   <tbody>
     <?php foreach ($project_list as $project): ?>
     <tr class="info">
@@ -12,9 +14,10 @@
     <?php endforeach; ?>
   </tbody>
 </table>
+</div> <!-- /grid_8 -->
 
-<?php slot('sidebar-right') ?>
+<div class="grid_4">
 <div class="box">
   <a href="<?php echo url_for('projects_new') ?>">Add a new project</a>
 </div>
-<?php end_slot() ?>
+</div>
