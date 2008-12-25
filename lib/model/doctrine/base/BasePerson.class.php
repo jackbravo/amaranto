@@ -9,6 +9,7 @@ abstract class BasePerson extends Entity
   {
     parent::setUp();
     $this->hasOne('Company', array('local' => 'parent_id',
-                                   'foreign' => 'id'));
+                                   'foreign' => 'id',
+                                   'onDelete' => 'SET NULL'));
   }
 }

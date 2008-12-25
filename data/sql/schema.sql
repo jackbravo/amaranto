@@ -5,7 +5,7 @@ CREATE TABLE location (id INT AUTO_INCREMENT, entity_id INT, type SMALLINT, stre
 CREATE TABLE phonenumber (id INT AUTO_INCREMENT, entity_id INT, number VARCHAR(50), type SMALLINT, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE project (id INT AUTO_INCREMENT, name VARCHAR(50) NOT NULL, description TEXT, entity_id INT, created_at DATETIME, updated_at DATETIME, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
 ALTER TABLE email ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
-ALTER TABLE entity ADD FOREIGN KEY (parent_id) REFERENCES entity(id);
+ALTER TABLE entity ADD FOREIGN KEY (parent_id) REFERENCES entity(id) ON DELETE SET NULL;
 ALTER TABLE location ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
 ALTER TABLE phonenumber ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
 ALTER TABLE project ADD FOREIGN KEY (entity_id) REFERENCES entity(id);

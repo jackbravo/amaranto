@@ -24,6 +24,8 @@ Person:
     Company:
       foreignAlias: People
       local:        parent_id
+      onDelete:     SET NULL
+# TODO: make sure you ask before deleting a parent entity for its children
 
 Company:
   inheritance:
