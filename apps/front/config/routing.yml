@@ -1,8 +1,4 @@
 # default rules
-homepage:
-  url:   /
-  param: { module: dashboard, action: index }
-
 people:
   class: sfDoctrineRouteCollection
   options:
@@ -23,6 +19,10 @@ projects:
     model:      Project
     with_show:  true
     collection_actions: { filter: post, batch: post }
+
+homepage:
+  url:   /
+  param: { module: parties, action: index }
 
 default_index:
   url:   /:module
