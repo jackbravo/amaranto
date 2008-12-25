@@ -20,7 +20,12 @@ class partiesActions extends sfActions
     $this->show = $request->getParameter('show', 'people');
     $table = $this->getShowTable($this->show);
 
-    $this->personList = Doctrine::getTable($table)->findForList();
+    $this->pager = new sfDoctrinePager($table,
+      sfConfig::get('app_max_entities_on_parties')
+    );
+    $this->pager->setQuery(Doctrine::getTable($table)->getListQuery());
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
   }
 
   public function executeAjaxList(sfWebRequest $request)

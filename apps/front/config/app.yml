@@ -1,2 +1,2 @@
-# default values
-#all:
+all:
+  max_entities_on_parties: 25

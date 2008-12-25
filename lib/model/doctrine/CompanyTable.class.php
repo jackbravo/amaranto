@@ -17,11 +17,11 @@ class CompanyTable extends EntityTable
     }
   }
 
-  public function findForList()
+  public function getListQuery()
   {
     return $this->createQuery('c')
       ->leftJoin('c.Phonenumbers phones')
       ->leftJoin('c.Emails emails')
-      ->execute();
+      ->addOrderBy('c.name');
   }
 }

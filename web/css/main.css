@@ -154,8 +154,8 @@ table.list td {
 
 .box
 {
-  margin: 10px 10px 10px 0;
-  padding: 10px;
+  margin: 10px 0;
+  padding: 5px 10px;
   border: 1px solid #ccc;
   background: #f7f7f7;
   font-size: 11px;
@@ -187,3 +187,10 @@ table.list td {
   margin: 0 0 2px;
 }
 
+.pagination {
+  float: right;
+}
+
+.pagination_desc {
+  font-style: italic;
+}
