@@ -12,6 +12,7 @@ Person:
       Email_1:
         email: fulanito@gmail.com
         type: 1
+
   perengano: 
     name: Perengano de Aquel
     Phonenumbers:
@@ -25,14 +26,30 @@ Person:
       Email_3:
         email: perengano@hotmail.com
         type: 2
+
   jack: 
     name: Jack Daniels
+
   johny: 
     name: Johny Walker
+
   julio: 
     name: Don Julio
+
+<?php for ($i = 100; $i <= 130; $i++): ?>
+  person_<?php echo $i ?>:
+    name: Person <?php echo $i."\n" ?>
+    title: Tester
+<?php endfor; ?>
 
 Company:
   axai:
     name: Acme Inc.
     People: [fulanito, perengano]
+
+<?php for ($i = 100; $i <= 130; $i++): ?>
+  company_<?php echo $i ?>:
+    name: Company <?php echo $i."\n" ?>
+    People: [<?php echo 'person_' . $i ?>]
+<?php endfor; ?>
+

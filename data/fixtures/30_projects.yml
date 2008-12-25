@@ -5,3 +5,10 @@ Project:
   amaranto:
     name: Amaranto
     Entity: fulanito
+
+<?php for ($i = 100; $i <= 130; $i++): ?>
+  project_<?php echo $i ?>:
+    name: Project <?php echo $i."\n" ?>
+    description: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+<?php endfor; ?>
+
