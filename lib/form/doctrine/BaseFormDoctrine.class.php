@@ -46,7 +46,7 @@ abstract class BaseFormDoctrine extends sfFormDoctrine
       }
       else
       {
-        unset($this[$key]);
+        $this->embedFormForEach($key, new $options['form'], $options['min']);
       }
     }
 

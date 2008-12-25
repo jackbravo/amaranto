@@ -21,6 +21,7 @@ class PhonenumberForm extends BasePhonenumberForm
     ));
     $this->validatorSchema['type'] = new sfValidatorChoice(array(
       'choices' => array_keys($types),
+      'required' => false,
     ));
   }
 }
