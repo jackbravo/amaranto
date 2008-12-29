@@ -8,7 +8,7 @@
 <?php foreach ($form['Emails'] as $field): ?>
   <div class="item-row">
     <div class="fields">
-      <?php echo $field['email'] . $field['type'] ?>
+      <?php echo $field['email'] . '&nbsp;' . $field['type'] ?>
       <?php echo link_to_function(image_tag('/sf/sf_admin/images/delete.png'),
               "removeField(this)",
               array('title' => __('remove')))

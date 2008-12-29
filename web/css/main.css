@@ -1,7 +1,7 @@
 body
 {
   font-size: .8em;
-  font-family: "Bitstream Vera Sans", "DejaVu Sans", verdana, sans-serif;
+  font-family: verdana, sans-serif;
 }
 
 p
@@ -167,14 +167,21 @@ table.list td {
   margin: .5em 0;
 }
 
+.form-item * {
+  vertical-align: top;
+}
+
 .form-item label {
   font-weight: bold;
-  display: block;
 }
 
 .form-item .description {
   font-size: .8em;
   color: #555;
+}
+
+.form-item .description label {
+  font-weight: normal;
 }
 
 .form-item .error_list {

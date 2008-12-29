@@ -4,6 +4,9 @@
 <?php use_stylesheet('jquery-ui-south.css') ?>
 <?php use_helper('JavascriptBase') ?>
 <?php $person = $form->getObject() ?>
+
+<div class="grid_12">
+
 <h1><?php echo $form->isNew() ? 'New' : 'Edit' ?> Person</h1>
 
 <?php echo form_tag_for($form, '@people') ?>
@@ -45,3 +48,5 @@
 </div>
 
 </form>
+
+</div> <!-- /grid_12 -->

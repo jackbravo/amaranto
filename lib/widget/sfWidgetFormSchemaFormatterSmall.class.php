@@ -6,10 +6,10 @@
  * @package    axai
  * @subpackage widget
  */
-class sfWidgetFormSchemaFormatterDiv extends sfWidgetFormSchemaFormatter
+class sfWidgetFormSchemaFormatterSmall extends sfWidgetFormSchemaFormatter
 {
   protected
-    $rowFormat       = "%label%<br/>\n  %field%\n  <div class='description'>%error%%help%</div>\n  %hidden_fields%\n",
+    $rowFormat       = "%field%\n  <div class='description'>%label% %error% %help%</div>\n  %hidden_fields%\n",
     $errorRowFormat  = "<div class='errors'>\n%errors%</div>\n",
     $helpFormat      = "<div class='help-text'>%help%</div>",
     $decoratorFormat = "<div class='doctrine-form'>\n  %content%</div>",
@@ -19,7 +19,7 @@ class sfWidgetFormSchemaFormatterDiv extends sfWidgetFormSchemaFormatter
 
   public function formatRow($label, $field, $errors = array(), $help = '', $hiddenFields = null)
   {
-    $prepend = "<div class='form-item";
+    $prepend = "<div class='";
     $prepend .= (sizeof($errors) > 0) ? ' has-errors' : '';
     $prepend .= "'>";
     $append = '</div>';

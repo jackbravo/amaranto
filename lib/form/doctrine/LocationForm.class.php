@@ -11,6 +11,8 @@ class LocationForm extends BaseLocationForm
 {
   public function configure()
   {
+    $this->widgetSchema->setFormFormatterName('small');
+
     // this is set when saving the entity
     unset($this['id'], $this['entity_id']);
 
