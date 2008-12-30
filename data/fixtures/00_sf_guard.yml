@@ -1,5 +1,12 @@
 sfGuardUser:
+  sgu_app:
+    id:             -1
+    username:       application
+    password:       <?php echo uniqid() . "\n" ?>
+    is_active:      false
+
   sgu_admin:
+    id:             1
     username:       admin
     password:       admin
     is_super_admin: true

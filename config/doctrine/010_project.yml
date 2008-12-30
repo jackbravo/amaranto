@@ -14,3 +14,21 @@ Project:
     Entity:
       foreignAlias: Projects
 
+Note:
+  actAs: [Timestampable, Userstampable]
+  columns:
+    id:
+      type:         integer(4)
+      primary:      true
+      autoincrement: true
+    entity_id:      integer(4)
+    project_id:     integer(4)
+    body:           string
+  relations:
+    Entity:
+      foreignAlias: Notes
+      onDelete:     CASCADE
+    Project:
+      foreignAlias: Notes
+      onDelete:     CASCADE
+

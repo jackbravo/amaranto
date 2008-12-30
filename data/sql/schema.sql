@@ -9,6 +9,7 @@ CREATE TABLE sf_guard_user (id INT AUTO_INCREMENT, username VARCHAR(128) NOT NUL
 CREATE TABLE sf_guard_group_permission (group_id INT, permission_id INT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(group_id, permission_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_permission (id INT AUTO_INCREMENT, name VARCHAR(255) UNIQUE, description TEXT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE location (id INT AUTO_INCREMENT, entity_id INT, type SMALLINT, street VARCHAR(255), city VARCHAR(50), state VARCHAR(50), country VARCHAR(2), postal_code VARCHAR(10), INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE note (id INT AUTO_INCREMENT, entity_id INT, project_id INT, body TEXT, created_at DATETIME, updated_at DATETIME, created_by_user_id INT, updated_by_user_id INT, INDEX entity_id_idx (entity_id), INDEX project_id_idx (project_id), INDEX created_by_user_id_idx (created_by_user_id), INDEX updated_by_user_id_idx (updated_by_user_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE phonenumber (id INT AUTO_INCREMENT, entity_id INT, number VARCHAR(50), type SMALLINT, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE project (id INT AUTO_INCREMENT, name VARCHAR(50) NOT NULL, description TEXT, entity_id INT, created_at DATETIME, updated_at DATETIME, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
 ALTER TABLE email ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
@@ -21,5 +22,9 @@ ALTER TABLE sf_guard_remember_key ADD FOREIGN KEY (user_id) REFERENCES sf_guard_
 ALTER TABLE sf_guard_group_permission ADD FOREIGN KEY (permission_id) REFERENCES sf_guard_permission(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD FOREIGN KEY (group_id) REFERENCES sf_guard_group(id) ON DELETE CASCADE;
 ALTER TABLE location ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
+ALTER TABLE note ADD FOREIGN KEY (updated_by_user_id) REFERENCES sf_guard_user(id);
+ALTER TABLE note ADD FOREIGN KEY (project_id) REFERENCES project(id) ON DELETE CASCADE;
+ALTER TABLE note ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
+ALTER TABLE note ADD FOREIGN KEY (created_by_user_id) REFERENCES sf_guard_user(id);
 ALTER TABLE phonenumber ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
 ALTER TABLE project ADD FOREIGN KEY (entity_id) REFERENCES entity(id);
