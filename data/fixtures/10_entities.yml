@@ -1,6 +1,7 @@
 Person: 
-  fulanito: 
-    name: Fulanito de Tal
+  jack: 
+    name: Jack Daniels
+    description: first developer for Axai
     Phonenumbers:
       Phonenumber_1:
         number: 3631 7436
@@ -10,11 +11,16 @@ Person:
         type: 1
     Emails:
       Email_1:
-        email: fulanito@gmail.com
+        email: jackbravo@gmail.com
         type: 1
+    Notes:
+      jack_note_0:
+        created_at: '2008-12-12'
+        body: Marco ayer, dice que no va a poder ir a la cita con Madeleine este martes pero pide que la cambiemos por él para el miercoles
 
-  perengano: 
-    name: Perengano de Aquel
+  johnnie: 
+    name: Johnnie Walker
+    description: Honorary member of axai
     Phonenumbers:
       Phonenumber_3: 
         number: 333 105 6988
@@ -26,15 +32,13 @@ Person:
       Email_3:
         email: perengano@hotmail.com
         type: 2
-
-  jack: 
-    name: Jack Daniels
-
-  johny: 
-    name: Johny Walker
-
-  julio: 
-    name: Don Julio
+    Notes:
+      johnnie_note_0:
+        created_at: '2008-07-12'
+        body: Este viejo conocido nos contactó para pedir una cotización, pero también anda buscando trabajo, se dedica a la consultoría
+      johnnie_note_1:
+        created_at: '2008-07-23'
+        body: Finalmente también esta laborando con nosotros como alguien externo
 
 <?php for ($i = 100; $i <= 130; $i++): ?>
   person_<?php echo $i ?>:
@@ -44,8 +48,9 @@ Person:
 
 Company:
   axai:
+    id:   1
     name: Acme Inc.
-    People: [fulanito, perengano]
+    People: [jack, johnnie]
 
 <?php for ($i = 100; $i <= 130; $i++): ?>
   company_<?php echo $i ?>:
