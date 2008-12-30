@@ -16,6 +16,8 @@
 
 <?php include_partial('people/edit_location', array('form' => $form)) ?>
 
+<?php echo $form['description']->renderRow() ?>
+
 <div>
   <?php if (!$form->isNew()): ?>
     &nbsp;<a href="<?php echo url_for('@companies_show?id='.$company->get('id')) ?>">Cancel</a>

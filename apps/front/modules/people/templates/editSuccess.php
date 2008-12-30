@@ -37,6 +37,8 @@
 
 <?php include_partial('edit_location', array('form' => $form)) ?>
 
+<?php echo $form['description']->renderRow() ?>
+
 <div>
   <?php if (!$form->isNew()): ?>
     &nbsp;<a href="<?php echo url_for('@people_show?id='.$person->get('id')) ?>">Cancel</a>

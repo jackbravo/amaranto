@@ -1,6 +1,6 @@
-CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, code VARCHAR(50) UNIQUE, type SMALLINT, parent_id INT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, code VARCHAR(50) UNIQUE, type SMALLINT, parent_id INT, description TEXT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE email (id INT AUTO_INCREMENT, entity_id INT, email VARCHAR(50), type SMALLINT, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, code VARCHAR(50) UNIQUE, type SMALLINT, parent_id INT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, INDEX parent_id_idx (parent_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, code VARCHAR(50) UNIQUE, type SMALLINT, parent_id INT, description TEXT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, INDEX parent_id_idx (parent_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_permission (user_id INT, permission_id INT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_group (user_id INT, group_id INT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(user_id, group_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_group (id INT AUTO_INCREMENT, name VARCHAR(255) UNIQUE, description TEXT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;

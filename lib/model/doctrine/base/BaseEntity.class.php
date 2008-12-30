@@ -13,6 +13,7 @@ abstract class BaseEntity extends sfDoctrineRecord
     $this->hasColumn('code', 'string', 50, array('type' => 'string', 'unique' => true, 'length' => '50'));
     $this->hasColumn('type', 'integer', 2, array('type' => 'integer', 'length' => '2'));
     $this->hasColumn('parent_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
+    $this->hasColumn('description', 'string', null, array('type' => 'string'));
     $this->hasColumn('title', 'string', 255, array('type' => 'string', 'length' => '255'));
 
     $this->setSubClasses(array('Person' => array('type' => '1'), 'Company' => array('type' => '2')));

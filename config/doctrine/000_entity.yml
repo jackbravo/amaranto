@@ -13,6 +13,7 @@ Entity:
       unique:       true
     type:           integer(2)
     parent_id:      integer(4)
+    description:    string
 
 Person:
   inheritance:
