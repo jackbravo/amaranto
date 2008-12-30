@@ -5,5 +5,12 @@
  */
 class sfGuardUser extends PluginsfGuardUser
 {
-
+  public function __toString()
+  {
+    if ($this->exists()) {
+      return $this->getUsername();
+    } else {
+      return 'Anonymus';
+    }
+  }
 }
