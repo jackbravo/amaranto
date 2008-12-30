@@ -15,14 +15,19 @@
 
 <div class="fullspan" id="menu">
 	<h1><?php echo link_to('Axai Manager', '@homepage') ?></h1>
-  <ul>
-    <li><?php echo link_to(__('Contacts'), 'parties/index') ?></li>
-    <li><?php echo link_to(__('Projects'), '@projects') ?></li>
-  </ul>
+  <?php if ($sf_user->isAuthenticated()): ?>
+    <ul>
+      <li><?php echo link_to(__('Contacts'), 'parties/index') ?></li>
+      <li><?php echo link_to(__('Projects'), 'projects') ?></li>
+      <li><?php echo link_to(__('Users'), 'sf_guard_user') ?></li>
+    </ul>
 
-  <div id="user-tools" class="top-right">
-    <?php // echo link_to(__('Sign out'), '@sf_guard_signout') ?>
-  </div>
+    <ul id="user-tools" class="top-right">
+      <li><?php echo link_to(__('Logout'), '@sf_guard_signout') ?></li>
+    </ul>
+  <?php endif; ?>
+
+  <div></div>
 
 </div>
 

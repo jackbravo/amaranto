@@ -6,6 +6,8 @@ $b = new CrmTestFunctional(new sfBrowser());
 $b->loadData();
 $databaseManager = new sfDatabaseManager($configuration);
 
+$b->signin();
+
 $b->
   get('/parties/index')->
 
@@ -121,3 +123,6 @@ $b->info('test delete person')
   ->followRedirect()
   ->with('response')->checkElement('body', '!/Joaquin Bravo/')
 ;
+
+$b->signout();
+

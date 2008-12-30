@@ -63,7 +63,6 @@ a:hover
 #menu ul
 {
   float: left;
-	list-style: none;
 	padding: 0px;
 }
 	
@@ -71,6 +70,7 @@ a:hover
 {
 	float: left;
 	margin-right: 5px;
+	list-style: none;
 }
 
 #menu ul li a
@@ -89,6 +89,14 @@ a:hover
 {
 	background-color: #84b3df;
 	color: #333;
+}
+
+#menu .top-right {
+  float: right;
+}
+
+#menu .top-right a {
+  font-weight: normal;
 }
 
 /* ------------ content ------------ */

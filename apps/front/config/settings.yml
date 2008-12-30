@@ -22,25 +22,29 @@ test:
 all:
   .settings:
     # Form security secret (CSRF protection)
-    csrf_secret:       false     # Unique secret to enable CSRF protection or false to disable
+    csrf_secret:       un1qu3     # Unique secret to enable CSRF protection or false to disable
 
     # Output escaping settings
-    escaping_strategy:      false            # Determines how variables are made available to templates. Accepted values: on, off.
+    escaping_strategy:      on            # Determines how variables are made available to templates. Accepted values: on, off.
     escaping_method:        ESC_SPECIALCHARS # Function or helper used for escaping. Accepted values: ESC_RAW, ESC_ENTITIES, ESC_JS, ESC_JS_NO_ENTITIES, and ESC_SPECIALCHARS.
 
     # Helpers included in all templates by default
     standard_helpers:       [Partial, Cache, Form, I18N]
 
+    # Activated modules from plugins or from the symfony core
+    enabled_modules:        [default, sfGuardAuth, sfGuardUser]
+
+  .actions:
+    login_module:           sfGuardAuth   # To be called when a non-authenticated user
+    login_action:           signin     # Tries to access a secure page
+
+    secure_module:          sfGuardAuth   # To be called when a user doesn't have
+    secure_action:          secure    # The credentials required for an action
+
 #all:
 #  .actions:
 #    error_404_module:       default   # To be called when a 404 error is raised
 #    error_404_action:       error404  # Or when the requested URL doesn't match any route
-#
-#    login_module:           default   # To be called when a non-authenticated user
-#    login_action:           login     # Tries to access a secure page
-#
-#    secure_module:          default   # To be called when a user doesn't have
-#    secure_action:          secure    # The credentials required for an action
 #
 #    module_disabled_module: default   # To be called when a user requests 
 #    module_disabled_action: disabled  # A module disabled in the module.yml
@@ -78,9 +82,6 @@ all:
 #
 #    # Helpers included in all templates by default
 #    standard_helpers:       [Partial, Cache, Form]
-#
-#    # Activated modules from plugins or from the symfony core
-#    enabled_modules:        [default]
 #
 #    # Charset used for the response
 #    charset:                utf-8
