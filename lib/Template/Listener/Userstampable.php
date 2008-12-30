@@ -42,8 +42,13 @@ class Listener_Userstampable extends Doctrine_Record_Listener
     $createdName = $this->_options['created']['name'];
     $updatedName = $this->_options['updated']['name'];
 
-    $event->getInvoker()->$createdName = $this->getCurrentUserId();
-    $event->getInvoker()->$updatedName = $this->getCurrentUserId();
+    $modified = $event->getInvoker()->getModified();
+    if (!isset($modified[$createdName])) {
+      $event->getInvoker()->$createdName = $this->getCurrentUserId();
+    }
+    if (!isset($modified[$updatedName])) {
+      $event->getInvoker()->$updatedName = $this->getCurrentUserId();
+    }
   }
 
   /**
@@ -55,8 +60,10 @@ class Listener_Userstampable extends Doctrine_Record_Listener
   public function preUpdate(Doctrine_Event $event)
   {
     $updatedName = $this->_options['updated']['name'];
-
-    $event->getInvoker()->$updatedName = $this->getCurrentUserId();
+    $modified = $event->getInvoker()->getModified();
+    if (!isset($modified[$updatedName])) {
+      $event->getInvoker()->$updatedName = $this->getCurrentUserId();
+    }
   }
 
   /**
