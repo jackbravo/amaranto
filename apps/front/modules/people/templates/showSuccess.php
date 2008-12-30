@@ -1,3 +1,4 @@
+<?php use_helper('Text') ?>
 <div id="content" class="grid_8">
 
   <div class="subheader">
@@ -18,6 +19,8 @@
   </p>
 
   <hr />
+
+  <?php include_partial('projects/show_notes', array('notes' => $person['Notes'])) ?>
 
 </div> <!-- /grid_8 -->
 

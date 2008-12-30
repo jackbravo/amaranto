@@ -1,3 +1,4 @@
+<?php use_helper('Text') ?>
 <div id="content" class="grid_8">
 
   <div class="subheader">
@@ -7,6 +8,8 @@
   <h1><?php echo $company['name'] ?></h1>
 
   <hr />
+
+  <?php include_partial('projects/show_notes', array('notes' => $company['Notes'])) ?>
 
 </div> <!-- /grid_8 -->
 

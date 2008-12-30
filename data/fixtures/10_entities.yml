@@ -1,5 +1,6 @@
 Person: 
   jack: 
+    id: 2
     name: Jack Daniels
     description: first developer for Axai
     Phonenumbers:
@@ -19,6 +20,7 @@ Person:
         body: Marco ayer, dice que no va a poder ir a la cita con Madeleine este martes pero pide que la cambiemos por él para el miercoles
 
   johnnie: 
+    id: 3
     name: Johnnie Walker
     description: Honorary member of axai
     Phonenumbers:
@@ -51,6 +53,10 @@ Company:
     id:   1
     name: Acme Inc.
     People: [jack, johnnie]
+    Notes:
+      axai_note_0:
+        created_at: '2008-09-15'
+        body: Alguna nota de ejemplo
 
 <?php for ($i = 100; $i <= 130; $i++): ?>
   company_<?php echo $i ?>:
