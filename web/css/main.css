@@ -91,6 +91,12 @@ a:hover
 	color: #333;
 }
 
+/* ------------ content ------------ */
+
+#content h1 {
+  margin-bottom: 0px;
+}
+
 /* ------------ tabs ------------ */
 
 .tabs
@@ -161,6 +167,14 @@ table.list td {
   font-size: 11px;
 }
 
+.box h2, .box ul {
+  margin-bottom: 5px;
+}
+
+.box h2 {
+  font-size: 14px;
+}
+
 /* ----------- forms ----------- */
 
 .form-item {
@@ -201,3 +215,9 @@ table.list td {
 .pagination_desc {
   font-style: italic;
 }
+
+.subheader {
+  float: right;
+  margin-top: 5px;
+}
+

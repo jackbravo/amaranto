@@ -1,21 +1,31 @@
-<h1><?php echo $company['name'] ?></h1>
+<div id="content" class="grid_8">
 
-<h2>Teléfonos</h2>
-<ul id="phones">
-  <?php foreach ($company['Phonenumbers'] as $phone): ?>
-    <li><?php echo $phone['number'] ?></li>
-  <?php endforeach; ?>
-</ul>
+  <div class="subheader">
+    <?php echo link_to('Edit', 'companies_edit', $company) ?>
+  </div>
 
-<h2>Emails</h2>
-<ul id="emails">
-  <?php foreach ($company['Emails'] as $email): ?>
-    <li><?php echo $email['email'] ?></li>
-  <?php endforeach; ?>
-</ul>
+  <h1><?php echo $company['name'] ?></h1>
 
-<hr />
+  <hr />
 
-<a href="<?php echo url_for('@companies_edit?id='.$company['id']) ?>">Edit</a>
-&nbsp;
-<a href="<?php echo url_for('parties/index') ?>">List</a>
+</div> <!-- /grid_8 -->
+
+<div class="sidebar grid_4">
+
+  <div class="box">
+    <h2>Teléfonos</h2>
+    <ul id="phones">
+      <?php foreach ($company['Phonenumbers'] as $phone): ?>
+        <li><?php echo $phone['number'] ?></li>
+      <?php endforeach; ?>
+    </ul>
+
+    <h2>Emails</h2>
+    <ul id="emails">
+      <?php foreach ($company['Emails'] as $email): ?>
+        <li><?php echo $email['email'] ?></li>
+      <?php endforeach; ?>
+    </ul>
+  </div>
+
+</div> <!-- /grid_4 -->
