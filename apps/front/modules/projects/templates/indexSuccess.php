@@ -18,7 +18,7 @@
   </tbody>
 </table>
 
-<?php include_partial('parties/pager', array('pager' => $pager, 'url' => url_for('projects'))) ?>
+<?php include_partial('parties/pager', array('pager' => $pager)) ?>
 
 </div> <!-- /grid_8 -->
 

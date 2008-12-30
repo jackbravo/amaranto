@@ -31,7 +31,7 @@
   </tbody>
 </table>
 
-<?php include_partial('parties/pager', array('pager' => $pager, 'url' => url_for('parties/index'))) ?>
+<?php include_partial('parties/pager', array('pager' => $pager)) ?>
 
 </div>
 
