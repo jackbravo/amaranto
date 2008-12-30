@@ -12,7 +12,12 @@ class projectsActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->project_list = $this->getRoute()->getObjects();
+    $this->pager = new sfDoctrinePager('Project',
+      sfConfig::get('app_max_projects_on_index')
+    );
+    $this->pager->setQuery(Doctrine::getTable('Project')->getListQuery());
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
   }
 
   public function executeShow(sfWebRequest $request)

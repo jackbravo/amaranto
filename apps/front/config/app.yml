@@ -1,2 +1,3 @@
 all:
   max_entities_on_parties: 25
+  max_projects_on_index: 25

@@ -4,5 +4,10 @@
  */
 class ProjectTable extends Doctrine_Table
 {
-
+  public function getListQuery()
+  {
+    return $this->createQuery('p')
+      ->leftJoin('p.Entity e')
+      ->addOrderBy('p.name');
+  }
 }

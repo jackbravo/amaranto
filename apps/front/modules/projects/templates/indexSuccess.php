@@ -4,7 +4,7 @@
 
 <table class="list">
   <tbody>
-    <?php foreach ($project_list as $project): ?>
+    <?php foreach ($pager->getResults() as $project): ?>
     <tr class="info">
       <td>
         <h2><a href="<?php echo url_for('projects_show', $project) ?>"><?php echo $project->getName() ?></a></h2>
@@ -17,6 +17,9 @@
     <?php endforeach; ?>
   </tbody>
 </table>
+
+<?php include_partial('parties/pager', array('pager' => $pager, 'url' => url_for('projects'))) ?>
+
 </div> <!-- /grid_8 -->
 
 <div class="grid_4">
