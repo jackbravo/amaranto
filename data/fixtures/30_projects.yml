@@ -10,5 +10,6 @@ Project:
   project_<?php echo $i ?>:
     name: Project <?php echo $i."\n" ?>
     description: Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    Entity: <?php echo (fmod($i, 2) == 0)? "company_$i\n" : "person_$i\n" ?>
 <?php endfor; ?>
 

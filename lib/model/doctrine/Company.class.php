@@ -5,6 +5,11 @@
  */
 class Company extends BaseCompany
 {
+  public function getShowUrl()
+  {
+    return sfContext::getInstance()->getRouting()->generate('companies_show', $this);
+  }
+
   public function __toString()
   {
     if (is_null($this->name))

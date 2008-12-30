@@ -1,30 +1,22 @@
-<table>
-  <tbody>
-    <tr>
-      <th>Id:</th>
-      <td><?php echo $project->getid() ?></td>
-    </tr>
-    <tr>
-      <th>Name:</th>
-      <td><?php echo $project->getname() ?></td>
-    </tr>
-    <tr>
-      <th>Description:</th>
-      <td><?php echo $project->getdescription() ?></td>
-    </tr>
-    <tr>
-      <th>Created at:</th>
-      <td><?php echo $project->getcreated_at() ?></td>
-    </tr>
-    <tr>
-      <th>Updated at:</th>
-      <td><?php echo $project->getupdated_at() ?></td>
-    </tr>
-  </tbody>
-</table>
+<?php use_helper('Text') ?>
+<div id="content" class="grid_8">
 
-<hr />
+  <div class="subheader">
+    <?php echo link_to('Edit', 'projects_edit', $project) ?>
+  </div>
 
-<a href="<?php echo url_for('projects_edit', $project) ?>">Edit</a>
-&nbsp;
-<a href="<?php echo url_for('projects') ?>">List</a>
+  <h1><?php echo $project['name'] ?></h1>
+  <?php if ($project['Entity']['id']): ?>
+    <p>for <a href="<?php echo $project['Entity']->getShowUrl() ?>"><?php echo $project['Entity'] ?></a></p>
+  <?php endif; ?>
+
+  <?php echo simple_format_text($project['description']) ?>
+
+  <hr />
+
+</div> <!-- /grid_8 -->
+
+<div class="sidebar grid_4">
+
+</div> <!-- /grid_4 -->
+

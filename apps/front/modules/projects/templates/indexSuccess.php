@@ -8,6 +8,9 @@
     <tr class="info">
       <td>
         <h2><a href="<?php echo url_for('projects_show', $project) ?>"><?php echo $project->getName() ?></a></h2>
+        <?php if ($project['Entity']['id']): ?>
+          for <a href="<?php echo $project['Entity']->getShowUrl() ?>"><?php echo $project['Entity'] ?></a>
+        <?php endif; ?>
       </td>
       <td><?php echo $project->getdescription() ?></td>
     </tr>
