@@ -5,5 +5,10 @@
  */
 class Entity extends BaseEntity
 {
-
+  public function getNotesList()
+  {
+    return Doctrine::getTable('Note')->getListQuery()
+      ->addWhere('n.entity_id = ?', $this->id)
+      ->execute();
+  }
 }

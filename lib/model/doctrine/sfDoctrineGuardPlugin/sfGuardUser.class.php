@@ -10,7 +10,7 @@ class sfGuardUser extends PluginsfGuardUser
     if ($this->exists()) {
       return $this->getUsername();
     } else {
-      return 'Anonymus';
+      return '';
     }
   }
 }

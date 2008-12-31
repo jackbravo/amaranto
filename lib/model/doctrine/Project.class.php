@@ -5,5 +5,10 @@
  */
 class Project extends BaseProject
 {
-
+  public function getNotesList()
+  {
+    return Doctrine::getTable('Note')->getListQuery()
+      ->addWhere('n.project_id = ?', $this->id)
+      ->execute();
+  }
 }

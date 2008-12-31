@@ -20,7 +20,7 @@
 
   <hr />
 
-  <?php include_partial('projects/show_notes', array('notes' => $person['Notes'])) ?>
+  <?php include_partial('projects/show_notes', array('notes' => $person->getNotesList())) ?>
 
 </div> <!-- /grid_8 -->
 

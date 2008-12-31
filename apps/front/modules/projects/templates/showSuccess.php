@@ -14,7 +14,7 @@
 
   <hr />
 
-  <?php include_partial('projects/show_notes', array('notes' => $project['Notes'])) ?>
+  <?php include_partial('projects/show_notes', array('notes' => $project->getNotesList())) ?>
 
 </div> <!-- /grid_8 -->
 

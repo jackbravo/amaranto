@@ -4,5 +4,11 @@
  */
 class NoteTable extends Doctrine_Table
 {
-
+  public function getListQuery()
+  {
+    return $this->createQuery('n')
+      ->leftJoin('n.CreatedBy')
+      ->orderBy('n.created_at desc')
+    ;
+  }
 }
