@@ -9,7 +9,10 @@
 
   <hr />
 
-  <?php include_partial('projects/show_notes', array('notes' => $company->getNotesList())) ?>
+  <?php include_partial('notes/show_notes', array(
+          'notes' => $company->getNotesList(),
+          'note_form' => $note_form,
+        )) ?>
 
 </div> <!-- /grid_8 -->
 

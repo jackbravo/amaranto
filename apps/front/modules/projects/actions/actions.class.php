@@ -23,6 +23,9 @@ class projectsActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->project = $this->getRoute()->getObject();
+    $note = new Note();
+    $note->Project = $this->project;
+    $this->note_form = new NoteForm($note);
   }
 
   public function executeNew(sfWebRequest $request)

@@ -20,6 +20,13 @@ projects:
     with_show:  true
     collection_actions: { filter: post, batch: post }
 
+notes_create:
+  url:     /notes
+  class:   sfDoctrineRoute
+  options: { model: Note, type: object }
+  param:   { module: notes, action: create }
+  requirements: { sf_method: POST }
+
 homepage:
   url:   /
   param: { module: parties, action: index }

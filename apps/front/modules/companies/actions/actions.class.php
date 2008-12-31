@@ -18,6 +18,9 @@ class companiesActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->company = $this->getRoute()->getObject();
+    $note = new Note();
+    $note->Entity = $this->company;
+    $this->note_form = new NoteForm($note);
   }
 
   public function executeNew(sfWebRequest $request)

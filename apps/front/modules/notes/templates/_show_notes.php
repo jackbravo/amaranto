@@ -1,5 +1,5 @@
 <div class="note-form">
-  <?php $note_form = new NoteForm() ?>
+  <?php echo form_tag_for($note_form, '@notes') ?>
   <?php echo $note_form->renderGlobalErrors() ?>
   <?php echo $note_form->renderHiddenFields() ?>
   <?php echo $note_form ?>

@@ -18,6 +18,9 @@ class peopleActions extends sfActions
   public function executeShow(sfWebRequest $request)
   {
     $this->person = $this->getRoute()->getObject();
+    $note = new Note();
+    $note->Entity = $this->person;
+    $this->note_form = new NoteForm($note);
   }
 
   public function executeNew(sfWebRequest $request)
