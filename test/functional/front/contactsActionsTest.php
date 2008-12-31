@@ -5,7 +5,7 @@ include(dirname(__FILE__).'/../../bootstrap/functional.php');
 $browser = new CrmTestFunctional(new sfBrowser());
 
 $browser->signin()->
-  get('/contacts/index')->
+  get('/contacts')->
 
   with('request')->begin()->
     isParameter('module', 'contacts')->

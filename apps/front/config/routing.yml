@@ -27,6 +27,17 @@ notes_create:
   param:   { module: notes, action: create }
   requirements: { sf_method: POST }
 
+contacts_show:
+  url:      /contacts/:id
+  class:    sfDoctrineRoute
+  options:  { model: Entity, type: object }
+  param:    { module: contacts, action: show }
+  requirements: { sf_method: GET }
+
+contacts:
+  url:   /contacts
+  param: { module: contacts, action: index }
+
 homepage:
   url:   /
   param: { module: contacts, action: index }

@@ -9,7 +9,7 @@ $databaseManager = new sfDatabaseManager($configuration);
 $b->signin();
 
 $b->
-  get('/contacts/index')->
+  get('/contacts')->
 
   with('request')->begin()->
     isParameter('module', 'contacts')->

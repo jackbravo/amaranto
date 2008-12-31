@@ -17,8 +17,8 @@
 	<h1><?php echo link_to('Axai Manager', '@homepage') ?></h1>
   <?php if ($sf_user->isAuthenticated()): ?>
     <ul>
-      <li><?php echo link_to(__('Contacts'), 'contacts/index') ?></li>
-      <li><?php echo link_to(__('Projects'), 'projects') ?></li>
+      <li><?php echo link_to(__('Contacts'), '@contacts') ?></li>
+      <li><?php echo link_to(__('Projects'), '@projects') ?></li>
       <li><?php echo link_to(__('Users'), 'sf_guard_user') ?></li>
     </ul>
 

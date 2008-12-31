@@ -36,8 +36,7 @@ class notesActions extends sfActions
     }
     else if (is_numeric($form->getValue('entity_id')))
     {
-      // TODO: merge companies_show and people_show
-      //$this->redirect('@entity_show?id='.$form->getValue('entity_id'));
+      $this->redirect('@contacts_show?id='.$form->getValue('entity_id'));
     }
     else
     {

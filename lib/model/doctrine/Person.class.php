@@ -5,8 +5,4 @@
  */
 class Person extends BasePerson
 {
-  public function getShowUrl()
-  {
-    return sfContext::getInstance()->getRouting()->generate('people_show', $this);
-  }
 }

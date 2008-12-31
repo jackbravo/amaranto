@@ -43,6 +43,14 @@ class contactsActions extends sfActions
     return $this->renderText( json_encode($entities) );
   }
 
+  public function executeShow(sfWebRequest $request)
+  {
+    $this->entity = $this->getRoute()->getObject();
+    $note = new Note();
+    $note->Entity = $this->entity;
+    $this->note_form = new NoteForm($note);
+  }
+
   protected function getShowTable($show)
   {
     if ($show == 'companies')

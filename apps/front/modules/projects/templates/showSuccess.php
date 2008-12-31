@@ -7,7 +7,7 @@
 
   <h1><?php echo $project['name'] ?></h1>
   <?php if ($project['Entity']['id']): ?>
-    <p>for <a href="<?php echo $project['Entity']->getShowUrl() ?>"><?php echo $project['Entity'] ?></a></p>
+    <p>for <?php echo link_to($project['Entity'], 'contacts_show', $project['Entity']) ?></p>
   <?php endif; ?>
 
   <?php echo simple_format_text($project['description']) ?>

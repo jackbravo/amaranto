@@ -12,15 +12,7 @@ class peopleActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->redirect('contacts/index');
-  }
-
-  public function executeShow(sfWebRequest $request)
-  {
-    $this->person = $this->getRoute()->getObject();
-    $note = new Note();
-    $note->Entity = $this->person;
-    $this->note_form = new NoteForm($note);
+    $this->redirect('@contacts');
   }
 
   public function executeNew(sfWebRequest $request)
@@ -57,7 +49,7 @@ class peopleActions extends sfActions
   {
     $this->getRoute()->getObject()->delete();
 
-    $this->redirect('contacts/index');
+    $this->redirect('@contacts');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -67,7 +59,7 @@ class peopleActions extends sfActions
     {
       $person = $form->save();
 
-      $this->redirect('@people_show?id='.$person['id']);
+      $this->redirect('@contacts_show?id='.$person['id']);
     }
   }
 }
