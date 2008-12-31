@@ -23,7 +23,7 @@
     &nbsp;<a href="<?php echo url_for('@companies_show?id='.$company->get('id')) ?>">Cancel</a>
     &nbsp;<?php echo link_to('Delete', '@companies_delete?id='.$company->get('id'), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
   <?php else: ?>
-    &nbsp;<a href="<?php echo url_for('parties/index') ?>">Cancel</a>
+    &nbsp;<a href="<?php echo url_for('contacts/index') ?>">Cancel</a>
   <?php endif; ?>
   <input type="submit" value="Save" />
 </div>

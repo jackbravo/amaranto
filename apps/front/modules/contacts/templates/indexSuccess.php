@@ -3,8 +3,8 @@
 <h1>Contacts</h1>
 
 <div class="tabs">
-  <?php echo link_to('People', 'parties/index?show=people', array('class' => 'active')) ?>
-  <?php echo link_to('Companies', 'parties/index?show=companies') ?>
+  <?php echo link_to('People', 'contacts/index?show=people', array('class' => 'active')) ?>
+  <?php echo link_to('Companies', 'contacts/index?show=companies') ?>
 </div>
 
 <table class="list">
@@ -17,7 +17,7 @@
         <?php else: ?>
           <h2><a href="<?php echo url_for('@companies_show?id='.$entity['id']) ?>"><?php echo $entity['name'] ?></a></h2>
         <?php endif; ?>
-        <a href="<?php echo url_for('parties/index?title='.$entity['title']) ?>"><?php echo $entity['title'] ?></a>
+        <a href="<?php echo url_for('contacts/index?title='.$entity['title']) ?>"><?php echo $entity['title'] ?></a>
         <?php if ($show == 'people' && $entity['Company']['id']): ?>
           at <a href="<?php echo url_for('@companies_show?id='.$entity['Company']['id']) ?>"><?php echo $entity['Company'] ?></a>
         <?php endif; ?>
@@ -31,7 +31,7 @@
   </tbody>
 </table>
 
-<?php include_partial('parties/pager', array('pager' => $pager)) ?>
+<?php include_partial('contacts/pager', array('pager' => $pager)) ?>
 
 </div>
 

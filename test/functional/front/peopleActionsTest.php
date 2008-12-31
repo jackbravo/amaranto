@@ -9,10 +9,10 @@ $databaseManager = new sfDatabaseManager($configuration);
 $b->signin();
 
 $b->
-  get('/parties/index')->
+  get('/contacts/index')->
 
   with('request')->begin()->
-    isParameter('module', 'parties')->
+    isParameter('module', 'contacts')->
     isParameter('action', 'index')->
   end()->
 

@@ -1,14 +1,14 @@
 <?php
 
 /**
- * parties actions.
+ * contacts actions.
  *
  * @package    cms
- * @subpackage parties
+ * @subpackage contacts
  * @author     Your name here
  * @version    SVN: $Id: actions.class.php 9301 2008-05-27 01:08:46Z dwhittle $
  */
-class partiesActions extends sfActions
+class contactsActions extends sfActions
 {
  /**
   * Executes index action
@@ -21,7 +21,7 @@ class partiesActions extends sfActions
     $table = $this->getShowTable($this->show);
 
     $this->pager = new sfDoctrinePager($table,
-      sfConfig::get('app_max_entities_on_parties')
+      sfConfig::get('app_max_entities_on_contacts')
     );
     $this->pager->setQuery(Doctrine::getTable($table)->getListQuery());
     $this->pager->setPage($request->getParameter('page', 1));

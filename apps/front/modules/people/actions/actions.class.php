@@ -12,7 +12,7 @@ class peopleActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->redirect('parties/index');
+    $this->redirect('contacts/index');
   }
 
   public function executeShow(sfWebRequest $request)
@@ -57,7 +57,7 @@ class peopleActions extends sfActions
   {
     $this->getRoute()->getObject()->delete();
 
-    $this->redirect('parties/index');
+    $this->redirect('contacts/index');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)

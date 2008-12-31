@@ -29,7 +29,7 @@ notes_create:
 
 homepage:
   url:   /
-  param: { module: parties, action: index }
+  param: { module: contacts, action: index }
 
 default_index:
   url:   /:module

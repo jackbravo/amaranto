@@ -11,7 +11,7 @@
 <?php echo $form['entity']->renderRow() ?>
 <script type="text/javascript">
   $("#project_entity").autocomplete({
-    url: "<?php echo url_for("parties/ajaxList") ?>",
+    url: "<?php echo url_for("contacts/ajaxList") ?>",
     dataType: "json",
     parse:    function(data) {
       var parsed = [];

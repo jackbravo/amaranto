@@ -18,7 +18,7 @@
   </tbody>
 </table>
 
-<?php include_partial('parties/pager', array('pager' => $pager)) ?>
+<?php include_partial('contacts/pager', array('pager' => $pager)) ?>
 
 </div> <!-- /grid_8 -->
 
