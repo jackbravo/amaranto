@@ -1,0 +1,25 @@
+Category:
+  bug:
+    name: bug
+  feature:
+    name: feature
+  inquery:
+    name: question
+  task:
+    name: task
+
+Status:
+  st_0:
+    name: active
+  st_5:
+    name: resolved (completed)
+  st_6:
+    name: resolved (need more info)
+  st_7:
+    name: resolved (duplicate)
+  st_8:
+    name: resolved (postponed)
+  st_9:
+    name: resolved (declined)
+  st_10:
+    name: resolved (by design)

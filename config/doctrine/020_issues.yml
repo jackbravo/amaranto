@@ -1,0 +1,47 @@
+Issue:
+  columns:
+    title:          string(128)
+    project_id:     integer(4)
+    component_id:   integer(4)
+    assigned_to:    integer(4)
+
+    is_open:        boolean
+    opened_at:      timestamp
+    opened_by:      integer(4)
+    resolved_at:    timestamp
+    resolved_by:    integer(4)
+    closed_at:      timestamp
+    closed_by:      integer(4)
+
+    status_id:      integer(4)
+    category_id:    integer(4)
+    priority_id:    integer(4)
+    milestone_id:   integer(4)
+
+    orig_estimate:  float
+    curr_estimate:  float
+    elapsed:        float
+    deadline:       timestamp
+
+IssueActivity:
+  columns:
+    issue_id:       integer(4)
+    verb:           string(128) # opened, edited, closed
+    created_at:     timestamp
+    created_by:     integer(4)
+    body:           string
+    changes:        string # automatic description of the changes
+
+Category:
+  columns:
+    name:           string(64)
+
+Status:
+  columns:
+    name:           string(64)
+    category_id:    integer(4) # the category of issues this status applies
+
+Priority:
+  columns:
+    name:           string(64)
+
