@@ -14,7 +14,7 @@ class BaseIssueActivityFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'issue_id'   => new sfWidgetFormFilterInput(),
+      'issue_id'   => new sfWidgetFormDoctrineChoice(array('model' => 'Issue', 'add_empty' => true)),
       'verb'       => new sfWidgetFormFilterInput(),
       'created_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'created_by' => new sfWidgetFormFilterInput(),
@@ -23,7 +23,7 @@ class BaseIssueActivityFormFilter extends BaseFormFilterDoctrine
     ));
 
     $this->setValidators(array(
-      'issue_id'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'issue_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Issue', 'column' => 'id')),
       'verb'       => new sfValidatorPass(array('required' => false)),
       'created_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
       'created_by' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -47,7 +47,7 @@ class BaseIssueActivityFormFilter extends BaseFormFilterDoctrine
   {
     return array(
       'id'         => 'Number',
-      'issue_id'   => 'Number',
+      'issue_id'   => 'ForeignKey',
       'verb'       => 'Text',
       'created_at' => 'Date',
       'created_by' => 'Number',

@@ -12,15 +12,13 @@ class BaseStatusForm extends BaseFormDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'id'          => new sfWidgetFormInputHidden(),
-      'name'        => new sfWidgetFormInput(),
-      'category_id' => new sfWidgetFormInput(),
+      'id'   => new sfWidgetFormInputHidden(),
+      'name' => new sfWidgetFormInput(),
     ));
 
     $this->setValidators(array(
-      'id'          => new sfValidatorDoctrineChoice(array('model' => 'Status', 'column' => 'id', 'required' => false)),
-      'name'        => new sfValidatorString(array('max_length' => 64, 'required' => false)),
-      'category_id' => new sfValidatorInteger(array('required' => false)),
+      'id'   => new sfValidatorDoctrineChoice(array('model' => 'Status', 'column' => 'id', 'required' => false)),
+      'name' => new sfValidatorString(array('max_length' => 64, 'required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('status[%s]');

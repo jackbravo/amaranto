@@ -13,7 +13,7 @@ class BaseIssueActivityForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
-      'issue_id'   => new sfWidgetFormInput(),
+      'issue_id'   => new sfWidgetFormDoctrineSelect(array('model' => 'Issue', 'add_empty' => true)),
       'verb'       => new sfWidgetFormInput(),
       'created_at' => new sfWidgetFormDateTime(),
       'created_by' => new sfWidgetFormInput(),
@@ -23,7 +23,7 @@ class BaseIssueActivityForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'id'         => new sfValidatorDoctrineChoice(array('model' => 'IssueActivity', 'column' => 'id', 'required' => false)),
-      'issue_id'   => new sfValidatorInteger(array('required' => false)),
+      'issue_id'   => new sfValidatorDoctrineChoice(array('model' => 'Issue', 'required' => false)),
       'verb'       => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'created_at' => new sfValidatorDateTime(array('required' => false)),
       'created_by' => new sfValidatorInteger(array('required' => false)),

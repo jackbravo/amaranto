@@ -14,13 +14,11 @@ class BaseStatusFormFilter extends BaseFormFilterDoctrine
   public function setup()
   {
     $this->setWidgets(array(
-      'name'        => new sfWidgetFormFilterInput(),
-      'category_id' => new sfWidgetFormFilterInput(),
+      'name' => new sfWidgetFormFilterInput(),
     ));
 
     $this->setValidators(array(
-      'name'        => new sfValidatorPass(array('required' => false)),
-      'category_id' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'name' => new sfValidatorPass(array('required' => false)),
     ));
 
     $this->widgetSchema->setNameFormat('status_filters[%s]');
@@ -38,9 +36,8 @@ class BaseStatusFormFilter extends BaseFormFilterDoctrine
   public function getFields()
   {
     return array(
-      'id'          => 'Number',
-      'name'        => 'Text',
-      'category_id' => 'Number',
+      'id'   => 'Number',
+      'name' => 'Text',
     );
   }
 }

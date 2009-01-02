@@ -3,29 +3,29 @@
 require_once(sfConfig::get('sf_lib_dir').'/filter/doctrine/BaseFormFilterDoctrine.class.php');
 
 /**
- * Component filter form base class.
+ * Milestone filter form base class.
  *
  * @package    filters
- * @subpackage Component *
+ * @subpackage Milestone *
  * @version    SVN: $Id: sfDoctrineFormFilterGeneratedTemplate.php 11675 2008-09-19 15:21:38Z fabien $
  */
-class BaseComponentFormFilter extends BaseFormFilterDoctrine
+class BaseMilestoneFormFilter extends BaseFormFilterDoctrine
 {
   public function setup()
   {
     $this->setWidgets(array(
       'name'       => new sfWidgetFormFilterInput(),
       'project_id' => new sfWidgetFormDoctrineChoice(array('model' => 'Project', 'add_empty' => true)),
-      'owner_id'   => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'date'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
     ));
 
     $this->setValidators(array(
       'name'       => new sfValidatorPass(array('required' => false)),
       'project_id' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Project', 'column' => 'id')),
-      'owner_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
+      'date'       => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
     ));
 
-    $this->widgetSchema->setNameFormat('component_filters[%s]');
+    $this->widgetSchema->setNameFormat('milestone_filters[%s]');
 
     $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
@@ -34,7 +34,7 @@ class BaseComponentFormFilter extends BaseFormFilterDoctrine
 
   public function getModelName()
   {
-    return 'Component';
+    return 'Milestone';
   }
 
   public function getFields()
@@ -43,7 +43,7 @@ class BaseComponentFormFilter extends BaseFormFilterDoctrine
       'id'         => 'Number',
       'name'       => 'Text',
       'project_id' => 'ForeignKey',
-      'owner_id'   => 'ForeignKey',
+      'date'       => 'Date',
     );
   }
 }

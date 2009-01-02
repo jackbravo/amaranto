@@ -26,6 +26,15 @@ abstract class BaseProject extends sfDoctrineRecord
     $this->hasMany('Note as Notes', array('local' => 'id',
                                           'foreign' => 'project_id'));
 
+    $this->hasMany('Issue as Issues', array('local' => 'id',
+                                            'foreign' => 'project_id'));
+
+    $this->hasMany('Component as Components', array('local' => 'id',
+                                                    'foreign' => 'project_id'));
+
+    $this->hasMany('Milestone as Milestones', array('local' => 'id',
+                                                    'foreign' => 'project_id'));
+
     $timestampable0 = new Doctrine_Template_Timestampable();
     $this->actAs($timestampable0);
   }
