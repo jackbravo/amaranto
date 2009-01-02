@@ -2,9 +2,10 @@
 <div id="content" class="grid_8">
 
   <div class="subheader">
-    <?php if ($entity instanceof Person)
+    <?php // TODO: make a test for this link ?>
+    <?php if ($entity->getRawValue() instanceof Person)
             echo link_to('Edit', 'people_edit', $entity);
-          else if ($entity instanceof Company)
+          else if ($entity->getRawValue() instanceof Company)
             echo link_to('Edit', 'companies_edit', $entity); ?>
   </div>
 
