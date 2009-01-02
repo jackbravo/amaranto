@@ -2,18 +2,27 @@
 
 include(dirname(__FILE__).'/../../bootstrap/functional.php');
 
-$browser = new sfTestFunctional(new sfBrowser());
+$browser = new CrmTestFunctional(new sfBrowser());
 
-$browser->
-  get('/notes/index')->
+$browser->loadData()->signin()
+  ->get('/contacts')
+  ->click('Johnnie Walker')
+  ->with('response')->begin()
+    ->isStatusCode(200)
+    ->checkElement('.notes .note', 2)
+  ->end()
 
-  with('request')->begin()->
-    isParameter('module', 'notes')->
-    isParameter('action', 'index')->
-  end()->
+  ->get('/contacts?show=companies')
+  ->click('Axai Inc.')
+  ->with('response')->begin()
+    ->isStatusCode(200)
+    ->checkElement('.notes .note', 1)
+  ->end()
 
-  with('response')->begin()->
-    isStatusCode(200)->
-    checkElement('body', '!/This is a temporary page/')->
-  end()
+  ->get('/projects')
+  ->click('Muestra')
+  ->with('response')->begin()
+    ->isStatusCode(200)
+    ->checkElement('.notes .note', 2)
+  ->end()
 ;
