@@ -22,7 +22,7 @@ abstract class BaseEntity extends sfDoctrineRecord
   public function setUp()
   {
     $this->hasMany('Project as Projects', array('local' => 'id',
-                                                'foreign' => 'entity_id'));
+                                                'foreign' => 'client_id'));
 
     $this->hasMany('Note as Notes', array('local' => 'id',
                                           'foreign' => 'entity_id'));

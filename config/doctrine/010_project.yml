@@ -9,9 +9,11 @@ Project:
       type:         string(50)
       notnull:     true
     description:    string
-    entity_id:      integer(4)
+    client_id:      integer(4)
   relations:
-    Entity:
+    Client:
+      local:        client_id
+      class:        Entity
       foreignAlias: Projects
 
 Note:

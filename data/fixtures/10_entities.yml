@@ -51,7 +51,7 @@ Person:
 Company:
   axai:
     id:   1
-    name: Acme Inc.
+    name: Axai Inc.
     People: [jack, johnnie]
     Notes:
       axai_note_0:

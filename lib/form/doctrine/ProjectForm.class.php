@@ -14,31 +14,31 @@ class ProjectForm extends BaseProjectForm
     $this->widgetSchema['name']->setAttributes(array('size' => '40'));
     $this->widgetSchema['description'] = new sfWidgetFormTextarea();
 
-    $this->widgetSchema['entity'] = new sfWidgetFormInput();
-    $this->validatorSchema['entity'] = new sfValidatorString(array(
+    $this->widgetSchema['client'] = new sfWidgetFormInput();
+    $this->validatorSchema['client'] = new sfValidatorString(array(
       'max_length' => 255,
       'required' => false,
     ));
 
-    $this->setDefault('entity', $this->object->Entity->name);
+    $this->setDefault('client', $this->object->Client->name);
 
     // this field is required to avoid deleting the Company
     // record with the synchronizeWithArray method
-    $this->widgetSchema['Entity'] = new sfWidgetFormInputHidden();
-    $this->validatorSchema['Entity'] = new sfValidatorString(array(
+    $this->widgetSchema['Client'] = new sfWidgetFormInputHidden();
+    $this->validatorSchema['Client'] = new sfValidatorString(array(
       'required' => false,
     ));
 
     unset($this['created_at'], $this['updated_at']);
   }
 
-  public function updateEntity()
+  public function updateClient()
   {
-    $entity_name = $this->getValue('entity');
-    if ($entity_name != $this->object->Entity->name)
+    $client_name = $this->getValue('client');
+    if ($client_name != $this->object->Client->name)
     {
-      $this->object->Entity = Doctrine::getTable('Entity')
-        ->getOrCreate($entity_name);
+      $this->object->Client = Doctrine::getTable('Entity')
+        ->getOrCreate($client_name);
     }
   }
 
@@ -46,7 +46,7 @@ class ProjectForm extends BaseProjectForm
   {
     $object = parent::updateObject(null);
 
-    $this->updateEntity();
+    $this->updateClient();
 
     return $object;
   }

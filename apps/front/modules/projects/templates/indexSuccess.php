@@ -8,8 +8,8 @@
     <tr class="info">
       <td>
         <h2><a href="<?php echo url_for('projects_show', $project) ?>"><?php echo $project->getName() ?></a></h2>
-        <?php if ($project['Entity']['id']): ?>
-          for <?php echo link_to($project['Entity'], 'contacts_show', $project['Entity']) ?>
+        <?php if ($project['Client']['id']): ?>
+          for <?php echo link_to($project['Client'], 'contacts_show', $project['Client']) ?>
         <?php endif; ?>
       </td>
       <td><?php echo $project->getdescription() ?></td>

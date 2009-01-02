@@ -34,6 +34,10 @@ contacts_show:
   param:    { module: contacts, action: show }
   requirements: { sf_method: GET }
 
+contacts_ajax:
+  url:   /contacts.json
+  param: { module: contacts, action: ajaxList }
+
 contacts:
   url:   /contacts
   param: { module: contacts, action: index }

@@ -8,10 +8,10 @@
 <?php echo $form->renderHiddenFields() ?>
 
 <?php echo $form['name']->renderRow() ?>
-<?php echo $form['entity']->renderRow() ?>
+<?php echo $form['client']->renderRow() ?>
 <script type="text/javascript">
-  $("#project_entity").autocomplete({
-    url: "<?php echo url_for("contacts/ajaxList") ?>",
+  $("#project_client").autocomplete({
+    url: "<?php echo url_for("@contacts_ajax") ?>",
     dataType: "json",
     parse:    function(data) {
       var parsed = [];

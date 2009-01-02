@@ -11,13 +11,13 @@ abstract class BaseProject extends sfDoctrineRecord
     $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
     $this->hasColumn('name', 'string', 50, array('type' => 'string', 'notnull' => true, 'length' => '50'));
     $this->hasColumn('description', 'string', null, array('type' => 'string'));
-    $this->hasColumn('entity_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
+    $this->hasColumn('client_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
   }
 
   public function setUp()
   {
-    $this->hasOne('Entity', array('local' => 'entity_id',
-                                  'foreign' => 'id'));
+    $this->hasOne('Entity as Client', array('local' => 'client_id',
+                                            'foreign' => 'id'));
 
     $this->hasMany('Note as Notes', array('local' => 'id',
                                           'foreign' => 'project_id'));

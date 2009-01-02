@@ -1,6 +1,7 @@
 CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, code VARCHAR(50) UNIQUE, type SMALLINT, parent_id INT, description TEXT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE email (id INT AUTO_INCREMENT, entity_id INT, email VARCHAR(50), type SMALLINT, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, code VARCHAR(50) UNIQUE, type SMALLINT, parent_id INT, description TEXT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, INDEX parent_id_idx (parent_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE status (id BIGINT AUTO_INCREMENT, name VARCHAR(64), category_id INT, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_permission (user_id INT, permission_id INT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_group (user_id INT, group_id INT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(user_id, group_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_group (id INT AUTO_INCREMENT, name VARCHAR(255) UNIQUE, description TEXT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;
@@ -9,9 +10,13 @@ CREATE TABLE sf_guard_user (id INT AUTO_INCREMENT, username VARCHAR(128) NOT NUL
 CREATE TABLE sf_guard_group_permission (group_id INT, permission_id INT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(group_id, permission_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_permission (id INT AUTO_INCREMENT, name VARCHAR(255) UNIQUE, description TEXT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE location (id INT AUTO_INCREMENT, entity_id INT, type SMALLINT, street VARCHAR(255), city VARCHAR(50), state VARCHAR(50), country VARCHAR(2), postal_code VARCHAR(10), INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE issue_activity (id BIGINT AUTO_INCREMENT, issue_id INT, verb VARCHAR(128), created_at DATETIME, created_by INT, body TEXT, changes TEXT, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE issue (id BIGINT AUTO_INCREMENT, title VARCHAR(128), project_id INT, component_id INT, assigned_to INT, is_open TINYINT(1), opened_at DATETIME, opened_by INT, resolved_at DATETIME, resolved_by INT, closed_at DATETIME, closed_by INT, status_id INT, category_id INT, priority_id INT, milestone_id INT, orig_estimate DOUBLE, curr_estimate DOUBLE, elapsed DOUBLE, deadline DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE priority (id BIGINT AUTO_INCREMENT, name VARCHAR(64), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE category (id BIGINT AUTO_INCREMENT, name VARCHAR(64), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE note (id INT AUTO_INCREMENT, entity_id INT, project_id INT, body TEXT, created_at DATETIME, updated_at DATETIME, created_by_user_id INT, updated_by_user_id INT, INDEX entity_id_idx (entity_id), INDEX project_id_idx (project_id), INDEX created_by_user_id_idx (created_by_user_id), INDEX updated_by_user_id_idx (updated_by_user_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE phonenumber (id INT AUTO_INCREMENT, entity_id INT, number VARCHAR(50), type SMALLINT, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE project (id INT AUTO_INCREMENT, name VARCHAR(50) NOT NULL, description TEXT, entity_id INT, created_at DATETIME, updated_at DATETIME, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE project (id INT AUTO_INCREMENT, name VARCHAR(50) NOT NULL, description TEXT, client_id INT, created_at DATETIME, updated_at DATETIME, INDEX client_id_idx (client_id), PRIMARY KEY(id)) ENGINE = INNODB;
 ALTER TABLE email ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
 ALTER TABLE entity ADD FOREIGN KEY (parent_id) REFERENCES entity(id) ON DELETE SET NULL;
 ALTER TABLE sf_guard_user_permission ADD FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;
@@ -27,4 +32,4 @@ ALTER TABLE note ADD FOREIGN KEY (project_id) REFERENCES project(id) ON DELETE C
 ALTER TABLE note ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
 ALTER TABLE note ADD FOREIGN KEY (created_by_user_id) REFERENCES sf_guard_user(id);
 ALTER TABLE phonenumber ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
-ALTER TABLE project ADD FOREIGN KEY (entity_id) REFERENCES entity(id);
+ALTER TABLE project ADD FOREIGN KEY (client_id) REFERENCES entity(id);
