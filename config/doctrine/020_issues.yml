@@ -32,6 +32,12 @@ IssueActivity:
     body:           string
     changes:        string # automatic description of the changes
 
+Component:
+  columns:
+    name:           string(64)
+    project_id:     string(4)
+    owner_id:       string(4)
+
 Category:
   columns:
     name:           string(64)
