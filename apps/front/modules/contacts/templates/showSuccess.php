@@ -2,7 +2,6 @@
 <div id="content" class="grid_8">
 
   <div class="subheader">
-    <?php // TODO: make a test for this link ?>
     <?php if ($entity->getRawValue() instanceof Person)
             echo link_to('Edit', 'people_edit', $entity);
           else if ($entity->getRawValue() instanceof Company)

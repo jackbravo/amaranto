@@ -5,32 +5,39 @@ include(dirname(__FILE__).'/../../bootstrap/functional.php');
 $browser = new CrmTestFunctional(new sfBrowser());
 
 $browser->loadData()->signin()
+  ->info('pagination')
   ->get('/contacts')
-
-  ->with('request')->begin()
-    ->isParameter('module', 'contacts')
-    ->isParameter('action', 'index')
-  ->end()
-
   ->with('response')->begin()
     ->isStatusCode(200)
     ->checkElement('.contact h2', '/Jack Daniels/', array('position' => 0))
     ->checkElement('.pagination-desc', '!/0/')
   ->end()
 
-  // contacts_show
-  ->info('check contacts_show')
+  // edit link
+  ->info('edit link for people')
   ->click('Jack Daniels')
-  ->with('request')->begin()
-    ->isParameter('module', 'contacts')
-    ->isParameter('action', 'show')
-  ->end()
-
   ->with('response')->begin()
-    ->isStatusCode(200)
     ->checkElement('#content h1', '/Jack Daniels/', array('position' => 0))
     ->checkElement('.subheader', '/Edit/')
   ->end()
+  ->click('Edit')
+  ->with('request')->begin()
+    ->isParameter('module', 'people')
+    ->isParameter('action', 'edit')
+  ->end()
+  ->with('response')->isStatusCode(200)
 
-  ->signout()
+  ->info('edit link for companies')
+  ->get('/contacts?show=companies')
+  ->click('Axai Inc.')
+  ->with('response')->begin()
+    ->checkElement('#content h1', '/Axai Inc./', array('position' => 0))
+    ->checkElement('.subheader', '/Edit/')
+  ->end()
+  ->click('Edit')
+  ->with('request')->begin()
+    ->isParameter('module', 'companies')
+    ->isParameter('action', 'edit')
+  ->end()
+  ->with('response')->isStatusCode(200)
 ;
