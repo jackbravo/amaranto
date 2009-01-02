@@ -16,6 +16,7 @@ class BaseProjectForm extends BaseFormDoctrine
       'name'        => new sfWidgetFormInput(),
       'description' => new sfWidgetFormTextarea(),
       'client_id'   => new sfWidgetFormDoctrineSelect(array('model' => 'Entity', 'add_empty' => true)),
+      'owner_id'    => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));
@@ -25,6 +26,7 @@ class BaseProjectForm extends BaseFormDoctrine
       'name'        => new sfValidatorString(array('max_length' => 50)),
       'description' => new sfValidatorString(array('max_length' => 2147483647, 'required' => false)),
       'client_id'   => new sfValidatorDoctrineChoice(array('model' => 'Entity', 'required' => false)),
+      'owner_id'    => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
       'created_at'  => new sfValidatorDateTime(array('required' => false)),
       'updated_at'  => new sfValidatorDateTime(array('required' => false)),
     ));

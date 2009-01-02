@@ -12,12 +12,16 @@ abstract class BaseProject extends sfDoctrineRecord
     $this->hasColumn('name', 'string', 50, array('type' => 'string', 'notnull' => true, 'length' => '50'));
     $this->hasColumn('description', 'string', null, array('type' => 'string'));
     $this->hasColumn('client_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
+    $this->hasColumn('owner_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
   }
 
   public function setUp()
   {
     $this->hasOne('Entity as Client', array('local' => 'client_id',
                                             'foreign' => 'id'));
+
+    $this->hasOne('sfGuardUser as Owner', array('local' => 'owner_id',
+                                                'foreign' => 'id'));
 
     $this->hasMany('Note as Notes', array('local' => 'id',
                                           'foreign' => 'project_id'));

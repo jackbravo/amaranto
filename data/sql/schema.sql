@@ -16,7 +16,7 @@ CREATE TABLE priority (id BIGINT AUTO_INCREMENT, name VARCHAR(64), PRIMARY KEY(i
 CREATE TABLE category (id BIGINT AUTO_INCREMENT, name VARCHAR(64), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE note (id INT AUTO_INCREMENT, entity_id INT, project_id INT, body TEXT, created_at DATETIME, updated_at DATETIME, created_by_user_id INT, updated_by_user_id INT, INDEX entity_id_idx (entity_id), INDEX project_id_idx (project_id), INDEX created_by_user_id_idx (created_by_user_id), INDEX updated_by_user_id_idx (updated_by_user_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE phonenumber (id INT AUTO_INCREMENT, entity_id INT, number VARCHAR(50), type SMALLINT, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE project (id INT AUTO_INCREMENT, name VARCHAR(50) NOT NULL, description TEXT, client_id INT, created_at DATETIME, updated_at DATETIME, INDEX client_id_idx (client_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE project (id INT AUTO_INCREMENT, name VARCHAR(50) NOT NULL, description TEXT, client_id INT, owner_id INT, created_at DATETIME, updated_at DATETIME, INDEX client_id_idx (client_id), INDEX owner_id_idx (owner_id), PRIMARY KEY(id)) ENGINE = INNODB;
 ALTER TABLE email ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
 ALTER TABLE entity ADD FOREIGN KEY (parent_id) REFERENCES entity(id) ON DELETE SET NULL;
 ALTER TABLE sf_guard_user_permission ADD FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;
@@ -32,4 +32,5 @@ ALTER TABLE note ADD FOREIGN KEY (project_id) REFERENCES project(id) ON DELETE C
 ALTER TABLE note ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
 ALTER TABLE note ADD FOREIGN KEY (created_by_user_id) REFERENCES sf_guard_user(id);
 ALTER TABLE phonenumber ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
+ALTER TABLE project ADD FOREIGN KEY (owner_id) REFERENCES sf_guard_user(id);
 ALTER TABLE project ADD FOREIGN KEY (client_id) REFERENCES entity(id);

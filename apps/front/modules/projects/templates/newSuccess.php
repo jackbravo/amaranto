@@ -22,6 +22,7 @@
     }
   });
 </script>
+<?php echo $form['owner_id']->renderRow() ?>
 <?php echo $form['description']->renderRow() ?>
 
 <div>

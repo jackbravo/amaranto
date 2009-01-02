@@ -7,14 +7,19 @@ Project:
       autoincrement: true
     name:
       type:         string(50)
-      notnull:     true
+      notnull:      true
     description:    string
     client_id:      integer(4)
+    owner_id:       integer(4)
   relations:
     Client:
       local:        client_id
       class:        Entity
       foreignAlias: Projects
+    Owner:
+      local:        owner_id
+      class:        sfGuardUser
+      foreignAlias: ProjectsOwned
 
 Note:
   actAs: [Timestampable, Userstampable]

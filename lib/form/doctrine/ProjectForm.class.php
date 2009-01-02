@@ -20,6 +20,7 @@ class ProjectForm extends BaseProjectForm
       'required' => false,
     ));
 
+    $this->widgetSchema->setLabel('owner_id', 'Owner');
     $this->setDefault('client', $this->object->Client->name);
 
     // this field is required to avoid deleting the Company

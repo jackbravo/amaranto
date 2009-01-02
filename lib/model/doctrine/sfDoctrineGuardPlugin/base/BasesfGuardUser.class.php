@@ -40,6 +40,9 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
     $this->hasOne('sfGuardRememberKey as RememberKeys', array('local' => 'id',
                                                               'foreign' => 'user_id'));
 
+    $this->hasMany('Project as ProjectsOwned', array('local' => 'id',
+                                                     'foreign' => 'owner_id'));
+
     $timestampable0 = new Doctrine_Template_Timestampable();
     $this->actAs($timestampable0);
   }
