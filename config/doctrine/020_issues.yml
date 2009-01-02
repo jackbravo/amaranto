@@ -1,5 +1,9 @@
 Issue:
   columns:
+    id:
+      type:         integer(4)
+      primary:      true
+      autoincrement: true
     title:          string(128)
     project_id:     integer(4)
     component_id:   integer(4)
@@ -23,31 +27,105 @@ Issue:
     elapsed:        float
     deadline:       timestamp
 
+  relations:
+    Project:
+      foreignAlias: Issues
+    Component:
+      foreignAlias: Issues
+
+    AssignedTo:
+      local:        assigned_to
+      class:        sfGuardUser
+      foreignAlias: AssignedIssues
+    OpenedBy:
+      local:        opened_by
+      class:        sfGuardUser
+      foreignAlias: OpenedIssues
+    ResolvedBy:
+      local:        opened_by
+      class:        sfGuardUser
+      foreignAlias: ResolvedIssues
+    ClosedBy:
+      local:        opened_by
+      class:        sfGuardUser
+      foreignAlias: ClosedIssues
+
+    Status:
+      foreignAlias: Issues
+    Category:
+      foreignAlias: Issues
+    Priority:
+      foreignAlias: Issues
+    Milestone:
+      foreignAlias: Issues
+
 IssueActivity:
   columns:
+    id:
+      type:         integer(4)
+      primary:      true
+      autoincrement: true
     issue_id:       integer(4)
     verb:           string(128) # opened, edited, closed
     created_at:     timestamp
     created_by:     integer(4)
     body:           string
     changes:        string # automatic description of the changes
+  relations:
+    Issue:
+      foreignAlias: Activities
 
 Component:
   columns:
+    id:
+      type:         integer(4)
+      primary:      true
+      autoincrement: true
     name:           string(64)
-    project_id:     string(4)
-    owner_id:       string(4)
+    project_id:     integer(4)
+    owner_id:       integer(4)
+  relations:
+    Project:
+      foreignAlias: Components
+    Owner:
+      local:        owner_id
+      class:        sfGuardUser
+      foreignAlias: OwnedComponents
 
 Category:
   columns:
+    id:
+      type:         integer(4)
+      primary:      true
+      autoincrement: true
     name:           string(64)
 
 Status:
   columns:
+    id:
+      type:         integer(4)
+      primary:      true
+      autoincrement: true
     name:           string(64)
-    category_id:    integer(4) # the category of issues this status applies
 
 Priority:
   columns:
+    id:
+      type:         integer(4)
+      primary:      true
+      autoincrement: true
     name:           string(64)
+
+Milestone:
+  columns:
+    id:
+      type:         integer(4)
+      primary:      true
+      autoincrement: true
+    name:           string(64)
+    project_id:     integer(4)
+    date:           timestamp
+  relations:
+    Project:
+      foreignAlias: Milestones
 

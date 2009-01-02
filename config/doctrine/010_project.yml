@@ -19,7 +19,7 @@ Project:
     Owner:
       local:        owner_id
       class:        sfGuardUser
-      foreignAlias: ProjectsOwned
+      foreignAlias: OwnedProjects
 
 Note:
   actAs: [Timestampable, Userstampable]
