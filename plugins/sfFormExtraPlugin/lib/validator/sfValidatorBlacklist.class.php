@@ -9,10 +9,10 @@
  */
 
 /**
- * sfValidatorBlacklist validates than the value is not one of the configured 
- * forbidden values. This is a kind of opposite of the sfValidatorChoice 
+ * sfValidatorBlacklist validates than the value is not one of the configured
+ * forbidden values. This is a kind of opposite of the sfValidatorChoice
  * validator.
- * 
+ *
  * @package    symfony
  * @subpackage validator
  * @author     Nicolas Perriault <nicolas.perriault@symfony-project.com>
@@ -49,20 +49,20 @@ class sfValidatorBlacklist extends sfValidatorBase
     {
       $forbiddenValues = $forbiddenValues->call();
     }
-    
+
     $checkValue = $value;
-    
+
     if (false === $this->getOption('case_sensitive'))
     {
       $checkValue = strtolower($checkValue);
       $forbiddenValues = array_map('strtolower', $forbiddenValues);
     }
-    
+
     if (in_array($checkValue, $forbiddenValues))
     {
       throw new sfValidatorError($this, 'invalid', array('value' => $value));
     }
 
-    return $checkValue;
+    return $value;
   }
 }
