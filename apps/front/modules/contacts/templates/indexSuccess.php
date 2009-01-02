@@ -7,10 +7,10 @@
   <?php echo link_to('Companies', '@contacts?show=companies') ?>
 </div>
 
-<table class="list">
+<table class="contacts list">
   <tbody>
     <?php foreach ($pager->getResults() as $entity): ?>
-    <tr>
+    <tr class="contact">
       <td class="info">
         <h2><a href="<?php echo url_for('@contacts_show?id='.$entity['id']) ?>"><?php echo $entity['name'] ?></a></h2>
         <a href="<?php echo url_for('@contacts?title='.$entity['title']) ?>"><?php echo $entity['title'] ?></a>
