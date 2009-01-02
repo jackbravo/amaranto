@@ -70,7 +70,7 @@ class projectsActions extends sfActions
     {
       $project = $form->save();
 
-      $this->redirect('@projects_edit?id='.$project['id']);
+      $this->redirect('@projects_show?id='.$project['id']);
     }
   }
 }
