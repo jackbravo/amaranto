@@ -17,9 +17,20 @@
 	<h1><?php echo link_to('Axai Manager', '@homepage') ?></h1>
   <?php if ($sf_user->isAuthenticated()): ?>
     <ul>
-      <li><?php echo link_to(__('Contacts'), '@contacts') ?></li>
-      <li><?php echo link_to(__('Projects'), '@projects') ?></li>
-      <li><?php echo link_to(__('Users'), 'sf_guard_user') ?></li>
+    <?php
+      $links = array(
+        'contacts' => 'Contacts',
+        'projects' => 'Projects',
+        'sf_guard_user' => 'Users',
+      );
+
+      foreach ($links as $route => $name)
+      {
+        $current = sfContext::getInstance()->getRouting()->getCurrentRouteName();
+        $class = $current == $route ? 'active' : '';
+        echo "<li class='$class'>" . link_to(__($name), $route) . '</li>';
+      }
+    ?>
     </ul>
 
     <ul id="user-tools" class="top-right">

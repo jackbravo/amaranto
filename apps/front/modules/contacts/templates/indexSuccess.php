@@ -3,8 +3,19 @@
 <h1>Contacts</h1>
 
 <div class="tabs">
-  <?php echo link_to('People', '@contacts?show=people', array('class' => 'active')) ?>
-  <?php echo link_to('Companies', '@contacts?show=companies') ?>
+  <?php
+    $links = array(
+      'people' => '@contacts?show=people',
+      'companies' => '@contacts?show=companies',
+    );
+
+    foreach ($links as $name => $route)
+    {
+      $current = $sf_request->getParameter('show', 'people');
+      $class = $current == $name ? 'active' : '';
+      echo '&nbsp' . link_to(__($name), $route, array('class' => $class));
+    }
+  ?>
 </div>
 
 <table class="contacts list">
