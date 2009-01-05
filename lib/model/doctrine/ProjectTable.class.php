@@ -4,11 +4,28 @@
  */
 class ProjectTable extends Doctrine_Table
 {
+  public function getForShow($parameters)
+  {
+    return $this->getShowQuery($parameters)->fetchOne();
+  }
+
   public function getListQuery()
   {
     return $this->createQuery('p')
       ->leftJoin('p.Client e')
       ->leftJoin('p.Owner o')
       ->addOrderBy('p.name');
+  }
+
+  public function getShowQuery($parameters)
+  {
+    return $this->createQuery('p')
+      ->leftJoin('p.Client c')
+      ->leftJoin('p.Owner o')
+      ->leftJoin('p.Milestones m')
+      ->leftJoin('p.Components com')
+      ->leftJoin('com.Owner com_o')
+      ->addWhere('p.id = ?', $parameters['id'])
+    ;
   }
 }
