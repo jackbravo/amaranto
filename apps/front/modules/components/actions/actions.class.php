@@ -52,9 +52,11 @@ class componentsActions extends sfActions
   {
     $request->checkCSRFProtection();
 
-    $this->getRoute()->getObject()->delete();
+    $object = $this->getRoute()->getObject();
+    $project_id = $object->project_id;
+    $object->delete();
 
-    $this->redirect('components/index');
+    $this->redirect('@projects_show?id='.$project_id);
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
