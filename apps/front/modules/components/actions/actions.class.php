@@ -17,7 +17,12 @@ class componentsActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new ComponentForm();
+    $project = Doctrine::getTable('Project')->find($request->getParameter('project_id'));
+    $this->forward404unless($project);
+
+    $component = new Component();
+    $component->Project = $project;
+    $this->form = new ComponentForm($component);
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -59,7 +64,7 @@ class componentsActions extends sfActions
     {
       $component = $form->save();
 
-      $this->redirect('components/edit?id='.$component['id']);
+      $this->redirect('@projects_show?id='.$component['project_id']);
     }
   }
 }

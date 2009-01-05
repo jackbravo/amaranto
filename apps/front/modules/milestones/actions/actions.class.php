@@ -17,7 +17,12 @@ class milestonesActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new MilestoneForm();
+    $project = Doctrine::getTable('Project')->find($request->getParameter('project_id'));
+    $this->forward404unless($project);
+
+    $milestone = new Milestone();
+    $milestone->Project = $project;
+    $this->form = new MilestoneForm($milestone);
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -59,7 +64,7 @@ class milestonesActions extends sfActions
     {
       $milestone = $form->save();
 
-      $this->redirect('milestones/edit?id='.$milestone['id']);
+      $this->redirect('@projects_show?id='.$milestone['project_id']);
     }
   }
 }
