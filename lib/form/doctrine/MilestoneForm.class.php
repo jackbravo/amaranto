@@ -12,5 +12,16 @@ class MilestoneForm extends BaseMilestoneForm
   public function configure()
   {
     $this->widgetSchema['project_id'] = new sfWidgetFormInputHidden();
+    $this->widgetSchema['date'] = new sfWidgetFormJQueryDate();
+  }
+
+  public function getJavascripts()
+  {
+    return array('ui/ui.core.js', 'ui/ui.datepicker.js');
+  }
+
+  public function getStylesheets()
+  {
+    return array('jquery-ui-south.css' => 'all');
   }
 }
