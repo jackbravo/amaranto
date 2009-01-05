@@ -3,8 +3,26 @@ Project:
     id: 1
     name: Muestra
     Client: axai
+    Owner: joaquin
     description: |
       Este proyecto sirve de muestra para todos los proyectos de MoProSoft
+    Milestones:
+      mile_0:
+        name: version 1.0
+        date: '<?php echo date('Y-m-d H:i:s', time() + (3600 * 24 * 30)) ?>'
+      mile_1:
+        name: version 1.1
+        date: '<?php echo date('Y-m-d H:i:s', time() + (3600 * 24 * 60)) ?>'
+    Components:
+      comp_0:
+        name: Model
+        owner_id: 2 # elias
+      comp_1:
+        name: view
+        owner_id: 3 # gustavo
+      comp_2:
+        name: controller
+        owner_id: 4 # joaquin
     Notes:
       base_note_0:
         created_at: '2008-06-02 11:30:00'

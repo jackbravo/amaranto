@@ -6,9 +6,14 @@
   </div>
 
   <h1><?php echo $project['name'] ?></h1>
-  <?php if ($project['Client']['id']): ?>
-    <p>for <?php echo link_to($project['Client'], 'contacts_show', $project['Client']) ?></p>
+  <p>
+  <?php if ($project['Owner']['id']): ?>
+    <strong><?php echo $project['Owner'] ?></strong>
   <?php endif; ?>
+  <?php if ($project['Client']['id']): ?>
+    for <?php echo link_to($project['Client'], 'contacts_show', $project['Client']) ?>
+  <?php endif; ?>
+  </p>
 
   <?php echo simple_format_text($project['description']) ?>
 
@@ -22,6 +27,23 @@
 </div> <!-- /grid_8 -->
 
 <div class="sidebar grid_4">
+
+  <div class="milestones box">
+    <h2>Milestones</h2>
+    <?php foreach ($project['Milestones'] as $milestone): ?>
+      <div class="milestone"><?php echo $milestone ?> - <?php echo $milestone['date'] ?></div>
+    <?php endforeach; ?>
+  </div>
+
+  <div class="components box">
+    <h2>Components</h2>
+    <?php foreach ($project['Components'] as $component): ?>
+      <div class="component">
+        <?php echo $component ?>
+        - <strong><?php echo $component['Owner'] ?></strong>
+      </div>
+    <?php endforeach; ?>
+  </div>
 
 </div> <!-- /grid_4 -->
 

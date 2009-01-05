@@ -11,6 +11,19 @@ sfGuardUser:
     password:       admin
     is_super_admin: true
 
+  elias:
+    id:             2
+    username:       elias
+    password:       elias
+  gustavo:
+    id:             3
+    username:       gustavo
+    password:       gustavo
+  joaquin:
+    id:             4
+    username:       joaquin
+    password:       joaquin
+
 sfGuardPermission:
   sgp_admin:
     name:           admin
