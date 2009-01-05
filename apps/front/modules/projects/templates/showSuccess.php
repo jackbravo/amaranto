@@ -33,7 +33,7 @@
       Milestones
       <small><?php echo link_to('new', '@milestones_new?project_id=' . $project['id']) ?></small>
     </h2>
-    <?php foreach ($project['Milestones'] as $milestone): ?>
+    <?php foreach ($project->getMilestonesList() as $milestone): ?>
       <div class="milestone">
         <?php echo link_to($milestone, 'milestones_edit', $milestone) ?>
         - <?php echo $milestone['date'] ?></div>
@@ -45,7 +45,7 @@
       Components
       <small><?php echo link_to('new', '@components_new?project_id=' . $project['id']) ?></small>
     </h2>
-    <?php foreach ($project['Components'] as $component): ?>
+    <?php foreach ($project->getComponentsList() as $component): ?>
       <div class="component">
         <?php echo link_to($component, 'components_edit', $component) ?>
         - <strong><?php echo $component['Owner'] ?></strong>

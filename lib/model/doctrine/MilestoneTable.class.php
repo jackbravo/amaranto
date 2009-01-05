@@ -4,5 +4,8 @@
  */
 class MilestoneTable extends Doctrine_Table
 {
-
+  public function getListQuery()
+  {
+    return $this->createQuery('m')->orderBy('m.date desc');
+  }
 }

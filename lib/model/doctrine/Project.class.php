@@ -11,4 +11,18 @@ class Project extends BaseProject
       ->addWhere('n.project_id = ?', $this->id)
       ->execute();
   }
+
+  public function getMilestonesList()
+  {
+    return Doctrine::getTable('Milestone')->getListQuery()
+      ->addWhere('m.project_id = ?', $this->id)
+      ->execute();
+  }
+
+  public function getComponentsList()
+  {
+    return Doctrine::getTable('Component')->getListQuery()
+      ->addWhere('c.project_id = ?', $this->id)
+      ->execute();
+  }
 }

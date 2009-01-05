@@ -22,9 +22,6 @@ class ProjectTable extends Doctrine_Table
     return $this->createQuery('p')
       ->leftJoin('p.Client c')
       ->leftJoin('p.Owner o')
-      ->leftJoin('p.Milestones m')
-      ->leftJoin('p.Components com')
-      ->leftJoin('com.Owner com_o')
       ->addWhere('p.id = ?', $parameters['id'])
     ;
   }

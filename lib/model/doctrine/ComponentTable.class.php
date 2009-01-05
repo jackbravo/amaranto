@@ -4,5 +4,8 @@
  */
 class ComponentTable extends Doctrine_Table
 {
-
+  public function getListQuery()
+  {
+    return $this->createQuery('c')->leftJoin('c.Owner o')->orderBy('c.name');
+  }
 }
