@@ -14,14 +14,14 @@ class BaseComponentForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
       'name'       => new sfWidgetFormInput(),
-      'project_id' => new sfWidgetFormDoctrineSelect(array('model' => 'Project', 'add_empty' => true)),
+      'project_id' => new sfWidgetFormDoctrineSelect(array('model' => 'Project', 'add_empty' => false)),
       'owner_id'   => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(
       'id'         => new sfValidatorDoctrineChoice(array('model' => 'Component', 'column' => 'id', 'required' => false)),
       'name'       => new sfValidatorString(array('max_length' => 64, 'required' => false)),
-      'project_id' => new sfValidatorDoctrineChoice(array('model' => 'Project', 'required' => false)),
+      'project_id' => new sfValidatorDoctrineChoice(array('model' => 'Project')),
       'owner_id'   => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
     ));
 

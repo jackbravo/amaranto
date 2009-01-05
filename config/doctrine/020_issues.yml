@@ -82,7 +82,9 @@ Component:
       primary:      true
       autoincrement: true
     name:           string(64)
-    project_id:     integer(4)
+    project_id:
+      type:         integer(4)
+      notnull:      true
     owner_id:       integer(4)
   relations:
     Project:

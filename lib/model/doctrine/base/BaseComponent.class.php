@@ -10,7 +10,7 @@ abstract class BaseComponent extends sfDoctrineRecord
     $this->setTableName('component');
     $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
     $this->hasColumn('name', 'string', 64, array('type' => 'string', 'length' => '64'));
-    $this->hasColumn('project_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
+    $this->hasColumn('project_id', 'integer', 4, array('type' => 'integer', 'notnull' => true, 'length' => '4'));
     $this->hasColumn('owner_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
   }
 
