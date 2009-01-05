@@ -8,6 +8,7 @@ class ProjectTable extends Doctrine_Table
   {
     return $this->createQuery('p')
       ->leftJoin('p.Client e')
+      ->leftJoin('p.Owner o')
       ->addOrderBy('p.name');
   }
 }
