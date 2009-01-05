@@ -1,4 +1,3 @@
-# default rules
 people:
   class: sfDoctrineRouteCollection
   options:
@@ -47,6 +46,16 @@ homepage:
   url:   /
   param: { module: contacts, action: index }
 
+# secondary
+milestones:
+  class: sfDoctrineRouteCollection
+  options: { model: Milestone }
+
+components:
+  class: sfDoctrineRouteCollection
+  options: { model: Component }
+
+# default rules
 default_index:
   url:   /:module
   param: { action: index }

@@ -11,5 +11,7 @@ class ComponentForm extends BaseComponentForm
 {
   public function configure()
   {
+    $this->widgetSchema->setLabel('owner_id', 'Owner');
+    $this->widgetSchema['project_id'] = new sfWidgetFormInputHidden();
   }
 }

@@ -11,5 +11,6 @@ class MilestoneForm extends BaseMilestoneForm
 {
   public function configure()
   {
+    $this->widgetSchema['project_id'] = new sfWidgetFormInputHidden();
   }
 }

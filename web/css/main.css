@@ -26,6 +26,11 @@ a:hover
   text-decoration: underline;
 }
 
+small
+{
+  font-size: 80% !important;
+}
+
 /* ---------- menu ----------- */
 
 #menu

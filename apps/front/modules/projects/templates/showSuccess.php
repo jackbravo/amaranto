@@ -29,17 +29,25 @@
 <div class="sidebar grid_4">
 
   <div class="milestones box">
-    <h2>Milestones</h2>
+    <h2>
+      Milestones
+      <small><?php echo link_to('new', '@milestones_new?project_id=' . $project['id']) ?></small>
+    </h2>
     <?php foreach ($project['Milestones'] as $milestone): ?>
-      <div class="milestone"><?php echo $milestone ?> - <?php echo $milestone['date'] ?></div>
+      <div class="milestone">
+        <?php echo link_to($milestone, 'milestones_edit', $milestone) ?>
+        - <?php echo $milestone['date'] ?></div>
     <?php endforeach; ?>
   </div>
 
   <div class="components box">
-    <h2>Components</h2>
+    <h2>
+      Components
+      <small><?php echo link_to('new', '@components_new?project_id=' . $project['id']) ?></small>
+    </h2>
     <?php foreach ($project['Components'] as $component): ?>
       <div class="component">
-        <?php echo $component ?>
+        <?php echo link_to($component, 'components_edit', $component) ?>
         - <strong><?php echo $component['Owner'] ?></strong>
       </div>
     <?php endforeach; ?>
