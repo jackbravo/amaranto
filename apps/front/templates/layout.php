@@ -21,12 +21,13 @@
       $links = array(
         'contacts' => 'Contacts',
         'projects' => 'Projects',
+        'issues' => 'Issues',
         'sf_guard_user' => 'Users',
       );
 
       foreach ($links as $route => $name)
       {
-        $current = sfContext::getInstance()->getRouting()->getCurrentRouteName();
+        $current = $sf_request->getParameter('module');
         $class = $current == $route ? 'active' : '';
         echo "<li class='$class'>" . link_to(__($name), $route) . '</li>';
       }
