@@ -20,6 +20,7 @@ Project:
       local:        owner_id
       class:        sfGuardUser
       foreignAlias: OwnedProjects
+      onDelete:     SET NULL
 
 Note:
   actAs: [Timestampable, Userstampable]

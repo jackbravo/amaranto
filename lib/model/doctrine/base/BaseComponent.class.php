@@ -17,10 +17,12 @@ abstract class BaseComponent extends sfDoctrineRecord
   public function setUp()
   {
     $this->hasOne('Project', array('local' => 'project_id',
-                                   'foreign' => 'id'));
+                                   'foreign' => 'id',
+                                   'onDelete' => 'CASCADE'));
 
     $this->hasOne('sfGuardUser as Owner', array('local' => 'owner_id',
-                                                'foreign' => 'id'));
+                                                'foreign' => 'id',
+                                                'onDelete' => 'SET NULL'));
 
     $this->hasMany('Issue as Issues', array('local' => 'id',
                                             'foreign' => 'component_id'));

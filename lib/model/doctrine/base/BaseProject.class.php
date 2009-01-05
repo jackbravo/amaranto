@@ -21,7 +21,8 @@ abstract class BaseProject extends sfDoctrineRecord
                                             'foreign' => 'id'));
 
     $this->hasOne('sfGuardUser as Owner', array('local' => 'owner_id',
-                                                'foreign' => 'id'));
+                                                'foreign' => 'id',
+                                                'onDelete' => 'SET NULL'));
 
     $this->hasMany('Note as Notes', array('local' => 'id',
                                           'foreign' => 'project_id'));

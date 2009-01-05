@@ -17,7 +17,8 @@ abstract class BaseMilestone extends sfDoctrineRecord
   public function setUp()
   {
     $this->hasOne('Project', array('local' => 'project_id',
-                                   'foreign' => 'id'));
+                                   'foreign' => 'id',
+                                   'onDelete' => 'CASCADE'));
 
     $this->hasMany('Issue as Issues', array('local' => 'id',
                                             'foreign' => 'milestone_id'));

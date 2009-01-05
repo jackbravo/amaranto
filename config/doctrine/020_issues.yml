@@ -89,10 +89,26 @@ Component:
   relations:
     Project:
       foreignAlias: Components
+      onDelete:     CASCADE
     Owner:
       local:        owner_id
       class:        sfGuardUser
       foreignAlias: OwnedComponents
+      onDelete:     SET NULL
+
+Milestone:
+  columns:
+    id:
+      type:         integer(4)
+      primary:      true
+      autoincrement: true
+    name:           string(64)
+    project_id:     integer(4)
+    date:           timestamp
+  relations:
+    Project:
+      foreignAlias: Milestones
+      onDelete:     CASCADE
 
 Category:
   columns:
@@ -117,17 +133,4 @@ Priority:
       primary:      true
       autoincrement: true
     name:           string(64)
-
-Milestone:
-  columns:
-    id:
-      type:         integer(4)
-      primary:      true
-      autoincrement: true
-    name:           string(64)
-    project_id:     integer(4)
-    date:           timestamp
-  relations:
-    Project:
-      foreignAlias: Milestones
 
