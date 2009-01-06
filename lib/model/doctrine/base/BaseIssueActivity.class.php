@@ -20,6 +20,10 @@ abstract class BaseIssueActivity extends sfDoctrineRecord
   public function setUp()
   {
     $this->hasOne('Issue', array('local' => 'issue_id',
-                                 'foreign' => 'id'));
+                                 'foreign' => 'id',
+                                 'onDelete' => 'CASCADE'));
+
+    $this->hasOne('sfGuardUser as CreatedBy', array('local' => 'created_by',
+                                                    'foreign' => 'id'));
   }
 }

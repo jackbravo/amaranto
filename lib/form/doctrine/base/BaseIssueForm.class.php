@@ -40,7 +40,7 @@ class BaseIssueForm extends BaseFormDoctrine
       'project_id'    => new sfValidatorDoctrineChoice(array('model' => 'Project', 'required' => false)),
       'component_id'  => new sfValidatorDoctrineChoice(array('model' => 'Component', 'required' => false)),
       'assigned_to'   => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
-      'is_open'       => new sfValidatorBoolean(array('required' => false)),
+      'is_open'       => new sfValidatorBoolean(),
       'opened_at'     => new sfValidatorDateTime(array('required' => false)),
       'opened_by'     => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
       'resolved_at'   => new sfValidatorDateTime(array('required' => false)),

@@ -9,7 +9,10 @@ Issue:
     component_id:   integer(4)
     assigned_to:    integer(4)
 
-    is_open:        boolean
+    is_open:
+      type:         boolean
+      default:      true
+      notnull:      true
     opened_at:      timestamp
     opened_by:      integer(4)
     resolved_at:    timestamp
@@ -73,6 +76,11 @@ IssueActivity:
     changes:        string # automatic description of the changes
   relations:
     Issue:
+      foreignAlias: Activities
+      onDelete:     CASCADE
+    CreatedBy:
+      local:        created_by
+      class:        sfGuardUser
       foreignAlias: Activities
 
 Component:

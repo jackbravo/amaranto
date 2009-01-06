@@ -16,7 +16,7 @@ class BaseIssueActivityForm extends BaseFormDoctrine
       'issue_id'   => new sfWidgetFormDoctrineSelect(array('model' => 'Issue', 'add_empty' => true)),
       'verb'       => new sfWidgetFormInput(),
       'created_at' => new sfWidgetFormDateTime(),
-      'created_by' => new sfWidgetFormInput(),
+      'created_by' => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'body'       => new sfWidgetFormTextarea(),
       'changes'    => new sfWidgetFormTextarea(),
     ));
@@ -26,7 +26,7 @@ class BaseIssueActivityForm extends BaseFormDoctrine
       'issue_id'   => new sfValidatorDoctrineChoice(array('model' => 'Issue', 'required' => false)),
       'verb'       => new sfValidatorString(array('max_length' => 128, 'required' => false)),
       'created_at' => new sfValidatorDateTime(array('required' => false)),
-      'created_by' => new sfValidatorInteger(array('required' => false)),
+      'created_by' => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
       'body'       => new sfValidatorString(array('max_length' => 2147483647, 'required' => false)),
       'changes'    => new sfValidatorString(array('max_length' => 2147483647, 'required' => false)),
     ));

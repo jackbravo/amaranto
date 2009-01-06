@@ -17,7 +17,7 @@ class BaseIssueActivityFormFilter extends BaseFormFilterDoctrine
       'issue_id'   => new sfWidgetFormDoctrineChoice(array('model' => 'Issue', 'add_empty' => true)),
       'verb'       => new sfWidgetFormFilterInput(),
       'created_at' => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
-      'created_by' => new sfWidgetFormFilterInput(),
+      'created_by' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'body'       => new sfWidgetFormFilterInput(),
       'changes'    => new sfWidgetFormFilterInput(),
     ));
@@ -26,7 +26,7 @@ class BaseIssueActivityFormFilter extends BaseFormFilterDoctrine
       'issue_id'   => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'Issue', 'column' => 'id')),
       'verb'       => new sfValidatorPass(array('required' => false)),
       'created_at' => new sfValidatorDateRange(array('required' => false, 'from_date' => new sfValidatorDate(array('required' => false)), 'to_date' => new sfValidatorDate(array('required' => false)))),
-      'created_by' => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
+      'created_by' => new sfValidatorDoctrineChoice(array('required' => false, 'model' => 'sfGuardUser', 'column' => 'id')),
       'body'       => new sfValidatorPass(array('required' => false)),
       'changes'    => new sfValidatorPass(array('required' => false)),
     ));
@@ -50,7 +50,7 @@ class BaseIssueActivityFormFilter extends BaseFormFilterDoctrine
       'issue_id'   => 'ForeignKey',
       'verb'       => 'Text',
       'created_at' => 'Date',
-      'created_by' => 'Number',
+      'created_by' => 'ForeignKey',
       'body'       => 'Text',
       'changes'    => 'Text',
     );

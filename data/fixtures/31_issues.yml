@@ -1,0 +1,43 @@
+Issue:
+  is_0:
+    title: Theres a spelling error on title of the front page
+    Project: base
+    Component: view
+    AssignedTo: joaquin
+    OpenedBy: gustavo
+    opened_at: '<?php echo date("Y-m-d H:i:s") ?>'
+    Status: active
+    Category: bug
+    Priority: p_2
+
+  is_1:
+    title: Pagination doesnt work on list of issues
+    Project: base
+    Component: controller
+    AssignedTo: elias
+    opened_at: '<?php echo date("Y-m-d H:i:s") ?>'
+    Status: active
+    Category: bug
+    Priority: p_2
+
+IssueActivity:
+  act_0:
+    Issue: is_0
+    verb: Opened
+    created_at: '<?php echo date("Y-m-d H:i:s") ?>'
+    CreatedBy: gustavo
+    body: It says, WElcome to Axai, where it should be Welcome to axai
+    changes: Assigned to joaquin
+  act_1:
+    Issue: is_0
+    verb: Edited
+    created_at: '<?php echo date("Y-m-d H:i:s") ?>'
+    CreatedBy: gustavo
+    body: This is on the <title> tag not on the <body> of the page
+    changes: Title changed from 'Theres a spelling error on the front page' to 'Theres a spelling error on title of the front page'
+  act_2:
+    Issue: is_1
+    verb: Opened
+    created_at: '<?php echo date("Y-m-d H:i:s") ?>'
+    CreatedBy: gustavo
+    changes: Assigned to elias

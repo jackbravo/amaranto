@@ -10,8 +10,8 @@ CREATE TABLE sf_guard_user (id INT AUTO_INCREMENT, username VARCHAR(128) NOT NUL
 CREATE TABLE sf_guard_group_permission (group_id INT, permission_id INT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(group_id, permission_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_permission (id INT AUTO_INCREMENT, name VARCHAR(255) UNIQUE, description TEXT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE location (id INT AUTO_INCREMENT, entity_id INT, type SMALLINT, street VARCHAR(255), city VARCHAR(50), state VARCHAR(50), country VARCHAR(2), postal_code VARCHAR(10), INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE issue_activity (id INT AUTO_INCREMENT, issue_id INT, verb VARCHAR(128), created_at DATETIME, created_by INT, body TEXT, changes TEXT, INDEX issue_id_idx (issue_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE issue (id INT AUTO_INCREMENT, title VARCHAR(128), project_id INT, component_id INT, assigned_to INT, is_open TINYINT(1), opened_at DATETIME, opened_by INT, resolved_at DATETIME, resolved_by INT, closed_at DATETIME, closed_by INT, status_id INT, category_id INT, priority_id INT, milestone_id INT, orig_estimate DOUBLE, curr_estimate DOUBLE, elapsed DOUBLE, deadline DATETIME, INDEX project_id_idx (project_id), INDEX component_id_idx (component_id), INDEX assigned_to_idx (assigned_to), INDEX opened_by_idx (opened_by), INDEX status_id_idx (status_id), INDEX category_id_idx (category_id), INDEX priority_id_idx (priority_id), INDEX milestone_id_idx (milestone_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE issue_activity (id INT AUTO_INCREMENT, issue_id INT, verb VARCHAR(128), created_at DATETIME, created_by INT, body TEXT, changes TEXT, INDEX issue_id_idx (issue_id), INDEX created_by_idx (created_by), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE issue (id INT AUTO_INCREMENT, title VARCHAR(128), project_id INT, component_id INT, assigned_to INT, is_open TINYINT(1) DEFAULT '1' NOT NULL, opened_at DATETIME, opened_by INT, resolved_at DATETIME, resolved_by INT, closed_at DATETIME, closed_by INT, status_id INT, category_id INT, priority_id INT, milestone_id INT, orig_estimate DOUBLE, curr_estimate DOUBLE, elapsed DOUBLE, deadline DATETIME, INDEX project_id_idx (project_id), INDEX component_id_idx (component_id), INDEX assigned_to_idx (assigned_to), INDEX opened_by_idx (opened_by), INDEX status_id_idx (status_id), INDEX category_id_idx (category_id), INDEX priority_id_idx (priority_id), INDEX milestone_id_idx (milestone_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE component (id INT AUTO_INCREMENT, name VARCHAR(64), project_id INT NOT NULL, owner_id INT, INDEX project_id_idx (project_id), INDEX owner_id_idx (owner_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE priority (id INT AUTO_INCREMENT, name VARCHAR(64), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE category (id INT AUTO_INCREMENT, name VARCHAR(64), PRIMARY KEY(id)) ENGINE = INNODB;
@@ -29,7 +29,8 @@ ALTER TABLE sf_guard_remember_key ADD FOREIGN KEY (user_id) REFERENCES sf_guard_
 ALTER TABLE sf_guard_group_permission ADD FOREIGN KEY (permission_id) REFERENCES sf_guard_permission(id) ON DELETE CASCADE;
 ALTER TABLE sf_guard_group_permission ADD FOREIGN KEY (group_id) REFERENCES sf_guard_group(id) ON DELETE CASCADE;
 ALTER TABLE location ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
-ALTER TABLE issue_activity ADD FOREIGN KEY (issue_id) REFERENCES issue(id);
+ALTER TABLE issue_activity ADD FOREIGN KEY (issue_id) REFERENCES issue(id) ON DELETE CASCADE;
+ALTER TABLE issue_activity ADD FOREIGN KEY (created_by) REFERENCES sf_guard_user(id);
 ALTER TABLE issue ADD FOREIGN KEY (status_id) REFERENCES status(id);
 ALTER TABLE issue ADD FOREIGN KEY (project_id) REFERENCES project(id);
 ALTER TABLE issue ADD FOREIGN KEY (priority_id) REFERENCES priority(id);

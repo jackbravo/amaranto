@@ -9,19 +9,19 @@ Category:
     name: task
 
 Status:
-  st_0:
+  active:
     name: active
-  st_5:
+  completed:
     name: resolved (completed)
-  st_6:
+  needinfo:
     name: resolved (need more info)
-  st_7:
+  duplicate:
     name: resolved (duplicate)
-  st_8:
+  postponed:
     name: resolved (postponed)
-  st_9:
+  declined:
     name: resolved (declined)
-  st_10:
+  by_design:
     name: resolved (by design)
 
 Priority:
