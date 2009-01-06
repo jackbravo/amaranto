@@ -4,8 +4,8 @@
 
 <table class="list">
   <tbody>
-    <?php foreach ($pager->getResults() as $project): ?>
-    <tr class="info">
+    <?php foreach ($pager->getResults() as $i => $project): ?>
+    <tr class="info <?php echo fmod($i,2) == 0 ? 'even' : 'odd' ?>">
       <td>
         <h2><a href="<?php echo url_for('projects_show', $project) ?>"><?php echo $project->getName() ?></a></h2>
         <?php if ($project['Owner']['id']): ?>

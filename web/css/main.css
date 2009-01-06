@@ -171,9 +171,21 @@ table.list {
   width: 100%;
 }
 
+table.list tr {
+  text-align: left;
+}
+
+table.list tr.odd {
+  background-color: #eee;
+}
+
+table.list th {
+  padding: 0 4px;
+}
+
 table.list td {
   border-bottom: 1px solid #eee;
-  padding: .5em 0;
+  padding: 5px 4px;
 }
 
 /* ----------- box ----------- */

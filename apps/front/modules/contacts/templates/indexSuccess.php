@@ -20,8 +20,8 @@
 
 <table class="contacts list">
   <tbody>
-    <?php foreach ($pager->getResults() as $entity): ?>
-    <tr class="contact">
+    <?php foreach ($pager->getResults() as $i => $entity): ?>
+    <tr class="contact <?php echo fmod($i,2) == 0 ? 'even' : 'odd' ?>">
       <td class="info">
         <h2><a href="<?php echo url_for('@contacts_show?id='.$entity['id']) ?>"><?php echo $entity['name'] ?></a></h2>
         <a href="<?php echo url_for('@contacts?title='.$entity['title']) ?>"><?php echo $entity['title'] ?></a>
