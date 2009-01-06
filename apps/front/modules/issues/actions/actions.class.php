@@ -12,7 +12,12 @@ class issuesActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->issues = $this->getRoute()->getObjects();
+    $this->pager = new sfDoctrinePager('Issue',
+      sfConfig::get('app_max_issues_on_index')
+    );
+    $this->pager->setQuery(Doctrine::getTable('Issue')->getListQuery());
+    $this->pager->setPage($request->getParameter('page', 1));
+    $this->pager->init();
   }
 
   public function executeShow(sfWebRequest $request)

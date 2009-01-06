@@ -1,3 +1,5 @@
+<div class="grid_12">
+
 <h1>Issues List</h1>
 
 <table class="issues list">
@@ -13,19 +15,23 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($issues as $i => $issue): ?>
+    <?php foreach ($pager->getResults() as $i => $issue): ?>
     <tr class="<?php echo fmod($i,2) == 0 ? 'even' : 'odd' ?>">
       <td><?php echo $issue['Category']['name'] ?></td>
       <td><?php echo link_to($issue['id'], 'issues_show', $issue) ?></td>
       <td><?php echo link_to($issue['title'], 'issues_show', $issue) ?></td>
       <td><?php echo $issue['Status']['name'] ?></td>
       <td><?php echo $issue['OpenedBy']['username'] ?></td>
-      <td><?php echo $issue['Priority']['name'] ?></td>
+      <td><?php echo $issue['priority_id'] . ". " . $issue['Priority']['name'] ?></td>
       <td><?php echo $issue->getdeadline() ?></td>
     </tr>
     <?php endforeach; ?>
   </tbody>
 </table>
 
+<?php include_partial('contacts/pager', array('pager' => $pager)) ?>
+
 <a href="<?php echo url_for('issues_new') ?>">New</a>
+
+</div> <!-- /grid_12 -->
 
