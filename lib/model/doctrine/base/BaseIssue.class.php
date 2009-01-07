@@ -44,10 +44,10 @@ abstract class BaseIssue extends sfDoctrineRecord
     $this->hasOne('sfGuardUser as OpenedBy', array('local' => 'opened_by',
                                                    'foreign' => 'id'));
 
-    $this->hasOne('sfGuardUser as ResolvedBy', array('local' => 'opened_by',
+    $this->hasOne('sfGuardUser as ResolvedBy', array('local' => 'resolved_by',
                                                      'foreign' => 'id'));
 
-    $this->hasOne('sfGuardUser as ClosedBy', array('local' => 'opened_by',
+    $this->hasOne('sfGuardUser as ClosedBy', array('local' => 'closed_by',
                                                    'foreign' => 'id'));
 
     $this->hasOne('Status', array('local' => 'status_id',

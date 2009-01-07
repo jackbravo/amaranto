@@ -49,6 +49,12 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
     $this->hasMany('Issue as OpenedIssues', array('local' => 'id',
                                                   'foreign' => 'opened_by'));
 
+    $this->hasMany('Issue as ResolvedIssues', array('local' => 'id',
+                                                    'foreign' => 'resolved_by'));
+
+    $this->hasMany('Issue as ClosedIssues', array('local' => 'id',
+                                                  'foreign' => 'closed_by'));
+
     $this->hasMany('IssueActivity as Activities', array('local' => 'id',
                                                         'foreign' => 'created_by'));
 

@@ -45,11 +45,11 @@ Issue:
       class:        sfGuardUser
       foreignAlias: OpenedIssues
     ResolvedBy:
-      local:        opened_by
+      local:        resolved_by
       class:        sfGuardUser
       foreignAlias: ResolvedIssues
     ClosedBy:
-      local:        opened_by
+      local:        closed_by
       class:        sfGuardUser
       foreignAlias: ClosedIssues
 
