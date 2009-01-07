@@ -11,5 +11,8 @@ class IssueForm extends BaseIssueForm
 {
   public function configure()
   {
+    unset($this['opened_at'], $this['opened_by'], $this['is_open']);
+    unset($this['resolved_at'], $this['resolved_by']);
+    unset($this['closed_at'], $this['closed_by']);
   }
 }
