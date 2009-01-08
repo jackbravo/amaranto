@@ -11,5 +11,17 @@ class IssueActivityForm extends BaseIssueActivityForm
 {
   public function configure()
   {
+    $this->widgetSchema['body']->setAttributes(array(
+      'cols' => '50',
+      'rows' => '8',
+    ));
+
+    $this->widgetSchema->setLabels(array(
+      'body' => 'Notes',
+    ));
+
+    unset($this['issue_id']); # this is set when saving the Issue
+    unset($this['created_at'], $this['created_by']);
+    unset($this['verb'], $this['changes']);
   }
 }
