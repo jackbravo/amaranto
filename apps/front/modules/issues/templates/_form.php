@@ -31,7 +31,7 @@
 
   <br/>
   <div class="grid_12">
-    &nbsp;<a href="<?php echo url_for('issues') ?>">Cancel</a>
+    &nbsp;<?php echo link_to('Cancel', 'issues_show', $form->getObject()) ?>
     <?php if (!$form->getObject()->isNew()): ?>
       &nbsp;<?php echo link_to('Delete', 'issues_delete', $form->getObject(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
     <?php endif; ?>
