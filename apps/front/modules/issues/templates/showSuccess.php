@@ -3,7 +3,7 @@
 
   <h1><?php echo $issue->title ?> <small>(<?php echo $issue->Category ?>)</small></h1>
   Assigned to <strong><?php echo $issue->AssignedTo ?></strong>
-  | Priority - <strong><?php echo $issue->Priority->id.' '.$issue->Priority ?></strong>
+  | Priority - <strong><?php echo $issue->Priority ?></strong>
 
   <hr />
   <?php include_partial('activities', array('activities' => $issue->Activities)) ?>
