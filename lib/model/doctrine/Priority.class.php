@@ -5,5 +5,8 @@
  */
 class Priority extends BasePriority
 {
-
+  public function __toString()
+  {
+    return $this->id . '. ' . $this->name;
+  }
 }
