@@ -14,13 +14,16 @@
 
   <?php echo $form['Activities'][0]['body']->renderRow() ?>
 
-  <hr />
-  <?php include_partial('activities', array('activities' => $form->getObject()->Activities)) ?>
+  <?php if (!$form->getObject()->isNew()): ?>
+    <hr />
+    <?php include_partial('activities', array('activities' => $form->getObject()->Activities)) ?>
+  <?php endif; ?>
   <hr />
 
   <div class="item-row">
-    &nbsp;<?php echo link_to('Cancel', 'issues') ?>
-    <?php if (!$form->getObject()->isNew()): ?>
+    <?php if ($form->getObject()->isNew()): ?>
+      &nbsp;<?php echo link_to('Cancel', 'issues') ?>
+    <?php else: ?>
       &nbsp;<?php echo link_to('Cancel', 'issues_show', $form->getObject()) ?>
       &nbsp;<?php echo link_to('Delete', 'issues_delete', $form->getObject(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
     <?php endif; ?>
