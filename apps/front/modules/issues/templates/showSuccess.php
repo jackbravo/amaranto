@@ -6,27 +6,11 @@
   | Priority - <strong><?php echo $issue->Priority->id.' '.$issue->Priority ?></strong>
 
   <hr />
-
-  <div class="issue-activities">
-  <?php foreach ($issue->Activities as $activity): ?>
-    <div class="issue-activity">
-      <p class="activity-timestamp">
-        <strong><?php echo $activity->verb ?> by <?php echo $activity->CreatedBy ?></strong>
-        <small><?php echo $activity->created_at ?></small>
-      </p>
-      <blockquote class="activity-changes">
-        <?php echo simple_format_text($activity->changes) ?>
-      </blockquote>
-      <?php echo simple_format_text($activity->body) ?>
-    </div>
-  <?php endforeach; ?>
-  </div> <!-- /issue-history -->
-
+  <?php include_partial('activities', array('activities' => $issue->Activities)) ?>
   <hr />
 
-  <a href="<?php echo url_for('issues_edit', $issue) ?>">Edit</a>
-  &nbsp;
-  <a href="<?php echo url_for('issues') ?>">List</a>
+  <?php echo link_to('Edit', 'issues_edit', $issue) ?>
+  &nbsp;<?php echo link_to('List', 'issues') ?>
 
 </div> <!-- /grid_8 -->
 
