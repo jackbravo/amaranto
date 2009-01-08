@@ -39,7 +39,8 @@ abstract class BaseIssue extends sfDoctrineRecord
                                      'foreign' => 'id'));
 
     $this->hasOne('sfGuardUser as AssignedTo', array('local' => 'assigned_to',
-                                                     'foreign' => 'id'));
+                                                     'foreign' => 'id',
+                                                     'onDelete' => 'SET NULL'));
 
     $this->hasOne('sfGuardUser as OpenedBy', array('local' => 'opened_by',
                                                    'foreign' => 'id'));

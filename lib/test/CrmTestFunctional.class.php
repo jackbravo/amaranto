@@ -4,7 +4,26 @@ class CrmTestFunctional extends sfTestFunctional
 {
   public function loadData()
   {
+    $this->clearData();
     Doctrine::loadData(sfConfig::get('sf_data_dir').'/fixtures');
+    return $this;
+  }
+
+  public function clearData()
+  {
+    Doctrine::loadModels(sfConfig::get('sf_lib_dir').'/model/doctrine');
+    $models = Doctrine::getLoadedModels();
+
+    foreach ($models as $model) {
+      try {
+        Doctrine::getTable($model)->createQuery()->delete()->execute();
+      } catch (Doctrine_Connection_Exception $e) {
+        // if couldn't delete the first time, try it again at the end
+        $models[] = $model;
+        unset($models[array_search($model, $models)]);
+      }
+    }
+
     return $this;
   }
 

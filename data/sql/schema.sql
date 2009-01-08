@@ -40,7 +40,7 @@ ALTER TABLE issue ADD FOREIGN KEY (milestone_id) REFERENCES milestone(id);
 ALTER TABLE issue ADD FOREIGN KEY (component_id) REFERENCES component(id);
 ALTER TABLE issue ADD FOREIGN KEY (closed_by) REFERENCES sf_guard_user(id);
 ALTER TABLE issue ADD FOREIGN KEY (category_id) REFERENCES category(id);
-ALTER TABLE issue ADD FOREIGN KEY (assigned_to) REFERENCES sf_guard_user(id);
+ALTER TABLE issue ADD FOREIGN KEY (assigned_to) REFERENCES sf_guard_user(id) ON DELETE SET NULL;
 ALTER TABLE component ADD FOREIGN KEY (project_id) REFERENCES project(id) ON DELETE CASCADE;
 ALTER TABLE component ADD FOREIGN KEY (owner_id) REFERENCES sf_guard_user(id) ON DELETE SET NULL;
 ALTER TABLE note ADD FOREIGN KEY (updated_by_user_id) REFERENCES sf_guard_user(id);
