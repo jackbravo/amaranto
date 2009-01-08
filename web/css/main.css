@@ -207,6 +207,33 @@ table.list td {
   font-size: 14px;
 }
 
+/* ---------- issue ----------- */
+
+.issue-activity {
+  margin-bottom: 1em;
+}
+
+.issue-id-box {
+  margin-top: 15px;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.issue-id a {
+  margin: 10px auto;
+  padding: 10px;
+  border: 2px solid #E78F08;
+  background-color: #F6A828;
+  color: #fff;
+}
+
+.activity-changes {
+  margin-left: 1.5em;
+  font-size: 80%;
+  color: #777;
+  margin-top: -5px;
+}
+
 /* ----------- forms ----------- */
 
 .form-item {

@@ -9,6 +9,9 @@ Issue:
     Status: active
     Category: bug
     Priority: p_2
+    orig_estimate: 6.0
+    curr_estimate: 8.0
+    elapsed: 2.0
 
   is_1:
     title: Pagination doesnt work on list of issues
@@ -19,6 +22,8 @@ Issue:
     Status: active
     Category: bug
     Priority: p_2
+    orig_estimate: 6.0
+    curr_estimate: 6.0
 
 IssueActivity:
   act_0:
