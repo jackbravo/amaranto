@@ -9,11 +9,55 @@
  */
 class EntityForm extends BaseEntityForm
 {
+  /**
+   * array of related forms that can be embedded with this one
+   */
   public $embeddedFormsDefinition = array(
     'Emails' => array('form' => 'EmailForm', 'min' => 1),
     'Phonenumbers' => array('form' => 'PhonenumberForm', 'min' => 1),
     'Locations' => array('form' => 'LocationForm', 'min' => 1),
   );
+
+  /**
+   * extend the constructor to use another kind of embedded forms
+   */
+  public function __construct($object = null, $options = array(), $CSRFSecret = null)
+  {
+    parent::__construct($object, $options, $CSRFSecret);
+
+    foreach ($this->embeddedFormsDefinition as $key => $options)
+    {
+      if (count($options['min']) > 0 && (is_null($object) || count($object[$key]) < 1))
+      {
+        $this->embedFormForEach($key, new $options['form'], $options['min']);
+      }
+      else
+      {
+        $this->embedFormForEach($key, new $options['form'], count($object[$key]));
+        $this->setDefault($key, $object[$key]);
+      }
+    }
+  }
+
+  /**
+   * bind our implementation of embedded forms
+   */
+  public function bind(array $taintedValues = null, array $taintedFiles = null)
+  {
+    foreach ($this->embeddedFormsDefinition as $key => $options)
+    {
+      if (array_key_exists($key, $taintedValues) && count($taintedValues[$key]) > 0)
+      {
+        $this->embedFormForEach($key, new $options['form'], count($taintedValues[$key]));
+      }
+      else
+      {
+        $this->embedFormForEach($key, new $options['form'], $options['min']);
+      }
+    }
+
+    parent::bind($taintedValues, $taintedFiles);
+  }
 
   public function setup()
   {
@@ -28,24 +72,41 @@ class EntityForm extends BaseEntityForm
   {
   }
 
+  /**
+   * we override this to use synchronizeWithArray instead of fromArray
+   */
   public function updateObject($values = null)
   {
-    $object = parent::updateObject(null);
+    if (is_null($values))
+    {
+      $values = $this->values;
+    }
+
+    $values = $this->processValues($values);
+
+    $this->object->synchronizeWithArray($values);
 
     // clean empty code field
-    if ($object['code'] == '') $object['code'] = null;
+    if ($this->object['code'] == '') $this->object['code'] = null;
 
     // clean empty email and phone fields
-    foreach ($object['Emails'] as $key => $email) {
+    foreach ($this->object['Emails'] as $key => $email) {
       if ($email['email'] == '')
-        unset($object['Emails'][$key]);
+        unset($this->object['Emails'][$key]);
     }
 
-    foreach ($object['Phonenumbers'] as $key => $phone) {
+    foreach ($this->object['Phonenumbers'] as $key => $phone) {
       if ($phone['number'] == '')
-        unset($object['Phonenumbers'][$key]);
+        unset($this->object['Phonenumbers'][$key]);
     }
 
-    return $object;
+    return $this->object;
+  }
+
+  /**
+   * we don't need this since we use synchronizeWithArray and Doctrine does the rest
+   */
+  public function saveEmbeddedForms($con = null, $forms = null)
+  {
   }
 }
