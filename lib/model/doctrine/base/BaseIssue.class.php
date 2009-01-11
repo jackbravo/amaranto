@@ -12,6 +12,7 @@ abstract class BaseIssue extends sfDoctrineRecord
     $this->hasColumn('title', 'string', 128, array('type' => 'string', 'length' => '128'));
     $this->hasColumn('project_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
     $this->hasColumn('component_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
+    $this->hasColumn('milestone_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
     $this->hasColumn('assigned_to', 'integer', 4, array('type' => 'integer', 'length' => '4'));
     $this->hasColumn('is_open', 'boolean', null, array('type' => 'boolean', 'default' => true, 'notnull' => true));
     $this->hasColumn('opened_at', 'timestamp', null, array('type' => 'timestamp'));
@@ -20,10 +21,9 @@ abstract class BaseIssue extends sfDoctrineRecord
     $this->hasColumn('resolved_by', 'integer', 4, array('type' => 'integer', 'length' => '4'));
     $this->hasColumn('closed_at', 'timestamp', null, array('type' => 'timestamp'));
     $this->hasColumn('closed_by', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('status_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('category_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('priority_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('milestone_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
+    $this->hasColumn('status_id', 'integer', 4, array('type' => 'integer', 'notnull' => true, 'default' => '1', 'length' => '4'));
+    $this->hasColumn('category_id', 'integer', 4, array('type' => 'integer', 'notnull' => true, 'default' => '1', 'length' => '4'));
+    $this->hasColumn('priority_id', 'integer', 4, array('type' => 'integer', 'notnull' => true, 'default' => '3', 'length' => '4'));
     $this->hasColumn('orig_estimate', 'float', null, array('type' => 'float'));
     $this->hasColumn('curr_estimate', 'float', null, array('type' => 'float'));
     $this->hasColumn('elapsed', 'float', null, array('type' => 'float'));

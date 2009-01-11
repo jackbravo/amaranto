@@ -7,6 +7,7 @@ Issue:
     title:          string(128)
     project_id:     integer(4)
     component_id:   integer(4)
+    milestone_id:   integer(4)
     assigned_to:    integer(4)
 
     is_open:
@@ -20,10 +21,18 @@ Issue:
     closed_at:      timestamp
     closed_by:      integer(4)
 
-    status_id:      integer(4)
-    category_id:    integer(4)
-    priority_id:    integer(4)
-    milestone_id:   integer(4)
+    status_id:
+      type:         integer(4)
+      notnull:      true
+      default:      1
+    category_id:
+      type:         integer(4)
+      notnull:      true
+      default:      1
+    priority_id:
+      type:         integer(4)
+      notnull:      true
+      default:      3
 
     orig_estimate:  float
     curr_estimate:  float
