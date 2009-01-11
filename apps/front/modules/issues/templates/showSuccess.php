@@ -23,13 +23,13 @@
   </div>
 
   <div class="issue-location">
-    <?php if ($issue->Project->exists()): ?>
+    <?php if ($issue->project_id): ?>
       <strong>Project.</strong> <?php echo $issue->Project ?><br/>
     <?php endif; ?>
-    <?php if ($issue->Component->exists()): ?>
+    <?php if ($issue->component_id): ?>
       <strong>Component.</strong> <?php echo $issue->Component ?><br/>
     <?php endif; ?>
-    <?php if ($issue->Milestone->exists()): ?>
+    <?php if ($issue->milestone_id): ?>
       <strong>Milestone.</strong> <?php echo $issue->Milestone ?><br/>
     <?php endif; ?>
   </div>

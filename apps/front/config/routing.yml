@@ -3,6 +3,7 @@ issues:
   options:
     model:      Issue
     with_show:  true
+    model_methods: { object: getForShow }
 
 people:
   class: sfDoctrineRouteCollection
