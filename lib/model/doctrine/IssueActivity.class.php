@@ -5,5 +5,48 @@
  */
 class IssueActivity extends BaseIssueActivity
 {
+  public $blackList = array('is_open', 'opened_at', 'opened_by', 'resolved_at',
+    'resolved_by', 'closed_at', 'closed_by', 'assigned_to');
 
+  public function setIssueAndChanges(Issue $issue, array $old_values)
+  {
+    $this->issue_id = $issue->id;
+    $this->changes = $this->calculateChanges($issue, $old_values);
+    $this->verb = $this->calculateVerb($issue);
+  }
+
+  protected function calculateChanges(Issue $issue, array $old_values)
+    $changes = array();
+    $issue->refreshRelated();
+    $new_values = $issue->toArray();
+    $modified = $issue->getModified(true);
+    foreach ($modified as $field => $value)
+    {
+      if (!in_array($field, $this->blackList))
+      {
+        $field_name = $this->getIssueFieldName($field);
+        $old_value = $this->getIssueFieldValue($field, $old_values);
+        $new_value = $this->getIssueFieldValue($field, $new_values);
+        $changes[] = "$field_name changed from '$old_value' to '$new_value'.";
+      }
+    }
+    $this->changes = implode("\n", $changes);
+  }
+
+  protected function getIssueFieldName($field)
+  {
+    return Doctrine_Inflector::classify(str_replace('_id', '', $field));
+  }
+
+  protected function getIssueFieldValue($field, $values)
+  {
+    if ($values[$field] && strpos($field, '_id') !== false)
+    {
+      return $values[$this->getIssueFieldName($field)]['name'];
+    }
+    else
+    {
+      return $values[$field];
+    }
+  }
 }

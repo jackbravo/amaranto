@@ -12,7 +12,7 @@
   <?php echo $form['assigned_to']->renderRow() ?>
   <?php echo $form['priority_id']->renderRow() ?>
 
-  <?php echo $form['Activities'][0]['body']->renderRow() ?>
+  <?php echo $form['Activity']['body']->renderRow() ?>
 
   <?php if (!$form->getObject()->isNew()): ?>
     <hr />

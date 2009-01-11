@@ -29,11 +29,22 @@ class IssueForm extends BaseIssueForm
       'curr_estimate' => 'Estimate',
     ));
 
-    $this->embedFormForEach('Activities', new IssueActivityForm(), 1);
+    $this->embedForm('Activity', new IssueActivityForm());
 
     unset($this['opened_at'], $this['opened_by'], $this['is_open']);
     unset($this['resolved_at'], $this['resolved_by']);
     unset($this['closed_at'], $this['closed_by']);
     unset($this['orig_estimate']);
+  }
+
+  public function updateObject($values = null)
+  {
+    $old_data = $this->getObject()->toArray(true);
+    $issue = parent::updateObject($values);
+
+    $activity = $this->embeddedForms['Activity']->getObject();
+    $activity->setIssueAndChanges($issue, $old_data);
+
+    return $issue;
   }
 }
