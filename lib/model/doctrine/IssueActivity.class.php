@@ -6,31 +6,29 @@
 class IssueActivity extends BaseIssueActivity
 {
   public $blackList = array('is_open', 'opened_at', 'opened_by', 'resolved_at',
-    'resolved_by', 'closed_at', 'closed_by', 'assigned_to');
+    'resolved_by', 'closed_at', 'closed_by', 'assigned_to', 'status_id');
 
   public function setIssueAndChanges(Issue $issue, array $old_values)
   {
     $this->issue_id = $issue->id;
     $this->changes = $this->calculateChanges($issue, $old_values);
-    $this->verb = $this->calculateVerb($issue);
   }
 
   protected function calculateChanges(Issue $issue, array $old_values)
+  {
     $changes = array();
-    $issue->refreshRelated();
-    $new_values = $issue->toArray();
-    $modified = $issue->getModified(true);
+    $modified = $issue->getModified();
     foreach ($modified as $field => $value)
     {
       if (!in_array($field, $this->blackList))
       {
         $field_name = $this->getIssueFieldName($field);
-        $old_value = $this->getIssueFieldValue($field, $old_values);
-        $new_value = $this->getIssueFieldValue($field, $new_values);
+        $old_value = $this->getIssueFieldValue($field, $issue, $old_values, false);
+        $new_value = $this->getIssueFieldValue($field, $issue, $old_values, true);
         $changes[] = "$field_name changed from '$old_value' to '$new_value'.";
       }
     }
-    $this->changes = implode("\n", $changes);
+    return implode("\n", $changes);
   }
 
   protected function getIssueFieldName($field)
@@ -38,15 +36,29 @@ class IssueActivity extends BaseIssueActivity
     return Doctrine_Inflector::classify(str_replace('_id', '', $field));
   }
 
-  protected function getIssueFieldValue($field, $values)
+  /**
+   * @arg refresh - get old values or new values?
+   */
+  protected function getIssueFieldValue($field, $issue, $old_values, $refresh = false)
   {
-    if ($values[$field] && strpos($field, '_id') !== false)
+    if ($issue[$field] && strpos($field, '_id') !== false)
     {
-      return $values[$this->getIssueFieldName($field)]['name'];
+      if ($refresh)
+      {
+        $issue->refreshRelated($this->getIssueFieldName($field));
+      }
+      return $issue[$this->getIssueFieldName($field)];
     }
     else
     {
-      return $values[$field];
+      if ($refresh)
+      {
+        return $issue[$field];
+      }
+      else
+      {
+        return $old_values[$field];
+      }
     }
   }
 }
