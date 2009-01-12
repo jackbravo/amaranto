@@ -10,19 +10,26 @@ Category:
 
 Status:
   active:
-    name: Active
+    name: active
+    is_resolved: false
   completed:
-    name: Resolved (completed)
+    name: completed
+    is_resolved: true
   needinfo:
-    name: Resolved (need more info)
+    name: need more info
+    is_resolved: true
   duplicate:
-    name: Resolved (duplicate)
+    name: duplicate
+    is_resolved: true
   postponed:
-    name: Resolved (postponed)
+    name: postponed
+    is_resolved: true
   declined:
-    name: Resolved (declined)
+    name: declined
+    is_resolved: true
   by_design:
-    name: Resolved (by design)
+    name: by design
+    is_resolved: true
 
 Priority:
   p_0:

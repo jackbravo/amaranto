@@ -31,9 +31,9 @@ class IssueForm extends BaseIssueForm
 
     $this->embedForm('Activity', new IssueActivityForm());
 
-    unset($this['opened_at'], $this['opened_by'], $this['is_open']);
-    unset($this['resolved_at'], $this['resolved_by']);
-    unset($this['closed_at'], $this['closed_by']);
+    unset($this['opened_at'], $this['opened_by']);
+    unset($this['resolved_at'], $this['resolved_by'], $this['is_resolved']);
+    unset($this['closed_at'], $this['closed_by'], $this['is_closed']);
     unset($this['orig_estimate']);
   }
 

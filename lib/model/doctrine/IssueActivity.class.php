@@ -5,8 +5,11 @@
  */
 class IssueActivity extends BaseIssueActivity
 {
-  public $blackList = array('is_open', 'opened_at', 'opened_by', 'resolved_at',
-    'resolved_by', 'closed_at', 'closed_by', 'assigned_to', 'status_id');
+  public $blackList = array(
+    'is_closed', 'opened_at', 'opened_by', 'resolved_at',
+    'is_resolved', 'resolved_by', 'closed_at', 'closed_by',
+    'assigned_to', 'status_id'
+  );
 
   public function setIssueAndChanges(Issue $issue, array $old_values)
   {
@@ -18,27 +21,25 @@ class IssueActivity extends BaseIssueActivity
   protected function calculateVerb(Issue $issue)
   {
     $modified = $issue->getModified();
-    $issue->refreshRelated('AssignedTo');
     if (!$issue->exists())
     {
       return 'Opened (assigned to ' . $issue->AssignedTo . ')';
     }
-    else if (in_array('is_open', array_keys($modified)))
+    else if (in_array('is_closed', array_keys($modified)))
     {
-      if ($issue->isOpen())
-      {
-        return 'Reopened (assigned to ' . $issue->AssignedTo . ')';
-      }
-      else
+      if ($issue->isClosed())
       {
         return 'Closed';
       }
+      else
+      {
+        return 'Reopened (assigned to ' . $issue->AssignedTo . ')';
+      }
     }
-    else if (in_array('status_id', array_keys($modified)))
+    else if (in_array('is_resolved', array_keys($modified)))
     {
       if ($issue->isResolved())
       {
-        $issue->refreshRelated('Status');
         return (string) $issue->Status;
       }
       else

@@ -5,5 +5,8 @@
  */
 class Status extends BaseStatus
 {
-
+  public function __toString()
+  {
+    return ($this->is_resolved ? 'Resolved' : 'Active') . ' - ' . $this->name;
+  }
 }

@@ -10,6 +10,7 @@ abstract class BaseStatus extends sfDoctrineRecord
     $this->setTableName('status');
     $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
     $this->hasColumn('name', 'string', 64, array('type' => 'string', 'length' => '64'));
+    $this->hasColumn('is_resolved', 'boolean', null, array('type' => 'boolean'));
   }
 
   public function setUp()

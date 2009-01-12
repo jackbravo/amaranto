@@ -14,7 +14,8 @@ abstract class BaseIssue extends sfDoctrineRecord
     $this->hasColumn('component_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
     $this->hasColumn('milestone_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
     $this->hasColumn('assigned_to', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('is_open', 'boolean', null, array('type' => 'boolean', 'default' => true, 'notnull' => true));
+    $this->hasColumn('is_closed', 'boolean', null, array('type' => 'boolean', 'default' => false, 'notnull' => true));
+    $this->hasColumn('is_resolved', 'boolean', null, array('type' => 'boolean', 'default' => false, 'notnull' => true));
     $this->hasColumn('opened_at', 'timestamp', null, array('type' => 'timestamp'));
     $this->hasColumn('opened_by', 'integer', 4, array('type' => 'integer', 'length' => '4'));
     $this->hasColumn('resolved_at', 'timestamp', null, array('type' => 'timestamp'));
