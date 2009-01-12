@@ -12,6 +12,48 @@ class IssueActivity extends BaseIssueActivity
   {
     $this->issue_id = $issue->id;
     $this->changes = $this->calculateChanges($issue, $old_values);
+    $this->verb = $this->calculateVerb($issue);
+  }
+
+  protected function calculateVerb(Issue $issue)
+  {
+    $modified = $issue->getModified();
+    $issue->refreshRelated('AssignedTo');
+    if (!$issue->exists())
+    {
+      return 'Opened (assigned to ' . $issue->AssignedTo . ')';
+    }
+    else if (in_array('is_open', array_keys($modified)))
+    {
+      if ($issue->isOpen())
+      {
+        return 'Reopened (assigned to ' . $issue->AssignedTo . ')';
+      }
+      else
+      {
+        return 'Closed';
+      }
+    }
+    else if (in_array('status_id', array_keys($modified)))
+    {
+      if ($issue->isResolved())
+      {
+        $issue->refreshRelated('Status');
+        return (string) $issue->Status;
+      }
+      else
+      {
+        return 'Reactivated (assigned to ' . $issue->AssignedTo . ')';
+      }
+    }
+    else if (in_array('assigned_to', array_keys($modified)))
+    {
+      return 'Assigned to ' . $issue->AssignedTo;
+    }
+    else
+    {
+      return 'Edited';
+    }
   }
 
   protected function calculateChanges(Issue $issue, array $old_values)
@@ -62,3 +104,4 @@ class IssueActivity extends BaseIssueActivity
     }
   }
 }
+

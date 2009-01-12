@@ -5,5 +5,14 @@
  */
 class Issue extends BaseIssue
 {
+  public function isOpen()
+  {
+    return $this->is_open;
+  }
 
+  public function isResolved()
+  {
+    return ($this->status_id > 1);
+  }
 }
+
