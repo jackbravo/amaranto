@@ -44,10 +44,10 @@ class Listener_Userstampable extends Doctrine_Record_Listener
 
     $modified = $event->getInvoker()->getModified();
     if (!isset($modified[$createdName])) {
-      $event->getInvoker()->$createdName = $this->getCurrentUserId();
+      $event->getInvoker()->$createdName = self::getCurrentUserId();
     }
     if (!isset($modified[$updatedName])) {
-      $event->getInvoker()->$updatedName = $this->getCurrentUserId();
+      $event->getInvoker()->$updatedName = self::getCurrentUserId();
     }
   }
 
@@ -62,7 +62,7 @@ class Listener_Userstampable extends Doctrine_Record_Listener
     $updatedName = $this->_options['updated']['name'];
     $modified = $event->getInvoker()->getModified();
     if (!isset($modified[$updatedName])) {
-      $event->getInvoker()->$updatedName = $this->getCurrentUserId();
+      $event->getInvoker()->$updatedName = self::getCurrentUserId();
     }
   }
 
@@ -74,7 +74,7 @@ class Listener_Userstampable extends Doctrine_Record_Listener
    * @param string $type
    * @return void
    */
-  public function getCurrentUserId()
+  static public function getCurrentUserId()
   {
     try
     {

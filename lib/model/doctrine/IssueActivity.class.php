@@ -104,5 +104,18 @@ class IssueActivity extends BaseIssueActivity
       }
     }
   }
+
+  public function preInsert($event)
+  {
+    $modified = $this->getModified();
+    if (!array_key_exists('created_at', $modified))
+    {
+      $this->created_at = date('Y-m-d H:i:s');
+    }
+    if (!array_key_exists('created_by', $modified))
+    {
+      $this->created_by = Listener_Userstampable::getCurrentUserId();
+    }
+  }
 }
 

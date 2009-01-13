@@ -10,7 +10,6 @@ Issue:
     Status: active
     Category: bug
     Priority: p_2
-    orig_estimate: 6.0
     curr_estimate: 8.0
     elapsed: 2.0
 
@@ -23,7 +22,6 @@ Issue:
     Status: active
     Category: bug
     Priority: p_2
-    orig_estimate: 6.0
     curr_estimate: 6.0
 
 IssueActivity:
