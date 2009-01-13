@@ -43,12 +43,12 @@ class Issue extends BaseIssue
 
   public function setStatusId($status_id)
   {
-    if ($status_id != $this->status_id && is_numeric($status_id)) {
-      $this->Status = Doctrine::getTable('Status')->find($status_id);
-      $this->is_resolved = $this->Status->is_resolved;
-      return; // avobe method called _set
+    if ($status_id != $this->status_id) {
+      if (Doctrine::getTable('Status')->isResolved($status_id)) {
+        $this->setIsResolved(true);
+      }
     }
-    return $this->_set('status_id', $status_id);
+    $this->_set('status_id', $status_id);
   }
 
   public function preInsert($event)

@@ -21,11 +21,15 @@ class IssueActivity extends BaseIssueActivity
   protected function calculateVerb(Issue $issue)
   {
     $modified = $issue->getModified();
+    if (array_key_exists('assigned_to', $modified)) {
+      $issue->refreshRelated('AssignedTo');
+    }
+
     if (!$issue->exists())
     {
       return 'Opened (assigned to ' . $issue->AssignedTo . ')';
     }
-    else if (in_array('is_closed', array_keys($modified)))
+    else if (array_key_exists('is_closed', $modified))
     {
       if ($issue->isClosed())
       {
@@ -36,7 +40,7 @@ class IssueActivity extends BaseIssueActivity
         return 'Reopened (assigned to ' . $issue->AssignedTo . ')';
       }
     }
-    else if (in_array('is_resolved', array_keys($modified)))
+    else if (array_key_exists('is_resolved', $modified))
     {
       if ($issue->isResolved())
       {
@@ -47,7 +51,7 @@ class IssueActivity extends BaseIssueActivity
         return 'Reactivated (assigned to ' . $issue->AssignedTo . ')';
       }
     }
-    else if (in_array('assigned_to', array_keys($modified)))
+    else if (array_key_exists('assigned_to', $modified))
     {
       return 'Assigned to ' . $issue->AssignedTo;
     }

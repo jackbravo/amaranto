@@ -4,5 +4,16 @@
  */
 class StatusTable extends Doctrine_Table
 {
-
+  /**
+   * we could query for the answer but then we would issue a query every
+   * time a new issue is loaded into memory because this method is called
+   * on Issue->setStatusId
+   */
+  public function isResolved($status_id)
+  {
+    if ($status_id instanceof Status)
+      return $status_id->is_resolved;
+    else
+      return $status_id > 1;
+  }
 }
