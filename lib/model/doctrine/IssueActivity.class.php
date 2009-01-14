@@ -40,15 +40,16 @@ class IssueActivity extends BaseIssueActivity
         return 'Reopened (assigned to ' . $issue->AssignedTo . ')';
       }
     }
-    else if (array_key_exists('is_resolved', $modified))
+    else if (array_key_exists('status_id', $modified))
     {
+      $issue->refreshRelated('Status');
       if ($issue->isResolved())
       {
         return (string) $issue->Status;
       }
       else
       {
-        return 'Reactivated (assigned to ' . $issue->AssignedTo . ')';
+        return 'Activated (assigned to ' . $issue->AssignedTo . ')';
       }
     }
     else if (array_key_exists('assigned_to', $modified))
