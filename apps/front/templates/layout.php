@@ -19,17 +19,20 @@
     <ul>
     <?php
       $links = array(
-        'contacts' => 'Contacts',
-        'projects' => 'Projects',
-        'issues' => 'Issues',
-        'sf_guard_user' => 'Users',
+        'contacts' => array('label' => 'Contacts'),
+        'projects' => array('label' => 'Projects'),
+        'issues' => array('label' => 'Issues'),
+        'sf_guard_user' => array('label' => 'Users', 'perm' => 'admin'),
       );
 
-      foreach ($links as $route => $name)
+      foreach ($links as $route => $link)
       {
+        if (isset($link['perm']) && !$sf_user->hasCredential($link['perm'])) {
+          continue;
+        }
         $current = $sf_request->getParameter('module');
         $class = $current == $route ? 'active' : '';
-        echo "<li class='$class'>" . link_to(__($name), $route) . '</li>';
+        echo "<li class='$class'>" . link_to(__($link['label']), $route) . '</li>';
       }
     ?>
     </ul>
