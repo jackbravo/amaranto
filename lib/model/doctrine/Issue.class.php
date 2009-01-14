@@ -31,6 +31,7 @@ class Issue extends BaseIssue
     } else {
       $this->resolved_at = null;
       $this->resolved_by = null;
+    }
     return $this->_set('is_resolved', $is_resolved);
   }
 
