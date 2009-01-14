@@ -28,7 +28,9 @@ class Issue extends BaseIssue
     if ($is_resolved) {
       $this->resolved_at = date('Y-m-d H:i:s');
       $this->resolved_by = Listener_Userstampable::getCurrentUserId();
-    }
+    } else {
+      $this->resolved_at = null;
+      $this->resolved_by = null;
     return $this->_set('is_resolved', $is_resolved);
   }
 
@@ -37,6 +39,9 @@ class Issue extends BaseIssue
     if ($is_closed) {
       $this->closed_at = date('Y-m-d H:i:s');
       $this->closed_by = Listener_Userstampable::getCurrentUserId();
+    } else {
+      $this->closed_at = null;
+      $this->closed_by = null;
     }
     return $this->_set('is_closed', $is_closed);
   }
