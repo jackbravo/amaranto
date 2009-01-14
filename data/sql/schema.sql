@@ -1,6 +1,6 @@
-CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, code VARCHAR(50) UNIQUE, type SMALLINT, parent_id INT, description TEXT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, code VARCHAR(50) UNIQUE, type SMALLINT, owner_id INT, parent_id INT, description TEXT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, INDEX owner_id_idx (owner_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE email (id INT AUTO_INCREMENT, entity_id INT, email VARCHAR(50), type SMALLINT, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, code VARCHAR(50) UNIQUE, type SMALLINT, parent_id INT, description TEXT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, INDEX parent_id_idx (parent_id), PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE entity (id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, code VARCHAR(50) UNIQUE, type SMALLINT, owner_id INT, parent_id INT, description TEXT, title VARCHAR(255), created_at DATETIME, updated_at DATETIME, INDEX owner_id_idx (owner_id), INDEX parent_id_idx (parent_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE status (id INT AUTO_INCREMENT, name VARCHAR(64), is_resolved TINYINT(1), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_permission (user_id INT, permission_id INT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(user_id, permission_id)) ENGINE = INNODB;
 CREATE TABLE sf_guard_user_group (user_id INT, group_id INT, created_at DATETIME, updated_at DATETIME, PRIMARY KEY(user_id, group_id)) ENGINE = INNODB;
@@ -19,6 +19,7 @@ CREATE TABLE note (id INT AUTO_INCREMENT, entity_id INT, project_id INT, body TE
 CREATE TABLE phonenumber (id INT AUTO_INCREMENT, entity_id INT, number VARCHAR(50), type SMALLINT, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE milestone (id INT AUTO_INCREMENT, name VARCHAR(64), project_id INT, date DATETIME, INDEX project_id_idx (project_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE project (id INT AUTO_INCREMENT, name VARCHAR(50) NOT NULL, description TEXT, client_id INT, owner_id INT, created_at DATETIME, updated_at DATETIME, INDEX client_id_idx (client_id), INDEX owner_id_idx (owner_id), PRIMARY KEY(id)) ENGINE = INNODB;
+ALTER TABLE entity ADD FOREIGN KEY (owner_id) REFERENCES sf_guard_user(id) ON DELETE SET NULL;
 ALTER TABLE email ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
 ALTER TABLE entity ADD FOREIGN KEY (parent_id) REFERENCES entity(id) ON DELETE SET NULL;
 ALTER TABLE sf_guard_user_permission ADD FOREIGN KEY (user_id) REFERENCES sf_guard_user(id) ON DELETE CASCADE;

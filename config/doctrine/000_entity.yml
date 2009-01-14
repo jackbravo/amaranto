@@ -12,8 +12,15 @@ Entity:
       type:         string(50)
       unique:       true
     type:           integer(2)
+    owner_id:       integer(4)
     parent_id:      integer(4)
     description:    string
+  relations:
+    Owner:
+      local:        owner_id
+      class:        sfGuardUser
+      foreignAlias: Clients
+      onDelete:     SET NULL
 
 Person:
   inheritance:

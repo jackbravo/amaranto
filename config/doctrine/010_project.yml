@@ -19,7 +19,7 @@ Project:
     Owner:
       local:        owner_id
       class:        sfGuardUser
-      foreignAlias: OwnedProjects
+      foreignAlias: Projects
       onDelete:     SET NULL
 
 Note:
