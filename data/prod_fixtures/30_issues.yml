@@ -1,0 +1,47 @@
+Category:
+  bug:
+    name: bug
+  feature:
+    name: feature
+  inquery:
+    name: question
+  task:
+    name: task
+
+Status:
+  active:
+    name: open
+    is_resolved: false
+  completed:
+    name: completed
+    is_resolved: true
+  needinfo:
+    name: need more info
+    is_resolved: true
+  duplicate:
+    name: duplicate
+    is_resolved: true
+  postponed:
+    name: postponed
+    is_resolved: true
+  declined:
+    name: declined
+    is_resolved: true
+  by_design:
+    name: by design
+    is_resolved: true
+
+Priority:
+  p_0:
+    name: Life or death
+  p_1:
+    name: Blocker
+  p_2:
+    name: Important
+  p_3:
+    name: Normal
+  p_4:
+    name: Fix if time
+  p_5:
+    name: Just remember
+

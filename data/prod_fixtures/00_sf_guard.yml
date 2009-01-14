@@ -1,0 +1,44 @@
+sfGuardUser:
+  sgu_app:
+    id:             -1
+    username:       application
+    password:       <?php echo uniqid() . "\n" ?>
+    is_active:      false
+
+  joaquin:
+    id:             1
+    username:       joaquin
+    password:       joaquin
+    is_super_admin: true
+  elias:
+    id:             2
+    username:       elias
+    password:       elias
+  gustavo:
+    id:             3
+    username:       gustavo
+    password:       gustavo
+  martha:
+    id:             4
+    username:       martha
+    password:       martha
+
+sfGuardPermission:
+  sgp_admin:
+    name:           admin
+    description:    Administrator permission
+
+sfGuardGroup:
+  sgg_admin:
+    name:           admin
+    description:    Administrator group
+
+sfGuardGroupPermission:
+  sggp_admin:
+    sfGuardGroup:       sgg_admin
+    sfGuardPermission:  sgp_admin
+
+sfGuardUserGroup:
+  sgug_admin:
+    sfGuardGroup:       sgg_admin
+    sfGuardUser:        joaquin

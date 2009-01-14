@@ -1,14 +1,17 @@
+prod:
+  doctrine:
+    param:
+      dsn:        mysql:dbname=cms_prod;host=localhost
+
 test:
   doctrine:
     param:
-#      classname:  DebugPDO
       dsn:        mysql:dbname=cms_test;host=localhost
 
 all:
   doctrine:
     class:        sfDoctrineDatabase
     param:
-#      classname:  PropelPDO
       dsn:        mysql:dbname=cms;host=localhost
       username:   root
       password:   
