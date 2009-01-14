@@ -30,6 +30,7 @@
     }
   });
 </script>
+<?php echo $form['owner_id']->renderRow() ?>
 
 <?php include_partial('edit_email', array('form' => $form)) ?>
 

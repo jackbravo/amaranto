@@ -34,7 +34,7 @@ notes_create:
 contacts_show:
   url:      /contacts/:id
   class:    sfDoctrineRoute
-  options:  { model: Entity, type: object }
+  options:  { model: Entity, type: object, method: getForShow }
   param:    { module: contacts, action: show }
   requirements: { sf_method: GET }
 

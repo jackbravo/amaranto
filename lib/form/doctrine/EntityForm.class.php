@@ -64,6 +64,7 @@ class EntityForm extends BaseEntityForm
     parent::setup();
 
     $this->widgetSchema['name']->setAttributes(array('size' => '40'));
+    $this->widgetSchema->setLabel('owner_id', 'Owner');
 
     unset($this['created_at'], $this['updated_at'], $this['parent_id']);
   }

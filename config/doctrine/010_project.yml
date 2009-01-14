@@ -16,6 +16,7 @@ Project:
       local:        client_id
       class:        Entity
       foreignAlias: Projects
+      onDelete:     SET NULL
     Owner:
       local:        owner_id
       class:        sfGuardUser

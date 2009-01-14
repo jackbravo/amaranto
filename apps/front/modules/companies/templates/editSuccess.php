@@ -9,6 +9,7 @@
 <?php echo $form->renderHiddenFields() ?>
 
 <?php echo $form['name']->renderRow() ?>
+<?php echo $form['owner_id']->renderRow() ?>
 
 <?php include_partial('people/edit_email', array('form' => $form)) ?>
 

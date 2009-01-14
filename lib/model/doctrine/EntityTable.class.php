@@ -34,4 +34,19 @@ class EntityTable extends Doctrine_Table
 
     return $list;
   }
+
+  public function getForShow($parameters)
+  {
+    return $this->getShowQuery($parameters)->fetchOne();
+  }
+
+  public function getShowQuery($parameters)
+  {
+    return $this->createQuery('e')
+      ->leftJoin('e.Phonenumbers p')
+      ->leftJoin('e.Emails em')
+      ->leftJoin('e.Locations loc')
+      ->addWhere('p.id = ?', $parameters['id'])
+    ;
+  }
 }

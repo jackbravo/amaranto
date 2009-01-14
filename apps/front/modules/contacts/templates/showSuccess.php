@@ -11,14 +11,13 @@
   <h1><?php echo $entity['name'] ?></h1>
 
   <p>
+    <?php if ($entity['Owner']['id']): ?>
+      Owner, <strong><?php echo $entity['Owner'] ?></strong> | 
+    <?php endif; ?>
     <?php echo $entity['title'] ?>
-    <?php
-      if (isset($entity['Company']) && $entity['Company']['id'])
-      {
-        echo ' at ';
-        echo link_to($entity['Company'], 'contacts_show', $entity['Company']);
-      }
-    ?>
+    <?php if ($entity->hasRelation('Company')): ?>
+      at <?php echo link_to($entity['Company'], 'contacts_show', $entity['Company']); ?>
+    <?php endif; ?>
   </p>
 
   <hr />
