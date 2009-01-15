@@ -13,7 +13,7 @@ class IssueActivity extends BaseIssueActivity
 
   public function setIssueAndChanges(Issue $issue, array $old_values)
   {
-    $this->issue_id = $issue->id;
+    $this->Issue = $issue;
     $this->changes = $this->calculateChanges($issue, $old_values);
     $this->verb = $this->calculateVerb($issue);
   }
@@ -64,6 +64,7 @@ class IssueActivity extends BaseIssueActivity
 
   protected function calculateChanges(Issue $issue, array $old_values)
   {
+    if (!$issue->exists()) return '';
     $changes = array();
     $modified = $issue->getModified();
     foreach ($modified as $field => $value)
