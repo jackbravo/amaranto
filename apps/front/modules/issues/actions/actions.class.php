@@ -69,7 +69,11 @@ class issuesActions extends sfActions
     {
       $issue = $form->save();
 
-      $this->redirect('@issues_show?id='.$issue['id']);
+      if ($request->hasParameter('_save_and_add')) {
+        $this->redirect('@issues_new');
+      } else {
+        $this->redirect('@issues_show?id='.$issue['id']);
+      }
     }
   }
 }

@@ -21,13 +21,14 @@
   <hr />
 
   <div class="item-row">
+    <input type="submit" value="Save" />
     <?php if ($form->getObject()->isNew()): ?>
+      &nbsp;<input type="submit" value="Save and add" name="_save_and_add" />
       &nbsp;<?php echo link_to('Cancel', 'issues') ?>
     <?php else: ?>
       &nbsp;<?php echo link_to('Cancel', 'issues_show', $form->getObject()) ?>
       &nbsp;<?php echo link_to('Delete', 'issues_delete', $form->getObject(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
     <?php endif; ?>
-    <input type="submit" value="Save" />
   </div>
 </div> <!-- /grid_8 -->
 

@@ -4,8 +4,8 @@
 <?php include_partial('form', array('form' => $form)) ?>
 
 <div>
-  &nbsp;<?php echo link_to('Cancel', '@projects') ?>
   <input type="submit" value="Save" />
+  &nbsp;<?php echo link_to('Cancel', '@projects') ?>
 </div>
 
 </form>

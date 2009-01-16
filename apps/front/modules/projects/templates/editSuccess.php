@@ -4,9 +4,9 @@
 <?php include_partial('form', array('form' => $form)) ?>
 
 <div>
+  <input type="submit" value="Save" />
   &nbsp;<?php echo link_to('Cancel', '@projects') ?>
   &nbsp;<?php echo link_to('Delete', 'projects_delete', $form->getObject(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
-  <input type="submit" value="Save" />
 </div>
 
 </form>
