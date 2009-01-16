@@ -16,7 +16,10 @@
   </thead>
   <tbody>
     <?php foreach ($pager->getResults() as $i => $issue): ?>
-    <tr class="<?php echo fmod($i,2) == 0 ? 'even' : 'odd' ?>">
+    <tr class="<?php
+        echo fmod($i,2) == 0 ? 'even' : 'odd';
+        echo $issue['is_resolved'] ? ' resolved' : ' open';
+      ?>">
       <td><?php echo $issue['Category']['name'] ?></td>
       <td><?php echo link_to($issue['id'], 'issues_show', $issue) ?></td>
       <td><?php echo link_to($issue['title'], 'issues_show', $issue) ?></td>

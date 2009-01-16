@@ -293,3 +293,7 @@ textarea#issue_Activity_body {
   width: 100%;
 }
 
+tr.resolved td {
+  text-decoration: line-through;
+}
+
