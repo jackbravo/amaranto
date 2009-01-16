@@ -57,6 +57,18 @@ class Issue extends BaseIssue
     $this->_set('status_id', $status_id);
   }
 
+  public function getPrimaryContact()
+  {
+    $owner = false;
+    if (isset($this->component_id)) {
+      $owner = Doctrine::getTable('Component')->getOwner($this->component_id);
+    }
+    if ($owner === false && isset($this->project_id)) {
+      $owner = Doctrine::getTable('Project')->getOwner($this->project_id);
+    }
+    return ($owner !== false) ? $owner : null;
+  }
+
   public function preInsert($event)
   {
     $modified = $this->getModified();
@@ -67,6 +79,13 @@ class Issue extends BaseIssue
     if (!array_key_exists('opened_by', $modified))
     {
       $this->opened_by = Listener_Userstampable::getCurrentUserId();
+    }
+  }
+
+  public function preSave($event)
+  {
+    if (!$this->assigned_to) {
+      $this->AssignedTo = $this->getPrimaryContact();
     }
   }
 }

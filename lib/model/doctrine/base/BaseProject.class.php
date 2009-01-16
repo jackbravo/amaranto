@@ -18,7 +18,8 @@ abstract class BaseProject extends sfDoctrineRecord
   public function setUp()
   {
     $this->hasOne('Entity as Client', array('local' => 'client_id',
-                                            'foreign' => 'id'));
+                                            'foreign' => 'id',
+                                            'onDelete' => 'SET NULL'));
 
     $this->hasOne('sfGuardUser as Owner', array('local' => 'owner_id',
                                                 'foreign' => 'id',

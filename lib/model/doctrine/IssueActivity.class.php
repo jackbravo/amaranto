@@ -11,50 +11,58 @@ class IssueActivity extends BaseIssueActivity
     'assigned_to', 'status_id', 'orig_estimate'
   );
 
+  protected $old_values;
+  protected $modified;
+
   public function setIssueAndChanges(Issue $issue, array $old_values)
   {
     $this->Issue = $issue;
-    $this->changes = $this->calculateChanges($issue, $old_values);
-    $this->verb = $this->calculateVerb($issue);
+    $this->modified = $issue->getModified();
+    $this->old_values = $old_values;
   }
 
-  protected function calculateVerb(Issue $issue)
+  public function preSave($event)
   {
-    $modified = $issue->getModified();
-    if (array_key_exists('assigned_to', $modified)) {
-      $issue->refreshRelated('AssignedTo');
+    if (!isset($this->changes)) $this->changes = $this->calculateChanges();
+    if (!isset($this->verb)) $this->verb = $this->calculateVerb();
+  }
+
+  protected function calculateVerb()
+  {
+    if (array_key_exists('assigned_to', $this->modified)) {
+      $this->Issue->refreshRelated('AssignedTo');
     }
 
-    if (!$issue->exists())
+    if (!$this->Issue->exists())
     {
-      return 'Opened (assigned to ' . $issue->AssignedTo . ')';
+      return 'Opened (assigned to ' . $this->Issue->AssignedTo . ')';
     }
-    else if (array_key_exists('is_closed', $modified))
+    else if (array_key_exists('is_closed', $this->modified))
     {
-      if ($issue->isClosed())
+      if ($this->Issue->isClosed())
       {
         return 'Closed';
       }
       else
       {
-        return 'Reopened (assigned to ' . $issue->AssignedTo . ')';
+        return 'Reopened (assigned to ' . $this->Issue->AssignedTo . ')';
       }
     }
-    else if (array_key_exists('status_id', $modified))
+    else if (array_key_exists('status_id', $this->modified))
     {
-      $issue->refreshRelated('Status');
-      if ($issue->isResolved())
+      $this->Issue->refreshRelated('Status');
+      if ($this->Issue->isResolved())
       {
-        return (string) $issue->Status;
+        return (string) $this->Issue->Status;
       }
       else
       {
-        return 'Activated (assigned to ' . $issue->AssignedTo . ')';
+        return 'Activated (assigned to ' . $this->Issue->AssignedTo . ')';
       }
     }
-    else if (array_key_exists('assigned_to', $modified))
+    else if (array_key_exists('assigned_to', $this->modified))
     {
-      return 'Assigned to ' . $issue->AssignedTo;
+      return 'Assigned to ' . $this->Issue->AssignedTo;
     }
     else
     {
@@ -62,18 +70,17 @@ class IssueActivity extends BaseIssueActivity
     }
   }
 
-  protected function calculateChanges(Issue $issue, array $old_values)
+  protected function calculateChanges()
   {
-    if (!$issue->exists()) return '';
+    if (!$this->Issue->exists()) return '';
     $changes = array();
-    $modified = $issue->getModified();
-    foreach ($modified as $field => $value)
+    foreach ($this->modified as $field => $value)
     {
       if (!in_array($field, $this->blackList))
       {
         $field_name = $this->getIssueFieldName($field);
-        $old_value = $this->getIssueFieldValue($field, $issue, $old_values, false);
-        $new_value = $this->getIssueFieldValue($field, $issue, $old_values, true);
+        $old_value = $this->getIssueFieldValue($field, false);
+        $new_value = $this->getIssueFieldValue($field, true);
         $changes[] = "$field_name changed from '$old_value' to '$new_value'.";
       }
     }
@@ -88,37 +95,36 @@ class IssueActivity extends BaseIssueActivity
   /**
    * @arg refresh - get old values or new values?
    */
-  protected function getIssueFieldValue($field, $issue, $old_values, $refresh = false)
+  protected function getIssueFieldValue($field, $refresh = false)
   {
-    if ($issue[$field] && strpos($field, '_id') !== false)
+    if ($this->Issue[$field] && strpos($field, '_id') !== false)
     {
       if ($refresh)
       {
-        $issue->refreshRelated($this->getIssueFieldName($field));
+        $this->Issue->refreshRelated($this->getIssueFieldName($field));
       }
-      return $issue[$this->getIssueFieldName($field)];
+      return $this->Issue[$this->getIssueFieldName($field)];
     }
     else
     {
       if ($refresh)
       {
-        return $issue[$field];
+        return $this->Issue[$field];
       }
       else
       {
-        return $old_values[$field];
+        return $this->old_values[$field];
       }
     }
   }
 
   public function preInsert($event)
   {
-    $modified = $this->getModified();
-    if (!array_key_exists('created_at', $modified))
+    if (!isset($this->created_at))
     {
       $this->created_at = date('Y-m-d H:i:s');
     }
-    if (!array_key_exists('created_by', $modified))
+    if (!isset($this->created_by))
     {
       $this->created_by = Listener_Userstampable::getCurrentUserId();
     }

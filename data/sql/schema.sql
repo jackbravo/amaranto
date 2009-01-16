@@ -51,4 +51,4 @@ ALTER TABLE note ADD FOREIGN KEY (created_by_user_id) REFERENCES sf_guard_user(i
 ALTER TABLE phonenumber ADD FOREIGN KEY (entity_id) REFERENCES entity(id) ON DELETE CASCADE;
 ALTER TABLE milestone ADD FOREIGN KEY (project_id) REFERENCES project(id) ON DELETE CASCADE;
 ALTER TABLE project ADD FOREIGN KEY (owner_id) REFERENCES sf_guard_user(id) ON DELETE SET NULL;
-ALTER TABLE project ADD FOREIGN KEY (client_id) REFERENCES entity(id);
+ALTER TABLE project ADD FOREIGN KEY (client_id) REFERENCES entity(id) ON DELETE SET NULL;

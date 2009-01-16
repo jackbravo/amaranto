@@ -61,8 +61,8 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
     $this->hasMany('IssueActivity as Activities', array('local' => 'id',
                                                         'foreign' => 'created_by'));
 
-    $this->hasMany('Component as OwnedComponents', array('local' => 'id',
-                                                         'foreign' => 'owner_id'));
+    $this->hasMany('Component as Components', array('local' => 'id',
+                                                    'foreign' => 'owner_id'));
 
     $timestampable0 = new Doctrine_Template_Timestampable();
     $this->actAs($timestampable0);

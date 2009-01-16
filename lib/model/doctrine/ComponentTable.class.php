@@ -8,4 +8,13 @@ class ComponentTable extends Doctrine_Table
   {
     return $this->createQuery('c')->leftJoin('c.Owner o')->orderBy('c.name');
   }
+
+  public function getOwner($component_id)
+  {
+    return Doctrine_Query::create()
+      ->select('user.id, user.username')
+      ->from('sfGuardUser user')
+      ->innerJoin('user.Components c WITH c.id = ?')
+      ->fetchOne(array($component_id));
+  }
 }

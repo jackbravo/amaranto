@@ -25,4 +25,13 @@ class ProjectTable extends Doctrine_Table
       ->addWhere('p.id = ?', $parameters['id'])
     ;
   }
+
+  public function getOwner($project_id)
+  {
+    return Doctrine_Query::create()
+      ->select('user.id, user.username')
+      ->from('sfGuardUser user')
+      ->innerJoin('user.Projects p WITH p.id = ?')
+      ->fetchOne(array($project_id));
+  }
 }

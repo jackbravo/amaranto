@@ -115,7 +115,7 @@ Component:
     Owner:
       local:        owner_id
       class:        sfGuardUser
-      foreignAlias: OwnedComponents
+      foreignAlias: Components
       onDelete:     SET NULL
 
 Milestone:
