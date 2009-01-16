@@ -8,7 +8,7 @@ class IssueActivity extends BaseIssueActivity
   public $blackList = array(
     'is_closed', 'opened_at', 'opened_by', 'resolved_at',
     'is_resolved', 'resolved_by', 'closed_at', 'closed_by',
-    'assigned_to', 'status_id'
+    'assigned_to', 'status_id', 'orig_estimate'
   );
 
   public function setIssueAndChanges(Issue $issue, array $old_values)
