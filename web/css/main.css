@@ -294,6 +294,11 @@ textarea#issue_Activity_body {
 }
 
 tr.resolved td {
-  text-decoration: line-through;
+  color: #555;
+}
+
+table.issues td div {
+  white-space: nowrap;
+  overflow: hidden;
 }
 

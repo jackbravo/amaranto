@@ -20,13 +20,13 @@
         echo fmod($i,2) == 0 ? 'even' : 'odd';
         echo $issue['is_resolved'] ? ' resolved' : ' open';
       ?>">
-      <td><?php echo $issue['Category']['name'] ?></td>
-      <td><?php echo link_to($issue['id'], 'issues_show', $issue) ?></td>
-      <td><?php echo link_to($issue['title'], 'issues_show', $issue) ?></td>
-      <td><?php echo $issue['Status']['name'] ?></td>
-      <td><?php echo $issue['OpenedBy']['username'] ?></td>
-      <td><?php echo $issue['priority_id'] . ". " . $issue['Priority']['name'] ?></td>
-      <td><?php echo $issue->getdeadline() ?></td>
+      <td><div style="width:30px;"><?php echo $issue['Category']['name'] ?></div></td>
+      <td><div style="width:40px;"><?php echo link_to($issue['id'], 'issues_show', $issue) ?></div></td>
+      <td><div style="width:450px;"><?php echo link_to($issue['title'], 'issues_show', $issue) ?></div></td>
+      <td><div style="width:80px"><?php echo $issue['Status']['name'] ?></div></td>
+      <td><div style="width:80px"><?php echo $issue['OpenedBy']['username'] ?></div></td>
+      <td><div style="width:105px"><?php echo $issue['priority_id'] . ". " . $issue['Priority']['name'] ?></div></td>
+      <td><div style="width:80px"><?php echo $issue->getdeadline() ?></div></td>
     </tr>
     <?php endforeach; ?>
   </tbody>
