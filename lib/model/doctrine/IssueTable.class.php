@@ -16,6 +16,7 @@ class IssueTable extends Doctrine_Table
       ->leftJoin('i.Status s')
       ->leftJoin('i.Priority p')
       ->leftJoin('i.Category c')
+      ->addOrderBy('i.status_id')
       ->addOrderBy('i.priority_id')
       ->addOrderBy('i.deadline')
     ;

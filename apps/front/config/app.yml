@@ -1,4 +1,4 @@
 all:
   max_entities_on_contacts: 10
   max_projects_on_index: 10
-  max_issues_on_index: 10
+  max_issues_on_index: 50
