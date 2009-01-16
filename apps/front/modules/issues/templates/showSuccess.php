@@ -41,7 +41,9 @@
     <?php endif; ?>
     <?php if ($issue->elapsed): ?>
       <strong>Elapsed.</strong> <?php echo $issue->elapsed ?><br/>
-      <strong>Remaining.</strong> <?php echo $issue->curr_estimate - $issue->elapsed ?><br/>
+      <?php if (!$issue->is_resolved): ?>
+        <strong>Remaining.</strong> <?php echo $issue->curr_estimate - $issue->elapsed ?><br/>
+      <?php endif; ?>
     <?php endif; ?>
   </div>
 
