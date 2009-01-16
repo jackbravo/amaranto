@@ -46,7 +46,7 @@ class EntityTable extends Doctrine_Table
       ->leftJoin('e.Phonenumbers p')
       ->leftJoin('e.Emails em')
       ->leftJoin('e.Locations loc')
-      ->addWhere('p.id = ?', $parameters['id'])
+      ->addWhere('e.id = ?', $parameters['id'])
     ;
   }
 }
