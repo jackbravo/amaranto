@@ -23,8 +23,8 @@ class IssueActivity extends BaseIssueActivity
 
   public function preSave($event)
   {
-    if (!isset($this->changes)) $this->changes = $this->calculateChanges();
-    if (!isset($this->verb)) $this->verb = $this->calculateVerb();
+    if (empty($this->changes)) $this->changes = $this->calculateChanges();
+    if (empty($this->verb)) $this->verb = $this->calculateVerb();
   }
 
   protected function calculateVerb()
@@ -120,11 +120,11 @@ class IssueActivity extends BaseIssueActivity
 
   public function preInsert($event)
   {
-    if (!isset($this->created_at))
+    if (empty($this->created_at))
     {
       $this->created_at = date('Y-m-d H:i:s');
     }
-    if (!isset($this->created_by))
+    if (empty($this->created_by))
     {
       $this->created_by = Listener_Userstampable::getCurrentUserId();
     }
