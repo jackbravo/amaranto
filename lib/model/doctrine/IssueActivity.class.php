@@ -13,10 +13,12 @@ class IssueActivity extends BaseIssueActivity
 
   protected $old_values;
   protected $modified;
+  protected $exists;
 
   public function setIssueAndChanges(Issue $issue, array $old_values)
   {
     $this->Issue = $issue;
+    $this->exists = $issue->exists();
     $this->modified = $issue->getModified();
     $this->old_values = $old_values;
   }
@@ -33,7 +35,7 @@ class IssueActivity extends BaseIssueActivity
       $this->Issue->refreshRelated('AssignedTo');
     }
 
-    if (!$this->Issue->exists())
+    if (!$this->exists)
     {
       return 'Opened (assigned to ' . $this->Issue->AssignedTo . ')';
     }
@@ -72,7 +74,7 @@ class IssueActivity extends BaseIssueActivity
 
   protected function calculateChanges()
   {
-    if (!$this->Issue->exists()) return '';
+    if (!$this->exists) return '';
     $changes = array();
     foreach ($this->modified as $field => $value)
     {

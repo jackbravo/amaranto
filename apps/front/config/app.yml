@@ -2,3 +2,5 @@ all:
   max_entities_on_contacts: 10
   max_projects_on_index: 10
   max_issues_on_index: 50
+
+  zend_lib_dir: /usr/share/php5/zf-1.7
