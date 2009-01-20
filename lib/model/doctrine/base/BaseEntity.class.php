@@ -26,12 +26,6 @@ abstract class BaseEntity extends sfDoctrineRecord
                                                 'foreign' => 'id',
                                                 'onDelete' => 'SET NULL'));
 
-    $this->hasMany('Project as Projects', array('local' => 'id',
-                                                'foreign' => 'client_id'));
-
-    $this->hasMany('Note as Notes', array('local' => 'id',
-                                          'foreign' => 'entity_id'));
-
     $this->hasMany('Phonenumber as Phonenumbers', array('local' => 'id',
                                                         'foreign' => 'entity_id'));
 
@@ -40,6 +34,12 @@ abstract class BaseEntity extends sfDoctrineRecord
 
     $this->hasMany('Location as Locations', array('local' => 'id',
                                                   'foreign' => 'entity_id'));
+
+    $this->hasMany('Project as Projects', array('local' => 'id',
+                                                'foreign' => 'client_id'));
+
+    $this->hasMany('Note as Notes', array('local' => 'id',
+                                          'foreign' => 'entity_id'));
 
     $timestampable0 = new Doctrine_Template_Timestampable();
     $this->actAs($timestampable0);
