@@ -11,5 +11,10 @@ class IssueFormFilter extends BaseIssueFormFilter
 {
   public function configure()
   {
+    $this->widgetSchema->setDefault('is_closed', false);
+    $this->widgetSchema->setLabels(array(
+      'project_id' => 'Project',
+      'category_id' => 'Category',
+    ));
   }
 }

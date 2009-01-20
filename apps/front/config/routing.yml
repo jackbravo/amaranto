@@ -4,6 +4,7 @@ issues:
     model:      Issue
     with_show:  true
     model_methods: { object: getForShow }
+    collection_actions: { filter: post }
 
 people:
   class: sfDoctrineRouteCollection

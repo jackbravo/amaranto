@@ -2,6 +2,20 @@
 
 <h1>Issues List</h1>
 
+<div id="filters">
+<form action="<?php echo url_for('@issues_filter') ?>" method="post">
+  <?php echo $filter->renderGlobalErrors() ?>
+  <?php echo $filter->renderHiddenFields() ?>
+
+  <?php echo $filter['is_closed']->renderRow() ?>
+  <?php echo $filter['category_id']->renderRow() ?>
+  <?php echo $filter['assigned_to']->renderRow() ?>
+
+  <input type="submit" value="Filter" />
+  &nbsp;<?php echo link_to('Reset', '@issues_filter', array('query_string' => '_reset', 'method' => 'post')) ?>
+</form>
+</div>
+
 <table class="issues list">
   <thead>
     <tr>

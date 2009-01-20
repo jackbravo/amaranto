@@ -12,12 +12,29 @@ class issuesActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->pager = new sfDoctrinePager('Issue',
-      sfConfig::get('app_max_issues_on_index')
-    );
-    $this->pager->setQuery(Doctrine::getTable('Issue')->getListQuery());
-    $this->pager->setPage($request->getParameter('page', 1));
-    $this->pager->init();
+    $this->filter = $this->getFilter($request);
+    $this->pager = $this->getPager($request, $this->filter);
+  }
+
+  public function executeFilter(sfWebRequest $request)
+  {
+    if ($request->hasParameter('_reset'))
+    {
+      $this->getUser()->setAttribute('issues_filter', $this->getDefaultFilter());
+      $this->redirect('@issues');
+    }
+
+    $this->filter = $this->getFilter($request);
+
+    $this->filter->bind($request->getParameter('issue_filters'));
+    if ($this->filter->isValid())
+    {
+      $this->getUser()->setAttribute('issues_filter', $this->filter->getValues());
+      $this->redirect('@issues');
+    }
+
+    $this->pager = $this->getPager($request, $this->filter);
+    $this->setTemplate('index');
   }
 
   public function executeShow(sfWebRequest $request)
@@ -75,5 +92,33 @@ class issuesActions extends sfActions
         $this->redirect('@issues_show?id='.$issue['id']);
       }
     }
+  }
+
+  protected function getPager($request, $filter)
+  {
+    $pager = new sfDoctrinePager('Issue',
+      sfConfig::get('app_max_issues_on_index')
+    );
+    $pager->setQuery($filter->buildQuery($this->getUser()->getAttribute('issues_filter')));
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->init();
+
+    return $pager;
+  }
+
+  protected function getFilter($request)
+  {
+    $filter = new IssueFormFilter(
+      $this->getUser()->getAttribute('issues_filter', $this->getDefaultFilter())
+    );
+
+    return $filter;
+  }
+
+  protected function getDefaultFilter()
+  {
+    return array(
+      'is_closed' => 0,
+    );
   }
 }
