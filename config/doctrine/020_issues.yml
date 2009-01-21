@@ -1,4 +1,5 @@
 Issue:
+  listeners:        [IssueMailerListener]
   columns:
     id:
       type:         integer(4)

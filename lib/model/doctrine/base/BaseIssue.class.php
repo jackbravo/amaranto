@@ -66,5 +66,7 @@ abstract class BaseIssue extends sfDoctrineRecord
 
     $this->hasMany('IssueActivity as Activities', array('local' => 'id',
                                                         'foreign' => 'issue_id'));
+
+    $this->addListener(new IssueMailerListener());
   }
 }
