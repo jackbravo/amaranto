@@ -99,8 +99,11 @@ class issuesActions extends sfActions
     $pager = new sfDoctrinePager('Issue',
       sfConfig::get('app_max_issues_on_index')
     );
-    $pager->setQuery($filter->buildQuery($this->getUser()->getAttribute('issues_filter')));
+    $pager->setQuery($filter->buildQuery(
+      $this->getUser()->getAttribute('issues_filter', $this->getDefaultFilter())
+    ));
     $pager->setPage($request->getParameter('page', 1));
+    $pager->setTableMethod('getListQuery');
     $pager->init();
 
     return $pager;

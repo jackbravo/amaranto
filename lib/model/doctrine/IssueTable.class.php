@@ -9,16 +9,18 @@ class IssueTable extends Doctrine_Table
     return $this->getShowQuery($parameters)->fetchOne();
   }
 
-  public function getListQuery()
+  public function getListQuery(Doctrine_Query $q)
   {
-    return $this->createQuery('i')
-      ->leftJoin('i.OpenedBy ob')
-      ->leftJoin('i.Status s')
-      ->leftJoin('i.Priority p')
-      ->leftJoin('i.Category c')
-      ->addOrderBy('i.status_id')
-      ->addOrderBy('i.priority_id')
-      ->addOrderBy('i.deadline')
+    $alias = $q->getRootAlias();
+
+    return $q->leftJoin("$alias.OpenedBy ob")
+      ->leftJoin("$alias.Status s")
+      ->leftJoin("$alias.Priority p")
+      ->leftJoin("$alias.Category c")
+      ->leftJoin("$alias.OpenedBy o")
+      ->addOrderBy("$alias.status_id")
+      ->addOrderBy("$alias.priority_id")
+      ->addOrderBy("$alias.deadline")
     ;
   }
 
