@@ -122,6 +122,7 @@ class issuesActions extends sfActions
   {
     return array(
       'is_closed' => 0,
+      'assigned_to' => $this->getUser()->getId(),
     );
   }
 }

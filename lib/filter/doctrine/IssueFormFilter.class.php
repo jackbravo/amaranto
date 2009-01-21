@@ -16,5 +16,6 @@ class IssueFormFilter extends BaseIssueFormFilter
       'project_id' => 'Project',
       'category_id' => 'Category',
     ));
+    $this->widgetSchema['assigned_to']->setOption('add_empty', 'anybody');
   }
 }
