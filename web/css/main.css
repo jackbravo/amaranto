@@ -188,6 +188,19 @@ table.list td {
   padding: 5px 4px;
 }
 
+table.issues {
+  margin-top: 10px;
+}
+
+table.issues td div {
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+table.issues tr.resolved td {
+  color: #555;
+}
+
 /* ----------- box ----------- */
 
 .box
@@ -261,6 +274,16 @@ table.list td {
   color: red;
 }
 
+textarea#note_body {
+  width: 100%;
+}
+
+textarea#issue_Activity_body {
+  width: 100%;
+}
+
+/* ------------ misc ------------- */
+
 .info h2
 {
   font-size: 1.2em;
@@ -283,22 +306,5 @@ table.list td {
 .note {
   margin-bottom: 1em;
   border-bottom: 1px solid #ccc;
-}
-
-textarea#note_body {
-  width: 100%;
-}
-
-textarea#issue_Activity_body {
-  width: 100%;
-}
-
-tr.resolved td {
-  color: #555;
-}
-
-table.issues td div {
-  white-space: nowrap;
-  overflow: hidden;
 }
 
