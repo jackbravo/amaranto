@@ -1,0 +1,20 @@
+MailQueue:
+  normail_mail:
+    subject: Issue1
+    recipients: jackbravo@gmail.com
+    body: Some body
+    attemps: 1
+  multiple_recipients:
+    subject: Issue2
+    recipients: jackbravo@gmail.com,joaquin@axai.com.mx
+    body: Some body
+  no_more_attemps:
+    subject: Issue3
+    recipients: jackbravo@gmail.com
+    body: Some body
+    attemps: 3
+  false_mail:
+    subject: Issue4
+    recipients: badmail
+    body: Some body
+    attemps: 2
