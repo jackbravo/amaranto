@@ -10,6 +10,11 @@
  */
 class issuesActions extends sfActions
 {
+  public function preExecute()
+  {
+    Doctrine::getTable('Issue')->addRecordListener(new IssueMailerListener());
+  }
+
   public function executeIndex(sfWebRequest $request)
   {
     $this->filter = $this->getFilter($request);
