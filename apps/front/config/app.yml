@@ -12,3 +12,7 @@ all:
     server: smtp.gmail.com
     username: username@gmail.com
     password: password
+
+  sf_guard_plugin:
+    profile_class: Person
+    profile_field_name: user_id

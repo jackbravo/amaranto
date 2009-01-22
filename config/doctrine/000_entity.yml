@@ -12,6 +12,7 @@ Entity:
       type:         string(50)
       unique:       true
     type:           integer(2)
+    user_id:        integer(4)
     owner_id:       integer(4)
     parent_id:      integer(4)
     description:    string
@@ -29,6 +30,10 @@ Person:
   columns:
     title:          string(255)
   relations:
+    User:
+      local:        user_id
+      class:        sfGuardUser
+      onDelete:     SET NULL
     Company:
       foreignAlias: People
       local:        parent_id

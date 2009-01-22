@@ -8,6 +8,10 @@ abstract class BasePerson extends Entity
   public function setUp()
   {
     parent::setUp();
+    $this->hasOne('sfGuardUser as User', array('local' => 'user_id',
+                                               'foreign' => 'id',
+                                               'onDelete' => 'SET NULL'));
+
     $this->hasOne('Company', array('local' => 'parent_id',
                                    'foreign' => 'id',
                                    'onDelete' => 'SET NULL'));
