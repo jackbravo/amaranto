@@ -14,7 +14,7 @@ abstract class BaseMailQueue extends sfDoctrineRecord
     $this->hasColumn('recipients', 'string', null, array('type' => 'string'));
     $this->hasColumn('body', 'string', null, array('type' => 'string'));
     $this->hasColumn('max_attemps', 'integer', 1, array('type' => 'integer', 'default' => '3', 'length' => '1'));
-    $this->hasColumn('attemps', 'integer', 1, array('type' => 'integer', 'length' => '1'));
+    $this->hasColumn('attemps', 'integer', 1, array('type' => 'integer', 'default' => 0, 'length' => '1'));
   }
 
 }

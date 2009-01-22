@@ -3,7 +3,7 @@ CREATE TABLE status (id INT AUTO_INCREMENT, name VARCHAR(64), is_resolved TINYIN
 CREATE TABLE note (id INT AUTO_INCREMENT, entity_id INT, project_id INT, body TEXT, created_at DATETIME, updated_at DATETIME, created_by_user_id INT, updated_by_user_id INT, INDEX entity_id_idx (entity_id), INDEX project_id_idx (project_id), INDEX created_by_user_id_idx (created_by_user_id), INDEX updated_by_user_id_idx (updated_by_user_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE issue_activity (id INT AUTO_INCREMENT, issue_id INT, verb VARCHAR(128), created_at DATETIME, created_by INT, body TEXT, changes TEXT, INDEX issue_id_idx (issue_id), INDEX created_by_idx (created_by), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE category (id INT AUTO_INCREMENT, name VARCHAR(64), PRIMARY KEY(id)) ENGINE = INNODB;
-CREATE TABLE mail_queue (id INT AUTO_INCREMENT, created_at DATETIME, subject VARCHAR(255), recipients TEXT, body TEXT, max_attemps TINYINT DEFAULT '3', attemps TINYINT, PRIMARY KEY(id)) ENGINE = INNODB;
+CREATE TABLE mail_queue (id INT AUTO_INCREMENT, created_at DATETIME, subject VARCHAR(255), recipients TEXT, body TEXT, max_attemps TINYINT DEFAULT '3', attemps TINYINT DEFAULT 0, PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE email (id INT AUTO_INCREMENT, entity_id INT, email VARCHAR(50), type SMALLINT, INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE location (id INT AUTO_INCREMENT, entity_id INT, type SMALLINT, street VARCHAR(255), city VARCHAR(50), state VARCHAR(50), country VARCHAR(2), postal_code VARCHAR(10), INDEX entity_id_idx (entity_id), PRIMARY KEY(id)) ENGINE = INNODB;
 CREATE TABLE priority (id INT AUTO_INCREMENT, name VARCHAR(64), PRIMARY KEY(id)) ENGINE = INNODB;
