@@ -5,6 +5,30 @@
  */
 class sfGuardUser extends PluginsfGuardUser
 {
+  protected $person_id, $person;
+
+  public function setPersonId($person_id)
+  {
+    $this->person_id = $person_id;
+  }
+
+  public function getPersonId()
+  {
+    return $this->person_id;
+  }
+
+  public function postInsert($event)
+  {
+    if (is_numeric($this->person_id))
+    {
+      Doctrine_Query::create()
+        ->update('Person p')
+        ->set('p.user_id', $this->id)
+        ->where('p.id = ?', array($this->person_id))
+        ->execute();
+    }
+  }
+
   public function __toString()
   {
     if ($this->exists()) {

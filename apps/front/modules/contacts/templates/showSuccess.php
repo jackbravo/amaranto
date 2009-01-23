@@ -2,10 +2,27 @@
 <div id="content" class="grid_8">
 
   <div class="subheader">
-    <?php if ($entity->getRawValue() instanceof Person)
-            echo link_to('Edit', 'people_edit', $entity);
-          else if ($entity->getRawValue() instanceof Company)
-            echo link_to('Edit', 'companies_edit', $entity); ?>
+    <?php
+      if ($entity->getRawValue() instanceof Person)
+      {
+        if ($sf_user->hasCredential('admin'))
+        {
+          if (!$entity->User->id)
+          {
+            echo link_to('Add user', '@sf_guard_user_new?person_id=' . $entity->id) . ' | ';
+          }
+          else
+          {
+            echo link_to('Edit user', '@sf_guard_user_edit?id=' . $entity->User->id) . ' | ';
+          }
+        }
+        echo link_to('Edit', 'people_edit', $entity);
+      }
+      else if ($entity->getRawValue() instanceof Company)
+      {
+        echo link_to('Edit', 'companies_edit', $entity);
+      }
+    ?>
   </div>
 
   <h1><?php echo $entity['name'] ?></h1>
