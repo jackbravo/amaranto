@@ -3,7 +3,7 @@ Project:
     id: 1
     name: Muestra
     Client: axai
-    Owner: joaquin
+    Owner: jack
     description: |
       Este proyecto sirve de muestra para todos los proyectos de MoProSoft
     Notes:
@@ -44,12 +44,12 @@ Component:
   model:
     Project: base
     name: model
-    Owner: joaquin
+    Owner: jack
   view:
     Project: base
     name: view
-    Owner: gustavo
+    Owner: juan
   controller:
     Project: base
     name: controller
-    Owner: elias
+    Owner: admin

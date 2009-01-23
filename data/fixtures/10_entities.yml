@@ -1,8 +1,11 @@
 Person: 
-  jack: 
-    id: 2
+  admin_p:
+    name: Admin
+    User: admin
+  jack_p:
     name: Jack Daniels
     description: first developer for Axai
+    User: jack
     Phonenumbers:
       Phonenumber_1:
         number: 3631 7436
@@ -20,9 +23,9 @@ Person:
         body: Marco ayer, dice que no va a poder ir a la cita con Madeleine este martes pero pide que la cambiemos por él para el miercoles
 
   johnnie: 
-    id: 3
     name: Johnnie Walker
     description: Honorary member of axai
+    User: juan
     Phonenumbers:
       Phonenumber_3: 
         number: 333 105 6988
@@ -52,7 +55,7 @@ Company:
   axai:
     id:   1
     name: Axai Inc.
-    People: [jack, johnnie]
+    People: [admin_p, jack_p, johnnie]
     Notes:
       axai_note_0:
         created_at: '2008-09-15'
@@ -64,3 +67,9 @@ Company:
     People: [<?php echo 'person_' . $i ?>]
 <?php endfor; ?>
 
+# having this next to admin_p produces a wierd error
+Email:
+  admin_email:
+    email: jackbravo@gmail.com
+    type: 1
+    Entity: admin_p
