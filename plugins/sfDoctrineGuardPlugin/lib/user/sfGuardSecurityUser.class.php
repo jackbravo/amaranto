@@ -64,6 +64,7 @@ class sfGuardSecurityUser extends sfBasicSecurityUser
   {
     // signin
     $this->setAttribute('user_id', $user->getId(), 'sfGuardSecurityUser');
+    $this->setAttribute('email', $user->getEmail(), 'sfGuardSecurityUser');
     $this->setAuthenticated(true);
     $this->clearCredentials();
     $this->addCredentials($user->getAllPermissionNames());

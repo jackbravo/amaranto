@@ -17,6 +17,16 @@ class sfGuardUser extends PluginsfGuardUser
     return $this->person_id;
   }
 
+  public function getProfile()
+  {
+    return $this->Person->getFirst();
+  }
+
+  public function getEmail()
+  {
+    return $this->getProfile()->getEmail();
+  }
+
   public function postInsert($event)
   {
     if (is_numeric($this->person_id))
