@@ -28,12 +28,12 @@ generator:
       edit:
         actions:
           _save: ~
-          _list: ~
+          cancel: ~
           _delete: ~
         title: Editing User "%%username%%"
 
       new:
         actions:
           _save: ~
-          _list: ~
+          cancel: ~
         title: New User

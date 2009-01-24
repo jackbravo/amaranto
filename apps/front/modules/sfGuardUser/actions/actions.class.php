@@ -2,7 +2,7 @@
 
 require_once sfConfig::get('sf_plugins_dir').'/sfDoctrineGuardPlugin/modules/sfGuardUser/lib/BasesfGuardUserActions.class.php';
 require_once sfConfig::get('sf_plugins_dir').'/sfDoctrineGuardPlugin/modules/sfGuardUser/lib/sfGuardUserGeneratorConfiguration.class.php';
-require_once sfConfig::get('sf_plugins_dir').'/sfDoctrineGuardPlugin/modules/sfGuardUser/lib/sfGuardUserGeneratorHelper.class.php';
+require_once dirname(__FILE__).'/../lib/sfGuardUserGeneratorHelper.class.php';
 
 /**
  * sfGuardUser actions.
@@ -21,5 +21,13 @@ class sfGuardUserActions extends BasesfGuardUserActions
     $this->form = $this->configuration->getForm();
     $this->form->setDefault('person_id', $request->getParameter('person_id'));
     $this->sf_guard_user = $this->form->getObject();
+    $this->sf_guard_user->setPersonId($request->getParameter('person_id'));
+  }
+
+  public function executeEdit(sfWebRequest $request)
+  {
+    $this->sf_guard_user = $this->getRoute()->getObject();
+    $this->form = $this->configuration->getForm($this->sf_guard_user);
+    $this->sf_guard_user->setPersonId($request->getParameter('person_id'));
   }
 }

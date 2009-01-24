@@ -13,7 +13,7 @@
           }
           else
           {
-            echo link_to('Edit user', '@sf_guard_user_edit?id=' . $entity->User->id) . ' | ';
+            echo link_to('Edit user', '@sf_guard_user_edit?id=' . $entity->User->id . '&person_id=' . $entity->id) . ' | ';
           }
         }
         echo link_to('Edit', 'people_edit', $entity);
