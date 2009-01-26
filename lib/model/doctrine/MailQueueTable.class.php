@@ -14,6 +14,8 @@ class MailQueueTable extends Doctrine_Table
 
   public function deleteItems(array $done)
   {
+    if (sizeof($done) == 0) return 0;
+
     return $this->createQuery('q')
       ->delete()
       ->whereIn('q.id', $done)
