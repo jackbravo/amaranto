@@ -7,6 +7,6 @@ class Person extends BasePerson
 {
   public function getEmail()
   {
-    return $this->Emails->getFirst();
+    return (string) $this->Emails->getFirst();
   }
 }

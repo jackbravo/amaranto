@@ -2,7 +2,6 @@
 
 class IssueMailerListener extends Doctrine_Record_Listener
 {
-  // TODO: get emails associated to users
   // TODO: consider adding last_message as a field for the issue table
   public function postInsert(Doctrine_Event $event)
   {
@@ -16,7 +15,7 @@ class IssueMailerListener extends Doctrine_Record_Listener
 
     $mail = new MailQueue();
     $mail->setSubject("Amaranto issue #{$issue->id}: {$issue->title}");
-    $mail->addTo('jackbravo@gmail.com');
+    $mail->addTo($issue->AssignedTo->getEmail());
     $mail->setBody(<<<EOF
 A new issue has been assigned to you:
 
