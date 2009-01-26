@@ -24,6 +24,8 @@ class MailQueueTable extends Doctrine_Table
 
   public function recordAttemps(array $failed)
   {
+    if (sizeof($failed) == 0) return 0;
+
     return $this->createQuery('q')
       ->update()
       ->set('attemps', 'attemps + 1')
