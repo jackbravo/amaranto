@@ -43,8 +43,8 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
     $this->hasMany('Entity as Clients', array('local' => 'id',
                                               'foreign' => 'owner_id'));
 
-    $this->hasMany('Person', array('local' => 'id',
-                                   'foreign' => 'user_id'));
+    $this->hasOne('Person', array('local' => 'id',
+                                  'foreign' => 'user_id'));
 
     $this->hasMany('Project as Projects', array('local' => 'id',
                                                 'foreign' => 'owner_id'));

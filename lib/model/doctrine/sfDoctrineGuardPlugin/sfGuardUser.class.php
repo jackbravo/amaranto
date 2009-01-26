@@ -19,7 +19,7 @@ class sfGuardUser extends PluginsfGuardUser
 
   public function getProfile()
   {
-    return $this->Person->getFirst();
+    return $this->Person;
   }
 
   public function getEmail()

@@ -34,6 +34,7 @@ Person:
       local:        user_id
       class:        sfGuardUser
       onDelete:     SET NULL
+      foreignType:  one
     Company:
       foreignAlias: People
       local:        parent_id
