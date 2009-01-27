@@ -20,13 +20,19 @@ class IssueMailerListener extends Doctrine_Record_Listener
     {
       if ($issue->is_resolved)
       {
-        $this->sendIssue($issue, $issue->OpenedBy->getEmail(),
-          "The issue {$issue->id} has been resolved");
+        if ($issue->resolved_by != $issue->opened_by)
+        {
+          $this->sendIssue($issue, $issue->OpenedBy->getEmail(),
+            "The issue {$issue->id} has been resolved");
+        }
       }
       else
       {
-        $this->sendIssue($issue, $issue->AssignedTo->getEmail(),
-          "The issue {$issue->id} has been re-opened");
+        if ($issue->opened_by != $issue->assigned_to)
+        {
+          $this->sendIssue($issue, $issue->AssignedTo->getEmail(),
+            "The issue {$issue->id} has been re-opened");
+        }
       }
     }
   }

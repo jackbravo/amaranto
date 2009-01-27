@@ -52,6 +52,8 @@ class Issue extends BaseIssue
     if ($status_id != $this->status_id) {
       if (Doctrine::getTable('Status')->isResolved($status_id)) {
         $this->setIsResolved(true);
+      } else {
+        $this->setIsResolved(false);
       }
     }
     $this->_set('status_id', $status_id);
@@ -86,6 +88,14 @@ class Issue extends BaseIssue
   {
     if (!$this->assigned_to) {
       $this->AssignedTo = $this->getPrimaryContact();
+    }
+    // if reopened, then assigned opened_by to the person who did it
+    if (array_key_exists('is_resolved', $this->getModified()))
+    {
+      if (!$this->is_resolved)
+      {
+        $this->opened_by = Listener_Userstampable::getCurrentUserId();
+      }
     }
   }
 }

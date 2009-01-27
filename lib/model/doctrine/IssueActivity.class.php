@@ -59,7 +59,7 @@ class IssueActivity extends BaseIssueActivity
       }
       else
       {
-        return 'Activated (assigned to ' . $this->Issue->AssignedTo . ')';
+        return 'Reopened (assigned to ' . $this->Issue->AssignedTo . ')';
       }
     }
     else if (array_key_exists('assigned_to', $this->modified))
