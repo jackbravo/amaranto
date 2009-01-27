@@ -1,4 +1,5 @@
 <?php use_helper('Text') ?>
+<?php $sf_response->setTitle('Issue #' . $issue->id . ': ' . $issue->title) ?>
 <div class="grid_8">
 
   <h1><?php echo $issue->title ?> <small>(<?php echo $issue->Category ?>)</small></h1>

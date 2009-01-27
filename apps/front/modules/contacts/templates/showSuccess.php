@@ -1,4 +1,5 @@
 <?php use_helper('Text') ?>
+<?php $sf_response->setTitle((string) $entity) ?>
 <div id="content" class="grid_8">
 
   <div class="subheader">
