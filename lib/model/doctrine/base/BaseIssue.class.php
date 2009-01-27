@@ -24,7 +24,7 @@ abstract class BaseIssue extends sfDoctrineRecord
     $this->hasColumn('closed_by', 'integer', 4, array('type' => 'integer', 'length' => '4'));
     $this->hasColumn('status_id', 'integer', 4, array('type' => 'integer', 'notnull' => true, 'default' => '1', 'length' => '4'));
     $this->hasColumn('category_id', 'integer', 4, array('type' => 'integer', 'notnull' => true, 'default' => '1', 'length' => '4'));
-    $this->hasColumn('priority_id', 'integer', 4, array('type' => 'integer', 'notnull' => true, 'default' => '3', 'length' => '4'));
+    $this->hasColumn('priority_id', 'integer', 4, array('type' => 'integer', 'notnull' => true, 'default' => '4', 'length' => '4'));
     $this->hasColumn('orig_estimate', 'float', null, array('type' => 'float'));
     $this->hasColumn('curr_estimate', 'float', null, array('type' => 'float'));
     $this->hasColumn('elapsed', 'float', null, array('type' => 'float'));

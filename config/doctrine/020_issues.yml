@@ -36,7 +36,7 @@ Issue:
     priority_id:
       type:         integer(4)
       notnull:      true
-      default:      3
+      default:      4
 
     orig_estimate:  float
     curr_estimate:  float
