@@ -31,6 +31,9 @@ class Issue extends BaseIssue
     } else {
       $this->resolved_at = null;
       $this->resolved_by = null;
+      $this->setIsClosed(false);
+      // if reopened, then assigned opened_by to the person who did it
+      $this->opened_by = Listener_Userstampable::getCurrentUserId();
     }
     return $this->_set('is_resolved', $is_resolved);
   }
@@ -50,7 +53,7 @@ class Issue extends BaseIssue
   public function setStatusId($status_id)
   {
     if ($status_id != $this->status_id) {
-      if (Doctrine::getTable('Status')->isResolved($status_id)) {
+      if (StatusTable::isResolved($status_id)) {
         $this->setIsResolved(true);
       } else {
         $this->setIsResolved(false);
@@ -88,14 +91,6 @@ class Issue extends BaseIssue
   {
     if (!$this->assigned_to) {
       $this->AssignedTo = $this->getPrimaryContact();
-    }
-    // if reopened, then assigned opened_by to the person who did it
-    if (array_key_exists('is_resolved', $this->getModified()))
-    {
-      if (!$this->is_resolved)
-      {
-        $this->opened_by = Listener_Userstampable::getCurrentUserId();
-      }
     }
   }
 }

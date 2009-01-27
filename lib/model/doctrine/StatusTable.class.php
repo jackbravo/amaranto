@@ -9,7 +9,7 @@ class StatusTable extends Doctrine_Table
    * time a new issue is loaded into memory because this method is called
    * on Issue->setStatusId
    */
-  public function isResolved($status_id)
+  public static function isResolved($status_id)
   {
     if ($status_id instanceof Status)
       return $status_id->is_resolved;
