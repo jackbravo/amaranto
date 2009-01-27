@@ -1,47 +1,64 @@
 Category:
   bug:
+    id: 1
     name: bug
   feature:
+    id: 2
     name: feature
   inquery:
+    id: 3
     name: question
   task:
+    id: 4
     name: task
 
 Status:
   active:
+    id: 1
     name: open
     is_resolved: false
   completed:
+    id: 2
     name: completed
     is_resolved: true
   needinfo:
+    id: 3
     name: need more info
     is_resolved: true
   duplicate:
+    id: 4
     name: duplicate
     is_resolved: true
   postponed:
+    id: 5
     name: postponed
     is_resolved: true
   declined:
+    id: 6
     name: declined
     is_resolved: true
   by_design:
+    id: 7
     name: by design
     is_resolved: true
 
 Priority:
   p_0:
+    id: 1
     name: Life or death
   p_1:
+    id: 2
     name: Blocker
   p_2:
+    id: 3
     name: Important
   p_3:
+    id: 4
     name: Normal
   p_4:
+    id: 5
     name: Fix if time
   p_5:
+    id: 6
     name: Just remember
 

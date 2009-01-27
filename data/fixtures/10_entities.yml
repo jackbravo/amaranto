@@ -32,7 +32,7 @@ Person:
         type: 3
     Emails:
       Email_2:
-        email: perengano@mail.com
+        email: johnnie@mail.com
         type: 1
       Email_3:
         email: perengano@hotmail.com
@@ -70,6 +70,6 @@ Company:
 # having this next to admin_p produces a wierd error
 Email:
   admin_email:
-    email: jackbravo@gmail.com
+    email: admin@mail.com
     type: 1
     Entity: admin_p
