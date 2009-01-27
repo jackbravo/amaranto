@@ -89,6 +89,9 @@ class issuesActions extends sfActions
     $form->bind($request->getParameter($form->getName()));
     if ($form->isValid())
     {
+      if ($request->hasParameter('_save_and_close')) {
+        $form->getObject()->setIsClosed(true);
+      }
       $issue = $form->save();
 
       if ($request->hasParameter('_save_and_add')) {

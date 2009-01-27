@@ -26,6 +26,11 @@
       &nbsp;<input type="submit" value="Save and add" name="_save_and_add" />
       &nbsp;<?php echo link_to('Cancel', 'issues') ?>
     <?php else: ?>
+      <?php if (!$form->getObject()->isClosed()
+                && ($sf_user->getId() == $form->getObject()->opened_by
+                    || $sf_user->hasCredential('admin'))): ?>
+        &nbsp;<input type="submit" value="Save and close" name="_save_and_close" />
+      <?php endif; ?>
       &nbsp;<?php echo link_to('Cancel', 'issues_show', $form->getObject()) ?>
       &nbsp;<?php echo link_to('Delete', 'issues_delete', $form->getObject(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
     <?php endif; ?>
