@@ -171,6 +171,12 @@ table.list {
   width: 100%;
 }
 
+table.list caption {
+  text-align: center;
+  font-size: 1.5em;
+  margin: 10px 0 -10px;
+}
+
 table.list tr {
   text-align: left;
 }

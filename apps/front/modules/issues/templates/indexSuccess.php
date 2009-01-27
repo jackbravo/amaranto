@@ -16,7 +16,16 @@
 </form>
 </div>
 
+<?php
+  $project_id = false;
+  foreach ($pager->getResults() as $i => $issue) {
+    if ($project_id !== $issue->project_id) {
+      echo "</tbody></table>";
+      $project_id = $issue->project_id;
+      $close_table = true;
+?>
 <table class="issues list">
+  <caption><?php echo $issue->Project ?></caption>
   <thead>
     <tr>
       <th></th>
@@ -29,7 +38,7 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($pager->getResults() as $i => $issue): ?>
+  <?php } ?>
     <tr class="<?php
         echo fmod($i,2) == 0 ? 'even' : 'odd';
         echo $issue['is_resolved'] ? ' resolved' : ' open';
@@ -42,7 +51,7 @@
       <td><div style="width:105px"><?php echo $issue['priority_id'] . ". " . $issue['Priority']['name'] ?></div></td>
       <td><div style="width:80px"><?php echo $issue->getdeadline() ?></div></td>
     </tr>
-    <?php endforeach; ?>
+<?php } ?>
   </tbody>
 </table>
 

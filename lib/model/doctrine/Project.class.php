@@ -25,4 +25,9 @@ class Project extends BaseProject
       ->addWhere('c.project_id = ?', $this->id)
       ->execute();
   }
+
+  public function __toString()
+  {
+    return ($this->name) ? $this->name : 'Undefined';
+  }
 }
