@@ -1,6 +1,15 @@
 <?php use_helper('Text') ?>
 <?php include_stylesheets_for_form($form) ?>
 <?php include_javascripts_for_form($form) ?>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#issue_status_id').change(function() {
+      if (this.value > 1) $('#save_and_close').fadeIn();
+      else $('#save_and_close').hide();
+    });
+    $('#issue_status_id').change();
+  });
+</script>
 
 <?php echo form_tag_for($form, '@issues') ?>
 
@@ -29,7 +38,7 @@
       <?php if (!$form->getObject()->isClosed()
                 && ($sf_user->getId() == $form->getObject()->opened_by
                     || $sf_user->hasCredential('admin'))): ?>
-        &nbsp;<input type="submit" value="Save and close" name="_save_and_close" />
+        &nbsp;<input id="save_and_close" type="submit" value="Save and close" name="_save_and_close" />
       <?php endif; ?>
       &nbsp;<?php echo link_to('Cancel', 'issues_show', $form->getObject()) ?>
       &nbsp;<?php echo link_to('Delete', 'issues_delete', $form->getObject(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
