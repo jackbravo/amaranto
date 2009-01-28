@@ -18,7 +18,16 @@
 
 <?php
   $project_id = false;
+  $total_no_estimate = 0;
+  $total_estimate = 0;
+  $total_elapsed = 0;
   foreach ($pager->getResults() as $i => $issue) {
+    if ($issue->curr_estimate) {
+      $total_estimate += $issue->curr_estimate;
+      $total_elapsed += $issue->elapsed;
+    } else {
+      $total_no_estimate++;
+    }
     if ($project_id !== $issue->project_id) {
       echo "</tbody></table>";
       $project_id = $issue->project_id;
@@ -58,6 +67,26 @@
 <?php include_partial('contacts/pager', array('pager' => $pager)) ?>
 
 <a href="<?php echo url_for('issues_new') ?>">New</a>
+
+<table class="small issue-stats">
+  <thead><tr><th colspan="2">Stats for this page</th></thead>
+  <tbody>
+    <tr>
+      <td>Total estimated time remaining</td>
+      <td><?php echo $total_estimate - $total_elapsed ?></td>
+    </tr>
+    <tr>
+      <td>Total elapsed time</td>
+      <td><?php echo $total_elapsed ?></td>
+    </tr>
+  </tbody>
+  <tbody class="small">
+    <tr>
+      <td>Issues without estimate</td>
+      <td><?php echo $total_no_estimate ?></td>
+    </tr>
+  </tbody>
+</table>
 
 </div> <!-- /grid_12 -->
 

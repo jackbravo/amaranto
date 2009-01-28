@@ -207,6 +207,29 @@ table.issues tr.resolved td {
   color: #555;
 }
 
+/** table small **/
+
+table.small, tbody.small {
+  margin-top: 10px;
+  border-collapse: collapse;
+  border: 1px solid #6699CC;
+  font-size: 10px;
+  text-align: left;
+}
+
+table.small th {
+  font-weight: bold;
+  border-bottom: 1px dashed #6699CC;
+  color: #039;
+  padding: 3px 10px;
+}
+
+table.small td {
+  color: #669;
+  padding: 3px 10px;
+}
+
+
 /* ----------- box ----------- */
 
 .box
