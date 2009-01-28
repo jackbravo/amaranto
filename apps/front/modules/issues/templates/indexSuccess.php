@@ -10,6 +10,7 @@
   <?php echo $filter['is_closed']->renderRow() ?>
   <?php echo $filter['category_id']->renderRow() ?>
   <?php echo $filter['assigned_to']->renderRow() ?>
+  <?php echo $filter['project_id']->renderRow() ?>
 
   <input type="submit" value="Filter" />
   &nbsp;<?php echo link_to('Reset', '@issues_filter', array('query_string' => '_reset', 'method' => 'post')) ?>

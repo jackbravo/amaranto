@@ -15,10 +15,11 @@ class IssueFormFilter extends BaseIssueFormFilter
     $this->widgetSchema->setLabels(array(
       'is_closed' => ' ',
       'category_id' => ' ',
-      'project_id' => 'Project',
+      'project_id' => 'in',
     ));
     $this->widgetSchema['assigned_to']->setOption('add_empty', 'anybody');
     $this->widgetSchema['category_id']->setOption('add_empty', 'issues (all)');
+    $this->widgetSchema['project_id']->setOption('add_empty', 'all projects');
     $this->widgetSchema['is_closed']->setOption('choices',
       array('' => 'all', 0 => 'open', 1 => 'closed'));
   }
