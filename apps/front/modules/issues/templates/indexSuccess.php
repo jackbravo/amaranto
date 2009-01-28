@@ -82,6 +82,12 @@
   </tbody>
   <tbody class="small">
     <tr>
+      <td><strong>Total</strong> estimtated time</td>
+      <td><?php echo $total_estimate ?></td>
+    </tr>
+  </tbody>
+  <tbody class="small">
+    <tr>
       <td>Issues without estimate</td>
       <td><?php echo $total_no_estimate ?></td>
     </tr>
