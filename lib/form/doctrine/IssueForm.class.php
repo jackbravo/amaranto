@@ -14,7 +14,7 @@ class IssueForm extends BaseIssueForm
     $this->widgetSchema['title']->setAttributes(array(
       'size' => '50', 'class' => 'title',
     ));
-    $this->widgetSchema['assigned_to']->setOption('add_empty', 'Primary Contact');
+    $this->widgetSchema['assigned_to']->setOption('add_empty', 'Default Contact');
 
     $this->widgetSchema->setHelps(array(
       'title' => 'Set a one line description of the problem',
