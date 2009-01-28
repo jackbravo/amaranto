@@ -38,7 +38,7 @@ small
   font-size: 12px;
   border: solid 1px #ccc;
   border-top: none;
-  background-color: #73A2CE;
+  background-color: #0078ae;
   color: #fff;
 }
 
@@ -93,13 +93,13 @@ small
 
 #menu ul li a:hover
 {
-	background-color: #84b3df;
+	background-color: #79c9ec;
 	color: #fff;
 }
 
 #menu ul li.active, #menu ul li.active a, #menu ul li.active a:hover
 {
-	background-color: #84b3df;
+	background-color: #79c9ec;
 	color: #333;
 }
 
