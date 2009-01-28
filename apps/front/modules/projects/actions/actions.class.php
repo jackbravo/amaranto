@@ -60,6 +60,8 @@ class projectsActions extends sfActions
   {
     $this->getRoute()->getObject()->delete();
 
+    $this->getUser()->setFlash('notice', 'The item was deleted successfully.');
+
     $this->redirect('@projects');
   }
 
@@ -68,9 +70,15 @@ class projectsActions extends sfActions
     $form->bind($request->getParameter('project'));
     if ($form->isValid())
     {
+      $this->getUser()->setFlash('notice', $form->getObject()->isNew() ? 'The item was created successfully.' : 'The item was updated successfully.');
+
       $project = $form->save();
 
       $this->redirect('@projects_show?id='.$project['id']);
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.');
     }
   }
 }

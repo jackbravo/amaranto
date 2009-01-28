@@ -81,6 +81,8 @@ class issuesActions extends sfActions
 
     $this->getRoute()->getObject()->delete();
 
+    $this->getUser()->setFlash('notice', 'The item was deleted successfully.');
+
     $this->redirect('@issues');
   }
 
@@ -89,6 +91,8 @@ class issuesActions extends sfActions
     $form->bind($request->getParameter($form->getName()));
     if ($form->isValid())
     {
+      $this->getUser()->setFlash('notice', $form->getObject()->isNew() ? 'The item was created successfully.' : 'The item was updated successfully.');
+
       if ($request->hasParameter('_save_and_close')) {
         $form->getObject()->setIsClosed(true);
       }
@@ -99,6 +103,10 @@ class issuesActions extends sfActions
       } else {
         $this->redirect('@issues_show?id='.$issue['id']);
       }
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.');
     }
   }
 

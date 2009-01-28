@@ -49,6 +49,8 @@ class companiesActions extends sfActions
   {
     $this->getRoute()->getObject()->delete();
 
+    $this->getUser()->setFlash('notice', 'The item was deleted successfully.');
+
     $this->redirect('@contacts');
   }
 
@@ -57,9 +59,15 @@ class companiesActions extends sfActions
     $form->bind($request->getParameter('company'));
     if ($form->isValid())
     {
+      $this->getUser()->setFlash('notice', $form->getObject()->isNew() ? 'The item was created successfully.' : 'The item was updated successfully.');
+
       $company = $form->save();
 
       $this->redirect('@contacts_show?id='.$company['id']);
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.');
     }
   }
 

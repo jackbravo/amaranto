@@ -47,6 +47,19 @@
 </div>
 
 <div id="main" class="fullspan clearfix">
+
+  <?php if ($sf_user->hasFlash('notice')): ?>
+    <div class="box notice">
+      <?php echo $sf_user->getFlash('notice') ?>
+    </div>
+  <?php endif; ?>
+
+  <?php if ($sf_user->hasFlash('error')): ?>
+    <div class="box error">
+      <?php echo $sf_user->getFlash('error') ?>
+    </div>
+  <?php endif; ?>
+
   <?php echo $sf_content ?>
 </div>
 

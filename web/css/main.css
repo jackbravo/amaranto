@@ -226,6 +226,18 @@ table.issues tr.resolved td {
   font-size: 14px;
 }
 
+div.notice {
+  background-color: #fbec88;
+  border: 1px solid #fad42e;
+  color: #363636;
+}
+
+div.error {
+  background-color: #e46437;
+  border: 1px solid #cd0a0a;
+  color: #fff;
+}
+
 /* ---------- issue ----------- */
 
 .issue-activity {
