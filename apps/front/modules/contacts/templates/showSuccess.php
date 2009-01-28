@@ -6,7 +6,7 @@
     <?php
       if ($entity->getRawValue() instanceof Person)
       {
-        if ($sf_user->hasCredential('admin'))
+        if ($sf_user->hasCredential('admin') || $sf_user->getId() == $entity->User->id)
         {
           if (!$entity->User->id)
           {
