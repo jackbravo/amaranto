@@ -7,6 +7,11 @@ class myUser extends sfGuardSecurityUser
     return $this->getAttribute('user_id', null, 'sfGuardSecurityUser');
   }
 
+  public function getPersonId()
+  {
+    return $this->getAttribute('person_id', null, 'sfGuardSecurityUser');
+  }
+
   public function getEmail()
   {
     return $this->getAttribute('email', null, 'sfGuardSecurityUser');

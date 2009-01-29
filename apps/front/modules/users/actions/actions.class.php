@@ -18,6 +18,7 @@ class usersActions extends sfActions
   public function executePassword(sfWebRequest $request)
   {
     $this->forwardUnless($this->getUser()->getId() == $request->getParameter('id'), 'sfGuardAuth', 'secure');
+    $this->forwardUnless($this->getUser()->getPersonId() == $request->getParameter('person_id'), 'sfGuardAuth', 'secure');
 
     $this->form = new sfGuardUserPasswordForm($this->getRoute()->getObject());
     $this->form->setDefault('person_id', $request->getParameter('person_id'));
@@ -28,6 +29,8 @@ class usersActions extends sfActions
     $this->forwardUnless($this->getUser()->getId() == $request->getParameter('id'), 'sfGuardAuth', 'secure');
 
     $this->form = new sfGuardUserPasswordForm($this->getRoute()->getObject());
+
+    $this->forwardUnless($this->getUser()->getPersonId() == $this->form->getValue('person_id'), 'sfGuardAuth', 'secure');
 
     $this->processForm($request, $this->form);
 
