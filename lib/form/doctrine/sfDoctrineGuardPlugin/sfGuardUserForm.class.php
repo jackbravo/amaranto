@@ -22,6 +22,8 @@ class sfGuardUserForm extends sfGuardUserAdminForm
       'model' => 'Person',
       'required' => false,
     ));
+
+    $this->setDefault('is_super_admin', false);
   }
 
   public function updateObject($values = null)

@@ -81,6 +81,8 @@ class usersActions extends sfActions
 
     $this->getRoute()->getObject()->delete();
 
+    $this->getUser()->setFlash('notice', 'The item was deleted successfully.');
+
     $this->redirect('@users');
   }
 
@@ -89,9 +91,15 @@ class usersActions extends sfActions
     $form->bind($request->getParameter($form->getName()));
     if ($form->isValid())
     {
+      $this->getUser()->setFlash('notice', $form->getObject()->isNew() ? 'The item was created successfully.' : 'The item was updated successfully.');
+
       $sf_guard_user = $form->save();
 
       $this->redirect('@contacts_show?id='.$form->getValue('person_id'));
+    }
+    else
+    {
+      $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.');
     }
   }
 }
