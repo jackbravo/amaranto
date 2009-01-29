@@ -12,12 +12,29 @@ class projectsActions extends sfActions
 {
   public function executeIndex(sfWebRequest $request)
   {
-    $this->pager = new sfDoctrinePager('Project',
-      sfConfig::get('app_max_projects_on_index')
-    );
-    $this->pager->setQuery(Doctrine::getTable('Project')->getListQuery());
-    $this->pager->setPage($request->getParameter('page', 1));
-    $this->pager->init();
+    $this->filter = $this->getFilter($request);
+    $this->pager = $this->getPager($request, $this->filter);
+  }
+
+  public function executeFilter(sfWebRequest $request)
+  {
+    if ($request->hasParameter('_reset'))
+    {
+      $this->getUser()->setAttribute('projects_filter', $this->getDefaultFilter());
+      $this->redirect('@projects');
+    }
+
+    $this->filter = $this->getFilter($request);
+
+    $this->filter->bind($request->getParameter('project_filters'));
+    if ($this->filter->isValid())
+    {
+      $this->getUser()->setAttribute('projects_filter', $this->filter->getValues());
+      $this->redirect('@projects');
+    }
+
+    $this->pager = $this->getPager($request, $this->filter);
+    $this->setTemplate('index');
   }
 
   public function executeShow(sfWebRequest $request)
@@ -58,6 +75,8 @@ class projectsActions extends sfActions
 
   public function executeDelete(sfWebRequest $request)
   {
+    $request->checkCSRFProtection();
+
     $this->getRoute()->getObject()->delete();
 
     $this->getUser()->setFlash('notice', 'The item was deleted successfully.');
@@ -80,5 +99,36 @@ class projectsActions extends sfActions
     {
       $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.');
     }
+  }
+
+  protected function getPager($request, $filter)
+  {
+    $pager = new sfDoctrinePager('Project',
+      sfConfig::get('app_max_projects_on_index')
+    );
+    $pager->setQuery($filter->buildQuery(
+      $this->getUser()->getAttribute('projects_filter', $this->getDefaultFilter())
+    ));
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->setTableMethod('getListQuery');
+    $pager->init();
+
+    return $pager;
+  }
+
+  protected function getFilter($request)
+  {
+    $filter = new ProjectFormFilter(
+      $this->getUser()->getAttribute('projects_filter', $this->getDefaultFilter())
+    );
+
+    return $filter;
+  }
+
+  protected function getDefaultFilter()
+  {
+    return array(
+      'owner_id' => $this->getUser()->getId(),
+    );
   }
 }

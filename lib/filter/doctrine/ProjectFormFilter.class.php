@@ -11,5 +11,9 @@ class ProjectFormFilter extends BaseProjectFormFilter
 {
   public function configure()
   {
+    $this->widgetSchema['owner_id']->setOption('add_empty', 'anybody');
+    $this->widgetSchema->setLabels(array(
+      'owner_id' => 'Owned by',
+    ));
   }
 }

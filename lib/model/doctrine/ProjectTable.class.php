@@ -9,12 +9,13 @@ class ProjectTable extends Doctrine_Table
     return $this->getShowQuery($parameters)->fetchOne();
   }
 
-  public function getListQuery()
+  public function getListQuery(Doctrine_Query $q)
   {
-    return $this->createQuery('p')
-      ->leftJoin('p.Client e')
-      ->leftJoin('p.Owner o')
-      ->addOrderBy('p.name');
+    $alias = $q->getRootAlias();
+
+    return $q->leftJoin("$alias.Client e")
+      ->leftJoin("$alias.Owner o")
+      ->addOrderBy("$alias.name");
   }
 
   public function getShowQuery($parameters)

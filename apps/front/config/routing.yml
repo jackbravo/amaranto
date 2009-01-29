@@ -24,6 +24,7 @@ projects:
     model:      Project
     with_show:  true
     model_methods: { object: getForShow }
+    collection_actions: { filter: post }
 
 notes_create:
   url:     /notes
