@@ -15,7 +15,7 @@ class sfGuardUserForm extends sfGuardUserAdminForm
     $this->widgetSchema['person_id'] = new sfWidgetFormInputHidden();
     $this->validatorSchema['person_id'] = new sfValidatorDoctrineChoice(array(
       'model' => 'Person',
-      'required' => true,
+      'required' => false,
     ));
   }
 

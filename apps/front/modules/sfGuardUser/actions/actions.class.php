@@ -26,6 +26,10 @@ class sfGuardUserActions extends BasesfGuardUserActions
 
   public function executeEdit(sfWebRequest $request)
   {
+    $this->forwardUnless($this->getUser()->hasCredential('admin') ||
+      $this->getUser()->getId() == $request->getParameter('id'),
+      'sfGuardAuth', 'secure');
+
     $this->sf_guard_user = $this->getRoute()->getObject();
     $this->form = $this->configuration->getForm($this->sf_guard_user);
     $this->sf_guard_user->setPersonId($request->getParameter('person_id'));
