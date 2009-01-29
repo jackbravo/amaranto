@@ -17,7 +17,7 @@
             echo link_to('Edit user', '@sf_guard_user_edit?id=' . $entity->User->id . '&person_id=' . $entity->id) . ' | ';
           }
         }
-        echo link_to('Edit', 'people_edit', $entity);
+        echo link_to('Edit profile', 'people_edit', $entity);
       }
       else if ($entity->getRawValue() instanceof Company)
       {

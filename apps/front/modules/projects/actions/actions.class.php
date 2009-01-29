@@ -24,6 +24,14 @@ class projectsActions extends sfActions
       $this->redirect('@projects');
     }
 
+    if ($request->hasParameter('_mine'))
+    {
+      $this->getUser()->setAttribute('projects_filter', array(
+        'owner_id' => $this->getUser()->getId(),
+      ));
+      $this->redirect('@projects');
+    }
+
     $this->filter = $this->getFilter($request);
 
     $this->filter->bind($request->getParameter('project_filters'));
@@ -128,7 +136,6 @@ class projectsActions extends sfActions
   protected function getDefaultFilter()
   {
     return array(
-      'owner_id' => $this->getUser()->getId(),
     );
   }
 }

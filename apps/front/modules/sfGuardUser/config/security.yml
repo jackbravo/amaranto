@@ -1,2 +1,8 @@
+edit:
+  credentials: []
+
+update:
+  credentials: []
+
 all:
   credentials: admin

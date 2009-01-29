@@ -2,16 +2,9 @@
 
 <h1>Projects List</h1>
 
-<div id="filters">
-<form action="<?php echo url_for('@projects_filter') ?>" method="post">
-  <?php echo $filter->renderGlobalErrors() ?>
-  <?php echo $filter->renderHiddenFields() ?>
-
-  <?php echo $filter['owner_id']->renderRow() ?>
-
-  <input type="submit" value="Filter" />
-  &nbsp;<?php echo link_to('Reset', '@projects_filter', array('query_string' => '_reset', 'method' => 'post')) ?>
-</form>
+<div id="filters" class="tabs">
+  &nbsp;<?php echo link_to('All projects', '@projects_filter', array('query_string' => '_reset', 'method' => 'post')) ?>
+  &nbsp;<?php echo link_to('My projects', '@projects_filter', array('query_string' => '_mine', 'method' => 'post')) ?>
 </div>
 
 <table class="list">
