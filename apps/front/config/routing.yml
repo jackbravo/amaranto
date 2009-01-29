@@ -26,6 +26,12 @@ projects:
     model_methods: { object: getForShow }
     collection_actions: { filter: post }
 
+users:
+  class: sfDoctrineRouteCollection
+  options:
+    model:      sfGuardUser
+    object_actions: { password: get, password_update: put }
+
 notes_create:
   url:     /notes
   class:   sfDoctrineRoute

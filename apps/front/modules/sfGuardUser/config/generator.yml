@@ -20,20 +20,16 @@ generator:
         display: [=username, created_at, updated_at, last_login]
 
       form:
-        class: sfGuardUserForm
+        class: sfGuardUserAdminForm
         display:
           "NONE":                   [username, password, password_again]
           "Permissions and groups": [is_active, is_super_admin, groups_list, permissions_list]
 
       edit:
-        actions:
-          _save: ~
-          cancel: ~
-          _delete: ~
         title: Editing User "%%username%%"
 
       new:
         actions:
           _save: ~
-          cancel: ~
+          _list: ~
         title: New User

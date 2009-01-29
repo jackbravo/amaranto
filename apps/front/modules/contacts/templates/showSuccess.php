@@ -6,18 +6,22 @@
     <?php
       if ($entity->getRawValue() instanceof Person)
       {
-        if ($sf_user->hasCredential('admin') || $sf_user->getId() == $entity->User->id)
+        if ($sf_user->hasCredential('admin'))
         {
           if (!$entity->User->id)
           {
-            echo link_to('Add user', '@sf_guard_user_new?person_id=' . $entity->id) . ' | ';
+            echo link_to('Add user', '@users_new?person_id=' . $entity->id) . ' | ';
           }
           else
           {
-            echo link_to('Edit user', '@sf_guard_user_edit?id=' . $entity->User->id . '&person_id=' . $entity->id) . ' | ';
+            echo link_to('Edit user', '@users_edit?id=' . $entity->User->id . '&person_id=' . $entity->id) . ' | ';
           }
         }
-        echo link_to('Edit profile', 'people_edit', $entity);
+        else if ($sf_user->getId() == $entity->User->id)
+        {
+            echo link_to('Change password', '@users_password?id=' . $entity->User->id . '&person_id=' . $entity->id) . ' | ';
+        }
+        echo link_to('Edit contact info', 'people_edit', $entity);
       }
       else if ($entity->getRawValue() instanceof Company)
       {

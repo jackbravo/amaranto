@@ -1,0 +1,8 @@
+password:
+  credentials: []
+
+password_update:
+  credentials: []
+
+all:
+  credentials: admin
