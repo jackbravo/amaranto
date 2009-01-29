@@ -12,6 +12,11 @@ class sfGuardUserForm extends sfGuardUserAdminForm
   public function configure()
   {
     parent::configure();
+
+    unset(
+      $this['updated_at']
+    );
+
     $this->widgetSchema['person_id'] = new sfWidgetFormInputHidden();
     $this->validatorSchema['person_id'] = new sfValidatorDoctrineChoice(array(
       'model' => 'Person',

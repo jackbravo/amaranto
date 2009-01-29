@@ -11,7 +11,6 @@ class sfGuardUserPasswordForm extends sfGuardUserForm
       $this['permissions_list'],
       $this['is_active'],
       $this['is_super_admin'],
-      $this['updated_at'],
       $this['username']
     );
   }

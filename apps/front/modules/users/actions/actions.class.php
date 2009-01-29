@@ -30,7 +30,8 @@ class usersActions extends sfActions
 
     $this->form = new sfGuardUserPasswordForm($this->getRoute()->getObject());
 
-    $this->forwardUnless($this->getUser()->getPersonId() == $this->form->getValue('person_id'), 'sfGuardAuth', 'secure');
+    $form_values = $request->getParameter($this->form->getName());
+    $this->forwardUnless($this->getUser()->getPersonId() == $form_values['person_id'], 'sfGuardAuth', 'secure');
 
     $this->processForm($request, $this->form);
 
@@ -62,6 +63,7 @@ class usersActions extends sfActions
   public function executeEdit(sfWebRequest $request)
   {
     $this->form = new sfGuardUserForm($this->getRoute()->getObject());
+    $this->form->setDefault('person_id', $request->getParameter('person_id'));
   }
 
   public function executeUpdate(sfWebRequest $request)
