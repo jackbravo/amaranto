@@ -18,8 +18,8 @@ class BasesfGuardGroupFormFilter extends BaseFormFilterDoctrine
       'description'      => new sfWidgetFormFilterInput(),
       'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'updated_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
-      'users_list'       => new sfWidgetFormDoctrineSelectMany(array('model' => 'sfGuardUser')),
-      'permissions_list' => new sfWidgetFormDoctrineSelectMany(array('model' => 'sfGuardPermission')),
+      'users_list'       => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardUser')),
+      'permissions_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardPermission')),
     ));
 
     $this->setValidators(array(

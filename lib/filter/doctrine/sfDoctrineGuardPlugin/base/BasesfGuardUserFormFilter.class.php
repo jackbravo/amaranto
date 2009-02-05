@@ -23,8 +23,8 @@ class BasesfGuardUserFormFilter extends BaseFormFilterDoctrine
       'last_login'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'created_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
       'updated_at'       => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
-      'groups_list'      => new sfWidgetFormDoctrineSelectMany(array('model' => 'sfGuardGroup')),
-      'permissions_list' => new sfWidgetFormDoctrineSelectMany(array('model' => 'sfGuardPermission')),
+      'groups_list'      => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardGroup')),
+      'permissions_list' => new sfWidgetFormDoctrineChoiceMany(array('model' => 'sfGuardPermission')),
     ));
 
     $this->setValidators(array(
