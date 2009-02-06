@@ -15,10 +15,15 @@ class IssueForm extends BaseIssueForm
       'size' => '50', 'class' => 'title',
     ));
     $this->widgetSchema['assigned_to']->setOption('add_empty', 'Default Contact');
-    $this->widgetSchema['component_id']->setOption('query',
-      Doctrine::getTable('Component')
-        ->findByProjectQuery($this->getObject()->get('project_id'))
-    );
+    $this->widgetSchema['component_id'] = new axaiWidgetFormJQuerySelect(array(
+      'model' => 'Component',
+      'add_empty' => true,
+      'query' => Doctrine::getTable('Component')
+        ->findByProjectQuery($this->getObject()->get('project_id')),
+      'parent' => 'issue[project_id]',
+      'url' => sfContext::getInstance()->getRouting()
+        ->generate('components_ajaxList'),
+    ));
     $this->widgetSchema['milestone_id']->setOption('query',
       Doctrine::getTable('Milestone')
         ->findByProjectQuery($this->getObject()->get('project_id'))

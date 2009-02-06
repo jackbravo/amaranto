@@ -23,4 +23,21 @@ class ComponentTable extends Doctrine_Table
     return $this->createQuery('c')
       ->addWhere('c.project_id = ?', array($project_id));
   }
+
+  public function findForAjax($id)
+  {
+    $components = $this->createQuery('c')
+      ->select('c.id, c.name')
+      ->addWhere('c.project_id = ?', $id)
+      ->addOrderBy('c.name')
+      ->execute();
+
+    $list = array();
+    foreach ($components as $component)
+    {
+      $list[$component['id']] = $component['name'];
+    }
+
+    return $list;
+  }
 }

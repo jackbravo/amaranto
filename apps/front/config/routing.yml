@@ -65,7 +65,9 @@ milestones:
 
 components:
   class: sfDoctrineRouteCollection
-  options: { model: Component }
+  options:
+    model: Component
+    collection_actions: { ajaxList: get }
 
 # default rules
 default_index:
