@@ -14,4 +14,21 @@ class MilestoneTable extends Doctrine_Table
     return $this->createQuery('m')
       ->addWhere('m.project_id = ?', array($project_id));
   }
+
+  public function findForAjax($id)
+  {
+    $milestones = $this->createQuery('m')
+      ->select('m.id, m.name')
+      ->addWhere('m.project_id = ?', $id)
+      ->addOrderBy('m.name')
+      ->execute();
+
+    $list = array();
+    foreach ($milestones as $milestone)
+    {
+      $list[$milestone['id']] = $milestone['name'];
+    }
+
+    return $list;
+  }
 }

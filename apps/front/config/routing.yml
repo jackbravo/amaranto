@@ -61,7 +61,9 @@ homepage:
 # secondary
 milestones:
   class: sfDoctrineRouteCollection
-  options: { model: Milestone }
+  options:
+    model: Milestone
+    collection_actions: { ajaxList: get }
 
 components:
   class: sfDoctrineRouteCollection

@@ -69,4 +69,15 @@ class milestonesActions extends sfActions
       $this->redirect('@projects_show?id='.$milestone['project_id']);
     }
   }
+
+  public function executeAjaxList(sfWebRequest $request)
+  {
+    $this->getResponse()->setContentType('application/json');
+
+    $companies = Doctrine::getTable('Milestone')->findForAjax(
+      $request->getParameter('id')
+    );
+
+    return $this->renderText( json_encode($companies) );
+  }
 }

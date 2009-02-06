@@ -24,10 +24,15 @@ class IssueForm extends BaseIssueForm
       'url' => sfContext::getInstance()->getRouting()
         ->generate('components_ajaxList'),
     ));
-    $this->widgetSchema['milestone_id']->setOption('query',
-      Doctrine::getTable('Milestone')
-        ->findByProjectQuery($this->getObject()->get('project_id'))
-    );
+    $this->widgetSchema['milestone_id'] = new axaiWidgetFormJQuerySelect(array(
+      'model' => 'Milestone',
+      'add_empty' => true,
+      'query' => Doctrine::getTable('Milestone')
+        ->findByProjectQuery($this->getObject()->get('project_id')),
+      'parent' => 'issue[project_id]',
+      'url' => sfContext::getInstance()->getRouting()
+        ->generate('milestones_ajaxList'),
+    ));
 
     $this->widgetSchema->setHelps(array(
       'title' => 'Set a one line description of the problem',
