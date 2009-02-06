@@ -8,4 +8,10 @@ class MilestoneTable extends Doctrine_Table
   {
     return $this->createQuery('m')->orderBy('m.date desc');
   }
+
+  public function findByProjectQuery($project_id)
+  {
+    return $this->createQuery('m')
+      ->addWhere('m.project_id = ?', array($project_id));
+  }
 }

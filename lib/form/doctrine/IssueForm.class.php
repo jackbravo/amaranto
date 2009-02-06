@@ -15,6 +15,14 @@ class IssueForm extends BaseIssueForm
       'size' => '50', 'class' => 'title',
     ));
     $this->widgetSchema['assigned_to']->setOption('add_empty', 'Default Contact');
+    $this->widgetSchema['component_id']->setOption('query',
+      Doctrine::getTable('Component')
+        ->findByProjectQuery($this->getObject()->get('project_id'))
+    );
+    $this->widgetSchema['milestone_id']->setOption('query',
+      Doctrine::getTable('Milestone')
+        ->findByProjectQuery($this->getObject()->get('project_id'))
+    );
 
     $this->widgetSchema->setHelps(array(
       'title' => 'Set a one line description of the problem',

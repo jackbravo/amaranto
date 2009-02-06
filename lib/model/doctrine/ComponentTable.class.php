@@ -17,4 +17,10 @@ class ComponentTable extends Doctrine_Table
       ->innerJoin('user.Components c WITH c.id = ?')
       ->fetchOne(array($component_id));
   }
+
+  public function findByProjectQuery($project_id)
+  {
+    return $this->createQuery('c')
+      ->addWhere('c.project_id = ?', array($project_id));
+  }
 }
