@@ -69,4 +69,15 @@
     </ul>
   </div>
 
+  <?php if ($entity->hasRelation('People')): ?>
+    <div class="box">
+      <h2>People</h2>
+      <ul id="people">
+        <?php foreach ($entity['People'] as $person): ?>
+          <li><?php echo link_to($person, 'contacts_show', $person) ?></li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
+  <?php endif; ?>
+
 </div> <!-- /grid_4 -->
