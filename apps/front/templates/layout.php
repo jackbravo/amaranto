@@ -11,6 +11,18 @@
 
 </head>
 <body>
+
+<div id="ajax-loader">
+  Loading...
+</div>
+<script type="text/javascript">
+$('#ajax-loader').ajaxStart(function(){
+  $(this).show('normal');
+}).ajaxStop(function(){
+  $(this).hide('normal');
+});
+</script>
+
 <div class="container_12">
 
 <div class="fullspan" id="menu">

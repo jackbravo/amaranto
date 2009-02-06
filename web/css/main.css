@@ -353,3 +353,13 @@ textarea#issue_Activity_body {
   border-bottom: 1px solid #ccc;
 }
 
+#ajax-loader {
+  display: none;
+  position: absolute;
+  top: 0;
+  font-weight: bold;
+  background-color: #fbec88;
+  color: #363636;
+  padding: 3px;
+}
+
