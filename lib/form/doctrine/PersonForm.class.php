@@ -38,6 +38,11 @@ class PersonForm extends EntityForm
     {
       $this->object->Company = Doctrine::getTable('Company')
         ->getOrCreate($company_name);
+
+      if (!$this->object->Company->exists())
+      {
+        $this->object->Company->owner_id = $this->object->owner_id;
+      }
     }
   }
 
