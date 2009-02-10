@@ -2,16 +2,20 @@
 
 <h1>Projects List</h1>
 
-<div id="filters">
-<form action="<?php echo url_for('@projects_filter') ?>" method="post">
-  <?php echo $filter->renderGlobalErrors() ?>
-  <?php echo $filter->renderHiddenFields() ?>
+<div id="filters" class="tabs">
+  <?php
+    $links = array(
+      'all' => '@projects_filter?_reset=1',
+      'mine' => '@projects_filter?_mine=1',
+    );
 
-  <?php echo $filter['owner_id']->renderRow() ?>
-
-  <input type="submit" value="Filter" />
-  &nbsp;<?php echo link_to('Reset', '@projects_filter', array('query_string' => '_reset', 'method' => 'post')) ?>
-</form>
+    foreach ($links as $name => $route)
+    {
+      $current = $sf_user->getAttribute('projects_filter_name', 'all');
+      $class = $current == $name ? 'active' : '';
+      echo '&nbsp' . link_to(__($name), $route, array('class' => $class));
+    }
+  ?>
 </div>
 
 <table class="list">

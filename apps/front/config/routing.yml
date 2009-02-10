@@ -24,7 +24,7 @@ projects:
     model:      Project
     with_show:  true
     model_methods: { object: getForShow }
-    collection_actions: { filter: post }
+    collection_actions: { filter: get }
 
 users:
   class: sfDoctrineRouteCollection

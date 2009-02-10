@@ -21,6 +21,7 @@ class projectsActions extends sfActions
     if ($request->hasParameter('_reset'))
     {
       $this->getUser()->setAttribute('projects_filter', $this->getDefaultFilter());
+      $this->getUser()->setAttribute('projects_filter_name', 'all');
       $this->redirect('@projects');
     }
 
@@ -29,6 +30,7 @@ class projectsActions extends sfActions
       $this->getUser()->setAttribute('projects_filter', array(
         'owner_id' => $this->getUser()->getId(),
       ));
+      $this->getUser()->setAttribute('projects_filter_name', 'mine');
       $this->redirect('@projects');
     }
 
