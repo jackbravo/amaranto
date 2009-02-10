@@ -11,7 +11,7 @@
 
     foreach ($links as $name => $route)
     {
-      $current = $sf_request->getParameter('show', 'people');
+      $current = $sf_user->getAttribute('show', 'people');
       $class = $current == $name ? 'active' : '';
       echo '&nbsp' . link_to(__($name), $route, array('class' => $class));
     }

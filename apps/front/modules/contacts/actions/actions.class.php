@@ -17,7 +17,12 @@ class contactsActions extends sfActions
   */
   public function executeIndex($request)
   {
-    $this->show = $request->getParameter('show', 'people');
+    if ($request->hasParameter('show'))
+    {
+      $this->getUser()->setAttribute('show', $request->getParameter('show'));
+    }
+
+    $this->show = $this->getUser()->getAttribute('show', 'people');
     $table = $this->getShowTable($this->show);
 
     $this->pager = new sfDoctrinePager($table,
