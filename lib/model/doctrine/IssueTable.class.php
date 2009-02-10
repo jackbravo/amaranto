@@ -21,6 +21,7 @@ class IssueTable extends Doctrine_Table
       ->addOrderBy("$alias.project_id")
       ->addOrderBy("$alias.status_id")
       ->addOrderBy("$alias.priority_id")
+      ->addOrderBy("$alias.id")
     ;
   }
 
