@@ -1,6 +1,6 @@
 <div class="grid_12">
 
-<h1>Issues List</h1>
+<h1>Issues List <small>(<a href="<?php echo url_for('issues_new') ?>">Create new issue</a>)</small></h1>
 
 <div id="filters">
 <form action="<?php echo url_for('@issues_filter') ?>" method="post">
@@ -67,7 +67,7 @@
 
 <?php include_partial('contacts/pager', array('pager' => $pager)) ?>
 
-<a href="<?php echo url_for('issues_new') ?>">New</a>
+<strong><a href="<?php echo url_for('issues_new') ?>">Create new issue</a></strong>
 
 <table class="small issue-stats">
   <thead><tr><th colspan="2">Stats for this page</th></thead>
