@@ -1,10 +1,26 @@
 <div class="grid_12">
 <script type="text/javascript">
+function toggleBatchActions()
+{
+  if ( $('input:checked.batch').length > 0 ) {
+    $('#batch-actions :input').attr('disabled', false);
+  } else {
+    $('#batch-actions :input').attr('disabled', true);
+  }
+}
 function checkAll(checkbox)
 {
   var parent = $(checkbox).parents('table').get(0);
   $('input:checkbox', parent).attr('checked', checkbox.checked);
+  toggleBatchActions();
 }
+
+$(document).ready(function(){
+  $('input:checkbox.batch').change(function(){
+    toggleBatchActions();
+  });
+  toggleBatchActions();
+});
 </script>
 
 <h1>Issues List <small>(<a href="<?php echo url_for('issues_new') ?>">Create new issue</a>)</small></h1>
@@ -41,6 +57,7 @@ function checkAll(checkbox)
       $project_id = $issue->project_id;
       $close_table = true;
 ?>
+<form action="<?php echo url_for('issues_collection') ?>" method="post">
 <table class="issues list">
   <caption><?php echo $issue->Project ?></caption>
   <thead>
@@ -60,7 +77,7 @@ function checkAll(checkbox)
         echo fmod($i,2) == 0 ? 'even' : 'odd';
         echo $issue['is_resolved'] ? ' resolved' : ' open';
       ?>">
-      <td><div style="width:20px;"><input type="checkbox" name="ids[]" value="<?php echo $issue['id'] ?>" /></div></td>
+      <td><div style="width:20px;"><input class="batch" type="checkbox" name="ids[]" value="<?php echo $issue['id'] ?>" /></div></td>
       <td><div style="width:30px;"><?php echo $issue['Category']['name'] ?></div></td>
       <td><div style="width:40px;"><?php echo link_to($issue['id'], 'issues_show', $issue) ?></div></td>
       <td><div style="width:450px;"><?php echo link_to($issue['title'], 'issues_show', $issue) ?></div></td>
@@ -71,6 +88,11 @@ function checkAll(checkbox)
 <?php } ?>
   </tbody>
 </table>
+
+<div id="batch-actions">
+  <input type="submit" value="<?php echo __('Edit') ?>" />
+</div>
+</form>
 
 <?php include_partial('contacts/pager', array('pager' => $pager)) ?>
 
