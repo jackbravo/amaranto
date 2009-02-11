@@ -1,4 +1,11 @@
 <div class="grid_12">
+<script type="text/javascript">
+function checkAll(checkbox)
+{
+  var parent = $(checkbox).parents('table').get(0);
+  $('input:checkbox', parent).attr('checked', checkbox.checked);
+}
+</script>
 
 <h1>Issues List <small>(<a href="<?php echo url_for('issues_new') ?>">Create new issue</a>)</small></h1>
 
@@ -38,13 +45,13 @@
   <caption><?php echo $issue->Project ?></caption>
   <thead>
     <tr>
+      <th><input type="checkbox" onclick="checkAll(this);" /></th>
       <th></th>
       <th>Issue</th>
       <th>Title</th>
       <th>Status</th>
       <th>Opened by</th>
       <th>Priority</th>
-      <th>Deadline</th>
     </tr>
   </thead>
   <tbody>
@@ -53,13 +60,13 @@
         echo fmod($i,2) == 0 ? 'even' : 'odd';
         echo $issue['is_resolved'] ? ' resolved' : ' open';
       ?>">
+      <td><div style="width:20px;"><input type="checkbox" name="ids[]" value="<?php echo $issue['id'] ?>" /></div></td>
       <td><div style="width:30px;"><?php echo $issue['Category']['name'] ?></div></td>
       <td><div style="width:40px;"><?php echo link_to($issue['id'], 'issues_show', $issue) ?></div></td>
       <td><div style="width:450px;"><?php echo link_to($issue['title'], 'issues_show', $issue) ?></div></td>
       <td><div style="width:80px"><?php echo $issue['Status']['name'] ?></div></td>
       <td><div style="width:80px"><?php echo $issue['OpenedBy']['username'] ?></div></td>
       <td><div style="width:105px"><?php echo $issue['priority_id'] . ". " . $issue['Priority']['name'] ?></div></td>
-      <td><div style="width:80px"><?php echo $issue->getdeadline() ?></div></td>
     </tr>
 <?php } ?>
   </tbody>
