@@ -38,4 +38,11 @@ class IssueTable extends Doctrine_Table
       ->addWhere('i.id = ?', $parameters['id'])
     ;
   }
+
+  public function findIds(array $ids)
+  {
+    return $this->createQuery('i')
+      ->whereIn('i.id', $ids)
+      ->execute();
+  }
 }

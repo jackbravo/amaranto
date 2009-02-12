@@ -116,7 +116,18 @@ class issuesActions extends sfActions
 
   public function executeBatchEdit(sfWebRequest $request)
   {
+    $this->issues = Doctrine::getTable('Issue')->findIds($request->getParameter('ids'));
     $this->form = new IssueBatchForm();
+  }
+
+  public function executeBatchUpdate(sfWebRequest $request)
+  {
+    $this->form = new IssueBatchForm();
+    $this->form->ids = $request->getParameter('ids');
+
+    $this->processForm($request, $this->form);
+
+    $this->setTemplate('batchEdit');
   }
 
   protected function processForm(sfWebRequest $request, sfForm $form)
@@ -133,7 +144,10 @@ class issuesActions extends sfActions
 
       if ($request->hasParameter('_save_and_add')) {
         $this->redirect('@issues_new');
-      } else {
+      } else if ($request->hasParameter('_save_batch')) {
+        $this->getUser()->setFlash('notice', 'The items were updated successfully.');
+        $this->redirect('@issues');
+      }else {
         $this->redirect('@issues_show?id='.$issue['id']);
       }
     }

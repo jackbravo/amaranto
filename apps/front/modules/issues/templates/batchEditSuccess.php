@@ -11,12 +11,20 @@
   });
 </script>
 
-<?php echo form_tag_for($form, '@issues') ?>
+<form action="<?php echo url_for('@issues_batchUpdate') ?>" method="post">
 
 <?php echo $form->renderGlobalErrors() ?>
 <?php echo $form->renderHiddenFields() ?>
 
 <div class="grid_8">
+  <p>
+  <strong>Bulk edit</strong><br/>
+  <?php foreach ($issues as $issue): ?>
+    <?php echo link_to($issue->id, 'issues_show', $issue) . ' ' . $issue ?><br/>
+    <input type="hidden" name="ids[]" value="<?php echo $issue->id ?>" />
+  <?php endforeach; ?>
+  </p>
+
   <?php echo $form['assigned_to']->renderRow() ?>
   <?php echo $form['priority_id']->renderRow() ?>
 
@@ -29,30 +37,15 @@
   <hr />
 
   <div class="item-row">
-    <input type="submit" value="Save" />
-    <?php if ($form->getObject()->isNew()): ?>
-      &nbsp;<input type="submit" value="Save and add" name="_save_and_add" />
-      &nbsp;<?php echo link_to('Cancel', 'issues') ?>
-    <?php else: ?>
-      <?php if (!$form->getObject()->isClosed()
-                && ($sf_user->getId() == $form->getObject()->opened_by
-                    || $sf_user->hasCredential('admin'))): ?>
-        &nbsp;<input id="save_and_close" type="submit" value="Save and close" name="_save_and_close" />
-      <?php endif; ?>
-      &nbsp;<?php echo link_to('Cancel', 'issues_show', $form->getObject()) ?>
-      &nbsp;<?php echo link_to('Delete', 'issues_delete', $form->getObject(), array('method' => 'delete', 'confirm' => 'Are you sure?')) ?>
-    <?php endif; ?>
+    <input type="submit" value="Save" name="_save_batch" />
+    &nbsp;<?php echo link_to('Cancel', 'issues') ?>
   </div>
 </div> <!-- /grid_8 -->
 
 <div class="grid_4">
   <div class="issue-id-box">
     <h1 class="issue-id">
-      <?php if ($form->getObject()->exists()): ?>
-        <?php echo link_to($form->getObject()->id, 'issues_show', $form->getObject()) ?>
-      <?php else: ?>
-        <a>_</a>
-      <?php endif; ?>
+      <a>*</a>
     </h1>
     <?php echo $form['status_id']->renderRow() ?>
     <?php echo $form['category_id']->renderRow() ?>
