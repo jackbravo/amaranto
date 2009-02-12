@@ -114,6 +114,11 @@ class issuesActions extends sfActions
     }
   }
 
+  public function executeBatchEdit(sfWebRequest $request)
+  {
+    $this->form = new IssueBatchForm();
+  }
+
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()));
