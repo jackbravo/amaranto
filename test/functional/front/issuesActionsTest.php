@@ -21,7 +21,7 @@ $b->
 
   with('response')->begin()->
     isStatusCode(200)->
-    checkElement('h1', 'Issues List', array('position' => 1))->
+    checkElement('h1', '/Issues List/', array('position' => 1))->
   end()
 ;
 
@@ -35,7 +35,7 @@ $issue2 = array(
 );
 
 $b->info('create new issue')
-  ->click('New')
+  ->click('Create new issue')
   ->click('Save', array('issue' => $issue1))
   ->with('form')->hasErrors(false)
   ->isRedirected()
