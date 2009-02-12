@@ -28,7 +28,7 @@
   <?php echo $form['assigned_to']->renderRow() ?>
   <?php echo $form['priority_id']->renderRow() ?>
 
-  <?php echo $form['Activity']['body']->renderRow() ?>
+  <?php echo $form['body']->renderRow() ?>
 
   <?php if (!$form->getObject()->isNew()): ?>
     <hr />

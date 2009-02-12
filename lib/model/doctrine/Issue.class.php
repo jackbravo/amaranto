@@ -5,6 +5,8 @@
  */
 class Issue extends BaseIssue
 {
+  public $snapshot;
+
   public function isClosed()
   {
     return $this->is_closed;
@@ -72,6 +74,26 @@ class Issue extends BaseIssue
       $owner = Doctrine::getTable('Project')->getOwner($this->project_id);
     }
     return ($owner !== false) ? $owner : null;
+  }
+
+  public function takeSnapshot()
+  {
+    $this->snapshot = $this->toArray(true);
+  }
+
+  /**
+   * pre: take snapshot must be called before this method
+   */
+  public function addActivityNote($note)
+  {
+    $activity = new IssueActivity();
+    $activity->body = $note;
+    $activity->setIssueAndChanges($this, $this->snapshot);
+
+    if (!$this->hasReference('Activities')) {
+      $this->Activities = new Doctrine_Collection('IssueActivity');
+    }
+    $this->Activities->add($activity);
   }
 
   public function preInsert($event)

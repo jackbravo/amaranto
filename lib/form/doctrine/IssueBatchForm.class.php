@@ -37,12 +37,9 @@ class IssueBatchForm extends IssueForm
     {
       $issue = Doctrine::getTable('Issue')->getForShow(array('id' => $id));
 
-      $old_data = $issue->toArray(true);
+      $issue->takeSnapshot();
       $issue->fromArray($values);
-
-      $activity = new IssueActivity();
-      $activity->fromArray($this->embeddedForms['Activity']->getValues());
-      $activity->setIssueAndChanges($issue, $old_data);
+      $issue->addActivityNote($this->getValue('body'));
 
       $issues->add($issue);
     }

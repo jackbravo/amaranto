@@ -20,7 +20,6 @@ class IssueActivityForm extends BaseIssueActivityForm
       'body' => 'Notes',
     ));
 
-    unset($this['issue_id']); # this is set when saving the Issue
     unset($this['created_at'], $this['created_by']);
     unset($this['verb'], $this['changes']);
   }

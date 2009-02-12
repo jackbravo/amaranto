@@ -38,6 +38,13 @@ class IssueForm extends BaseIssueForm
       'title' => 'Set a one line description of the problem',
     ));
 
+    $this->widgetSchema['body'] = new sfWidgetFormTextarea(array(), array(
+      'cols' => '50', 'rows' => '8',
+    ));
+    $this->validatorSchema['body'] = new sfValidatorString(array(
+      'max_length' => 2147483647, 'required' => false,
+    ));
+
     $this->widgetSchema->setLabels(array(
       'project_id' => 'Project',
       'component_id' => 'Component',
@@ -46,9 +53,8 @@ class IssueForm extends BaseIssueForm
       'priority_id' => 'Priority',
       'milestone_id' => 'Milestone',
       'curr_estimate' => 'Estimate',
+      'body' => 'Notes',
     ));
-
-    $this->embedForm('Activity', new IssueActivityForm());
 
     unset($this['opened_at'], $this['opened_by']);
     unset($this['resolved_at'], $this['resolved_by'], $this['is_resolved']);
@@ -58,11 +64,9 @@ class IssueForm extends BaseIssueForm
 
   public function updateObject($values = null)
   {
-    $old_data = $this->getObject()->toArray(true);
+    $this->getObject()->takeSnapshot();
     $issue = parent::updateObject($values);
-
-    $activity = $this->embeddedForms['Activity']->getObject();
-    $activity->setIssueAndChanges($issue, $old_data);
+    $this->getObject()->addActivityNote($this->getValue('body'));
 
     return $issue;
   }
