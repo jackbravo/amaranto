@@ -57,7 +57,7 @@ $(document).ready(function(){
       $project_id = $issue->project_id;
       $close_table = true;
 ?>
-<form action="<?php echo url_for('issues_collection') ?>" method="post">
+<form action="<?php echo url_for('issues_batch') ?>" method="post">
 <table class="issues list">
   <caption><?php echo $issue->Project ?></caption>
   <thead>
@@ -90,7 +90,7 @@ $(document).ready(function(){
 </table>
 
 <div id="batch-actions">
-  <input type="submit" value="<?php echo __('Edit') ?>" />
+  <input type="submit" value="<?php echo __('Edit') ?>" name="_edit" />
 </div>
 </form>
 

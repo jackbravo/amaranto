@@ -86,6 +86,34 @@ class issuesActions extends sfActions
     $this->redirect('@issues');
   }
 
+  public function executeBatch(sfWebRequest $request)
+  {
+    if (!$ids = $request->getParameter('ids'))
+    {
+      $this->getUser()->setFlash('error', 'You must at least select one item.');
+
+      $this->redirect('@issues');
+    }
+
+    $validator = new sfValidatorDoctrineChoiceMany(array('model' => 'Issue'));
+    try
+    {
+      // validate ids
+      $ids = $validator->clean($ids);
+
+      // execute batch
+      if ($request->hasParameter('_edit'))
+      {
+        $this->forward('issues', 'batchEdit');
+      }
+    }
+    catch (sfValidatorError $e)
+    {
+      $this->getUser()->setFlash('error', 'Some of the selected items where not valid.');
+      $this->redirect('@issues');
+    }
+  }
+
   protected function processForm(sfWebRequest $request, sfForm $form)
   {
     $form->bind($request->getParameter($form->getName()));
