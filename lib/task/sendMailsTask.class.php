@@ -42,7 +42,7 @@ EOF;
     {
       try
       {
-        $mail = new Zend_Mail();
+        $mail = new Zend_Mail('utf-8');
         $mail->setSubject($item['subject']);
         $mail->setBodyText($item['body']);
         array_map(array($mail, 'addTo'), explode(',', $item['recipients']));
