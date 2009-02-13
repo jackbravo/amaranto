@@ -49,7 +49,9 @@ class issuesActions extends sfActions
 
   public function executeNew(sfWebRequest $request)
   {
-    $this->form = new IssueForm();
+    $issue = new Issue();
+    $issue->fromArray($this->getLastCreatedIssue());
+    $this->form = new IssueForm($issue);
   }
 
   public function executeCreate(sfWebRequest $request)
@@ -135,7 +137,12 @@ class issuesActions extends sfActions
     $form->bind($request->getParameter($form->getName()));
     if ($form->isValid())
     {
-      $this->getUser()->setFlash('notice', $form->getObject()->isNew() ? 'The item was created successfully.' : 'The item was updated successfully.');
+      if ($form->getObject()->isNew()) {
+        $this->saveLastCreated($form->getValues());
+        $this->getUser()->setFlash('notice', 'The item was created successfully.');
+      } else {
+        $this->getUser()->setFlash('notice', 'The item was updated successfully.');
+      }
 
       if ($request->hasParameter('_save_and_close')) {
         $form->getObject()->setIsClosed(true);
@@ -155,6 +162,21 @@ class issuesActions extends sfActions
     {
       $this->getUser()->setFlash('error', 'The item has not been saved due to some errors.');
     }
+  }
+
+  protected function saveLastCreated($issue)
+  {
+    $persist = array('category_id', 'project_id', 'component_id', 'milestone_id');
+    $data = array();
+    foreach ($persist as $key) {
+      $data[$key] = $issue[$key];
+    }
+    $this->getUser()->setAttribute('last_created_issue', $data);
+  }
+
+  public function getLastCreatedIssue()
+  {
+    return $this->getUser()->getAttribute('last_created_issue', array());
   }
 
   protected function getPager($request, $filter)
