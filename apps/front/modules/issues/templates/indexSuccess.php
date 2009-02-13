@@ -43,15 +43,21 @@ $(document).ready(function(){
 <?php
   $project_id = false;
   $total_no_estimate = 0;
-  $total_estimate = 0;
+  $total_remaining = 0;
+  $total_estimated = 0;
   $total_elapsed = 0;
   foreach ($pager->getResults() as $i => $issue) {
     if ($issue->curr_estimate) {
-      $total_estimate += $issue->curr_estimate;
+      $remaining = $issue->curr_estimate - $issue->elapsed;
+      $remaining = $remaining < 0 ? 0 : $remaining;
+      $total_remaining += $remaining;
+      $total_estimated += $issue->curr_estimate;
       $total_elapsed += $issue->elapsed;
     } else {
+      $remaining = '-';
       $total_no_estimate++;
     }
+
     if ($project_id !== $issue->project_id) {
       echo "</tbody></table>";
       $project_id = $issue->project_id;
@@ -69,6 +75,7 @@ $(document).ready(function(){
       <th>Status</th>
       <th>Opened by</th>
       <th>Priority</th>
+      <th title="Remaining hours">T</th>
     </tr>
   </thead>
   <tbody>
@@ -84,6 +91,7 @@ $(document).ready(function(){
       <td><div style="width:80px"><?php echo $issue['Status']['name'] ?></div></td>
       <td><div style="width:80px"><?php echo $issue['OpenedBy']['username'] ?></div></td>
       <td><div style="width:105px"><?php echo $issue['priority_id'] . ". " . $issue['Priority']['name'] ?></div></td>
+      <td><div style="width:20px" title="Remaining hours"><?php echo $remaining ?></div></td>
     </tr>
 <?php } ?>
   </tbody>
@@ -102,18 +110,18 @@ $(document).ready(function(){
   <thead><tr><th colspan="2">Stats for this page</th></thead>
   <tbody>
     <tr>
-      <td>Total estimated time remaining</td>
-      <td><?php echo $total_estimate - $total_elapsed ?></td>
+      <td>Estimated time remaining</td>
+      <td><?php echo $total_remaining ?></td>
     </tr>
     <tr>
-      <td>Total elapsed time</td>
+      <td>Elapsed time</td>
       <td><?php echo $total_elapsed ?></td>
     </tr>
   </tbody>
   <tbody class="small">
     <tr>
-      <td><strong>Total</strong> estimtated time</td>
-      <td><?php echo $total_estimate ?></td>
+      <td>Total estimated time</td>
+      <td><?php echo $total_estimated ?></td>
     </tr>
   </tbody>
   <tbody class="small">
