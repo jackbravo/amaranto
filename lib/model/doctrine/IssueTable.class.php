@@ -13,15 +13,11 @@ class IssueTable extends Doctrine_Table
   {
     $alias = $q->getRootAlias();
 
-    return $q->leftJoin("$alias.OpenedBy ob")
+    return $q
       ->leftJoin("$alias.Status s")
       ->leftJoin("$alias.Priority p")
       ->leftJoin("$alias.Category c")
       ->leftJoin("$alias.OpenedBy o")
-      ->addOrderBy("$alias.project_id")
-      ->addOrderBy("$alias.status_id")
-      ->addOrderBy("$alias.priority_id")
-      ->addOrderBy("$alias.id")
     ;
   }
 
@@ -44,5 +40,19 @@ class IssueTable extends Doctrine_Table
     return $this->createQuery('i')
       ->whereIn('i.id', $ids)
       ->execute();
+  }
+
+  public function findIdsQuery(array $ids)
+  {
+    return $this->createQuery('i')
+      ->whereIn('i.id', $ids)
+    ;
+  }
+
+  public function findNullQuery()
+  {
+    return $this->createQuery()
+      ->addWhere('false')
+    ;
   }
 }

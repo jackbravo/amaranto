@@ -42,6 +42,36 @@ class issuesActions extends sfActions
     $this->setTemplate('index');
   }
 
+  public function executeSearch(sfWebRequest $request)
+  {
+    $q = $request->getParameter('q');
+
+    include('/home/jackbravo/work/sphinx-0.9.9-rc1/api/sphinxapi.php');
+    $s = new SphinxClient();
+    $result = $s->query($q);
+
+    if ($result['total'] > 0) {
+      $query = Doctrine::getTable('Issue')
+        ->findIdsQuery(array_keys($result['matches']));
+    } else {
+      $query = Doctrine::getTable('Issue')->findNullQuery();
+    }
+
+    $pager = new sfDoctrinePager('Issue',
+      sfConfig::get('app_max_issues_on_index')
+    );
+    $pager->setQuery($query);
+    $pager->setPage($request->getParameter('page', 1));
+    $pager->setTableMethod('getListQuery');
+    $pager->init();
+
+    $this->filter = $this->getFilter($request);
+    $this->pager = $pager;
+    $this->order_by_project = false;
+
+    $this->setTemplate('index');
+  }
+
   public function executeShow(sfWebRequest $request)
   {
     $this->issue = $this->getRoute()->getObject();
