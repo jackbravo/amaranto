@@ -5,19 +5,19 @@
  */
 abstract class BaseEmail extends sfDoctrineRecord
 {
-  public function setTableDefinition()
-  {
-    $this->setTableName('email');
-    $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
-    $this->hasColumn('entity_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('email', 'string', 50, array('type' => 'string', 'email' => true, 'length' => '50'));
-    $this->hasColumn('type', 'integer', 2, array('type' => 'integer', 'length' => '2'));
-  }
+    public function setTableDefinition()
+    {
+        $this->setTableName('email');
+        $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
+        $this->hasColumn('entity_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
+        $this->hasColumn('email', 'string', 50, array('type' => 'string', 'email' => true, 'length' => '50'));
+        $this->hasColumn('type', 'integer', 2, array('type' => 'integer', 'length' => '2'));
+    }
 
-  public function setUp()
-  {
-    $this->hasOne('Entity', array('local' => 'entity_id',
-                                  'foreign' => 'id',
-                                  'onDelete' => 'CASCADE'));
-  }
+    public function setUp()
+    {
+        $this->hasOne('Entity', array('local' => 'entity_id',
+                                      'foreign' => 'id',
+                                      'onDelete' => 'CASCADE'));
+    }
 }

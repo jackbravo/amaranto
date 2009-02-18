@@ -5,25 +5,25 @@
  */
 abstract class BaseIssueActivity extends sfDoctrineRecord
 {
-  public function setTableDefinition()
-  {
-    $this->setTableName('issue_activity');
-    $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
-    $this->hasColumn('issue_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('verb', 'string', 128, array('type' => 'string', 'length' => '128'));
-    $this->hasColumn('created_at', 'timestamp', null, array('type' => 'timestamp'));
-    $this->hasColumn('created_by', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('body', 'string', null, array('type' => 'string'));
-    $this->hasColumn('changes', 'string', null, array('type' => 'string'));
-  }
+    public function setTableDefinition()
+    {
+        $this->setTableName('issue_activity');
+        $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
+        $this->hasColumn('issue_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
+        $this->hasColumn('verb', 'string', 128, array('type' => 'string', 'length' => '128'));
+        $this->hasColumn('created_at', 'timestamp', null, array('type' => 'timestamp'));
+        $this->hasColumn('created_by', 'integer', 4, array('type' => 'integer', 'length' => '4'));
+        $this->hasColumn('body', 'string', null, array('type' => 'string'));
+        $this->hasColumn('changes', 'string', null, array('type' => 'string'));
+    }
 
-  public function setUp()
-  {
-    $this->hasOne('Issue', array('local' => 'issue_id',
-                                 'foreign' => 'id',
-                                 'onDelete' => 'CASCADE'));
+    public function setUp()
+    {
+        $this->hasOne('Issue', array('local' => 'issue_id',
+                                     'foreign' => 'id',
+                                     'onDelete' => 'CASCADE'));
 
-    $this->hasOne('sfGuardUser as CreatedBy', array('local' => 'created_by',
-                                                    'foreign' => 'id'));
-  }
+        $this->hasOne('sfGuardUser as CreatedBy', array('local' => 'created_by',
+                                                        'foreign' => 'id'));
+    }
 }

@@ -5,10 +5,10 @@
  */
 abstract class BaseCompany extends Entity
 {
-  public function setUp()
-  {
-    parent::setUp();
+    public function setUp()
+    {
+        parent::setUp();
     $this->hasMany('Person as People', array('local' => 'id',
-                                             'foreign' => 'parent_id'));
-  }
+                                                 'foreign' => 'parent_id'));
+    }
 }

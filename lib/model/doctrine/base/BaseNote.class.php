@@ -5,28 +5,28 @@
  */
 abstract class BaseNote extends sfDoctrineRecord
 {
-  public function setTableDefinition()
-  {
-    $this->setTableName('note');
-    $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
-    $this->hasColumn('entity_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('project_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('body', 'string', null, array('type' => 'string'));
-  }
+    public function setTableDefinition()
+    {
+        $this->setTableName('note');
+        $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
+        $this->hasColumn('entity_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
+        $this->hasColumn('project_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
+        $this->hasColumn('body', 'string', null, array('type' => 'string'));
+    }
 
-  public function setUp()
-  {
-    $this->hasOne('Entity', array('local' => 'entity_id',
-                                  'foreign' => 'id',
-                                  'onDelete' => 'CASCADE'));
+    public function setUp()
+    {
+        $this->hasOne('Entity', array('local' => 'entity_id',
+                                      'foreign' => 'id',
+                                      'onDelete' => 'CASCADE'));
 
-    $this->hasOne('Project', array('local' => 'project_id',
-                                   'foreign' => 'id',
-                                   'onDelete' => 'CASCADE'));
+        $this->hasOne('Project', array('local' => 'project_id',
+                                       'foreign' => 'id',
+                                       'onDelete' => 'CASCADE'));
 
-    $timestampable0 = new Doctrine_Template_Timestampable();
-    $userstampable0 = new Userstampable();
-    $this->actAs($timestampable0);
-    $this->actAs($userstampable0);
-  }
+        $timestampable0 = new Doctrine_Template_Timestampable();
+        $userstampable0 = new Userstampable();
+        $this->actAs($timestampable0);
+        $this->actAs($userstampable0);
+    }
 }

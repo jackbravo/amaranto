@@ -5,22 +5,22 @@
  */
 abstract class BaseMilestone extends sfDoctrineRecord
 {
-  public function setTableDefinition()
-  {
-    $this->setTableName('milestone');
-    $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
-    $this->hasColumn('name', 'string', 64, array('type' => 'string', 'length' => '64'));
-    $this->hasColumn('project_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
-    $this->hasColumn('date', 'timestamp', null, array('type' => 'timestamp'));
-  }
+    public function setTableDefinition()
+    {
+        $this->setTableName('milestone');
+        $this->hasColumn('id', 'integer', 4, array('type' => 'integer', 'primary' => true, 'autoincrement' => true, 'length' => '4'));
+        $this->hasColumn('name', 'string', 64, array('type' => 'string', 'length' => '64'));
+        $this->hasColumn('project_id', 'integer', 4, array('type' => 'integer', 'length' => '4'));
+        $this->hasColumn('date', 'timestamp', null, array('type' => 'timestamp'));
+    }
 
-  public function setUp()
-  {
-    $this->hasOne('Project', array('local' => 'project_id',
-                                   'foreign' => 'id',
-                                   'onDelete' => 'CASCADE'));
+    public function setUp()
+    {
+        $this->hasOne('Project', array('local' => 'project_id',
+                                       'foreign' => 'id',
+                                       'onDelete' => 'CASCADE'));
 
-    $this->hasMany('Issue as Issues', array('local' => 'id',
-                                            'foreign' => 'milestone_id'));
-  }
+        $this->hasMany('Issue as Issues', array('local' => 'id',
+                                                'foreign' => 'milestone_id'));
+    }
 }
