@@ -51,6 +51,11 @@ $('#ajax-loader').ajaxStart(function(){
 
     <ul id="user-tools" class="top-right">
       <li><?php echo link_to(__('Logout'), '@sf_guard_signout') ?></li>
+      <li>
+        <form id="search-box" action="<?php echo url_for('issues_search') ?>" method="get">
+          <input type="text" name="q" />
+        </form>
+      </li>
     </ul>
   <?php endif; ?>
 

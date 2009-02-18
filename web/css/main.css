@@ -363,3 +363,9 @@ textarea#issue_body {
   padding: 3px;
 }
 
+#search-box input {
+  margin: 5px 2px;
+  border: none;
+  width: 150px;
+}
+
