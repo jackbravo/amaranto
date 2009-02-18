@@ -23,6 +23,9 @@ $(document).ready(function(){
 });
 </script>
 
+<?php if (isset($from_search)): ?>
+<h1>Search: "<?php echo $from_search ?>" <small>(<a href="<?php echo url_for('issues_new') ?>">Create new issue</a>)</small></h1>
+<?php else: ?>
 <h1>Issues List <small>(<a href="<?php echo url_for('issues_new') ?>">Create new issue</a>)</small></h1>
 
 <div id="filters">
@@ -39,9 +42,11 @@ $(document).ready(function(){
   &nbsp;<?php echo link_to('Reset', '@issues_filter', array('query_string' => '_reset', 'method' => 'post')) ?>
 </form>
 </div>
+<?php endif; ?>
 
 <?php
   $project_id = false;
+  $first_row = true;
   $total_no_estimate = 0;
   $total_remaining = 0;
   $total_estimated = 0;
@@ -58,14 +63,15 @@ $(document).ready(function(){
       $total_no_estimate++;
     }
 
-    if ($project_id !== $issue->project_id) {
+    if ($first_row || (($project_id !== $issue->project_id) && !isset($from_search))) {
       echo "</tbody></table>";
       $project_id = $issue->project_id;
       $close_table = true;
+      $first_row = false;
 ?>
 <form action="<?php echo url_for('issues_batch') ?>" method="post">
 <table class="issues list">
-  <caption><?php echo $issue->Project ?></caption>
+  <caption><?php if(!isset($from_search)) echo $issue->Project ?></caption>
   <thead>
     <tr>
       <th><input type="checkbox" onclick="checkAll(this);" /></th>

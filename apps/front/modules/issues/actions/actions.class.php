@@ -67,7 +67,7 @@ class issuesActions extends sfActions
 
     $this->filter = $this->getFilter($request);
     $this->pager = $pager;
-    $this->order_by_project = false;
+    $this->from_search = $q;
 
     $this->setTemplate('index');
   }
