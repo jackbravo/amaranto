@@ -1,0 +1,86 @@
+# Minimal Sphinx configuration sample (clean, simple, functional)
+
+source issues
+{
+	type            = mysql
+	sql_host				= localhost
+	sql_user				= root
+	sql_pass				=
+	sql_db					= cms
+	sql_port				= 3306	# optional, default is 3306
+
+	sql_query				= \
+		SELECT id, title, category_id, project_id, assigned_to, is_closed, \
+      UNIX_TIMESTAMP(opened_at) AS opened_at \
+		FROM issue
+
+	sql_attr_uint			= category_id
+	sql_attr_uint			= project_id
+	sql_attr_uint			= assigned_to
+	sql_attr_bool			= is_closed
+	sql_attr_timestamp  = opened_at
+
+	# document info query, ONLY for CLI search (ie. testing and debugging)
+	sql_query_info		= SELECT id, title, project_id, assigned_to, opened_at \
+    FROM issue WHERE id=$id
+}
+
+source activity
+{
+	type            = mysql
+	sql_host				= localhost
+	sql_user				= root
+	sql_pass				=
+	sql_db					= cms
+
+	sql_query				= \
+		SELECT issue_id, id AS activity_id, body, \
+      UNIX_TIMESTAMP(created_at) AS activity_created_at \
+		FROM issue_activity
+
+	sql_attr_uint			= activity_id
+	sql_attr_timestamp  = activity_created_at
+
+	# document info query, ONLY for CLI search (ie. testing and debugging)
+	sql_query_info		= SELECT issue_id, id, body, created_at \
+    FROM issue_activity WHERE issue_id=$id
+}
+
+index issues1
+{
+	source	  	= issues
+	path		  	= /var/data/sphinx_cms/issues1
+	docinfo			= extern
+	morphology  = libstemmer_spanish
+	charset_type  = utf-8
+	charset_table	= 0..9, A..Z->a..z, _, a..z, U+410..U+42F->U+430..U+44F, U+430..U+44F
+}
+
+index activity1
+{
+	source	  	= activity
+	path		  	= /var/data/sphinx_cms/activity1
+	docinfo			= extern
+	morphology  = libstemmer_spanish
+	charset_type  = utf-8
+	charset_table	= 0..9, A..Z->a..z, _, a..z, U+410..U+42F->U+430..U+44F, U+430..U+44F
+}
+
+indexer
+{
+	# optional, default is 32M, max is 2047M, recommended is 256M to 1024M
+	mem_limit			= 32M
+}
+
+searchd
+{
+	# optional, default is 0.0.0.0:3312 (listen on all interfaces, port 3312)
+	listen				= 127.0.0.1
+	log 					= /var/log/sphinx-searchd.log
+	query_log			= /var/log/sphinx-query.log
+	client_timeout  = 300
+	max_children	= 30
+	pid_file			= /var/log/searchd.pid
+	seamless_rotate	= 1
+	crash_log_path	= /var/log/sphinx-crash.log
+}
