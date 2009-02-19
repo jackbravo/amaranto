@@ -38,6 +38,17 @@
 
   <div class="item-row">
     <input type="submit" value="Save" name="_save_batch" />
+    <?php
+      $are_closed = true;
+      $opened_by_me = true;
+      foreach ($issues as $issue) {
+        if (!$issue->is_closed) $are_closed = false;
+        if ($sf_user->getId() != $issue->opened_by) $opened_by_me = false;
+      }
+      if (!$are_closed && ($opened_by_me || $sf_user->hasCredential('admin'))) {
+        echo '<input id="save_and_close" type="submit" value="Save and close" name="_save_and_close_batch" />';
+      }
+    ?>
     &nbsp;<?php echo link_to('Cancel', 'issues') ?>
   </div>
 </div> <!-- /grid_8 -->

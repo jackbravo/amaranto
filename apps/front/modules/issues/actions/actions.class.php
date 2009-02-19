@@ -177,11 +177,14 @@ class issuesActions extends sfActions
       if ($request->hasParameter('_save_and_close')) {
         $form->getObject()->setIsClosed(true);
       }
+      if ($request->hasParameter('_save_and_close_batch')) {
+        $form->close_issues = true;
+      }
       $issue = $form->save();
 
       if ($request->hasParameter('_save_and_add')) {
         $this->redirect('@issues_new');
-      } else if ($request->hasParameter('_save_batch')) {
+      } else if ($request->hasParameter('_save_batch') || $request->hasParameter('_save_and_close_batch')) {
         $this->getUser()->setFlash('notice', 'The items were updated successfully.');
         $this->redirect('@issues');
       }else {

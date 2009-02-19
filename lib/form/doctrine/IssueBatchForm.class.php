@@ -10,6 +10,7 @@
 class IssueBatchForm extends IssueForm
 {
   public $ids = array();
+  public $close_issues = false;
 
   public function configure()
   {
@@ -58,6 +59,8 @@ class IssueBatchForm extends IssueForm
         $changed_values[$key] = $value;
       }
     }
+
+    if ($this->close_issues) $changed_values['is_closed'] = true;
 
     return $changed_values;
   }
