@@ -51,27 +51,27 @@ $(document).ready(function(){
   $total_remaining = 0;
   $total_estimated = 0;
   $total_elapsed = 0;
-  foreach ($pager->getResults() as $i => $issue) {
-    if ($issue->curr_estimate) {
-      $remaining = $issue->curr_estimate - $issue->elapsed;
+  foreach ($pager->getResults('array') as $i => $issue) {
+    if ($issue['curr_estimate']) {
+      $remaining = $issue['curr_estimate'] - $issue['elapsed'];
       $remaining = $remaining < 0 ? 0 : $remaining;
       $total_remaining += $remaining;
-      $total_estimated += $issue->curr_estimate;
-      $total_elapsed += $issue->elapsed;
+      $total_estimated += $issue['curr_estimate'];
+      $total_elapsed += $issue['elapsed'];
     } else {
       $remaining = '-';
       $total_no_estimate++;
     }
 
-    if ($first_row || (($project_id !== $issue->project_id) && !isset($from_search))) {
+    if ($first_row || (($project_id !== $issue['project_id']) && !isset($from_search))) {
       echo "</tbody></table>";
-      $project_id = $issue->project_id;
+      $project_id = $issue['project_id'];
       $close_table = true;
       $first_row = false;
 ?>
 <form action="<?php echo url_for('issues_batch') ?>" method="post">
 <table class="issues list">
-  <caption><?php if(!isset($from_search)) echo $issue->Project ?></caption>
+  <caption><?php if(!isset($from_search)) echo $issue['Project']['name'] ?></caption>
   <thead>
     <tr>
       <th><input type="checkbox" onclick="checkAll(this);" /></th>
@@ -92,8 +92,8 @@ $(document).ready(function(){
       ?>">
       <td><div style="width:20px;"><input class="batch" type="checkbox" name="ids[]" value="<?php echo $issue['id'] ?>" /></div></td>
       <td><div style="width:30px;"><?php echo $issue['Category']['name'] ?></div></td>
-      <td><div style="width:40px;"><?php echo link_to($issue['id'], 'issues_show', $issue) ?></div></td>
-      <td><div style="width:450px;"><?php echo link_to($issue['title'], 'issues_show', $issue) ?></div></td>
+      <td><div style="width:40px;"><?php echo link_to($issue['id'], 'issues_show', array('id' => $issue['id'])) ?></div></td>
+      <td><div style="width:450px;"><?php echo link_to($issue['title'], 'issues_show', array('id' => $issue['id'])) ?></div></td>
       <td><div style="width:80px"><?php echo $issue['Status']['name'] ?></div></td>
       <td><div style="width:80px"><?php echo $issue['OpenedBy']['username'] ?></div></td>
       <td><div style="width:105px"><?php echo $issue['priority_id'] . ". " . $issue['Priority']['name'] ?></div></td>

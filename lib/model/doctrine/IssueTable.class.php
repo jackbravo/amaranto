@@ -18,6 +18,7 @@ class IssueTable extends Doctrine_Table
       ->leftJoin("$alias.Priority p")
       ->leftJoin("$alias.Category c")
       ->leftJoin("$alias.OpenedBy o")
+      ->leftJoin("$alias.Project pr")
       ->addOrderBy("$alias.project_id")
       ->addOrderBy("$alias.status_id")
       ->addOrderBy("$alias.priority_id")
