@@ -16,9 +16,15 @@
   <email>nicolas.perriault@symfony-project.com</email>
   <active>yes</active>
  </developer>
- <date>2008-11-01</date>
+ <developer>
+  <name>Kris Wallsmith</name>
+  <user>Kris.Wallsmith</user>
+  <email>kris.wallsmith@symfony-project.com</email>
+  <active>yes</active>
+ </developer>
+ <date>2009-03-12</date>
  <version>
-   <release>1.0.6</release>
+   <release>1.0.10</release>
    <api>1.0.0</api>
  </version>
  <stability>
@@ -47,11 +53,14 @@
          <file role="data" name="sfValidatorSchemaTimeInterval.class.php" />
        </dir>
        <dir name="widget">
+         <file role="data" name="sfWidgetFormDoctrineChoiceGrouped.class.php" />
          <file role="data" name="sfWidgetFormJQueryAutocompleter.class.php" />
          <file role="data" name="sfWidgetFormJQueryDate.class.php" />
+         <file role="data" name="sfWidgetFormPropelChoiceGrouped.class.php" />
          <file role="data" name="sfWidgetFormPropelJQueryAutocompleter.class.php" />
          <file role="data" name="sfWidgetFormReCaptcha.class.php" />
          <file role="data" name="sfWidgetFormSelectDoubleList.class.php" />
+         <file role="data" name="sfWidgetFormSelectUSState.class.php" />
          <file role="data" name="sfWidgetFormTextareaTinyMCE.class.php" />
        </dir>
      </dir>
@@ -110,6 +119,92 @@
  </phprelease>
 
  <changelog>
+   <release>
+     <version>
+       <release>1.0.11</release>
+       <api>1.0.0</api>
+     </version>
+     <stability>
+       <release>stable</release>
+       <api>stable</api>
+     </stability>
+     <license uri="http://www.symfony-project.com/license">MIT license</license>
+     <date><!-- forthcoming --></date>
+     <license>MIT</license>
+     <notes>
+       * Kris.Wallsmith: added sfWidgetFormSelectUSState
+       * Kris.Wallsmith: added sfWidgetFormPropelChoiceGrouped
+       * Kris.Wallsmith: added sfWidgetFormDoctrineChoiceGrouped
+     </notes>
+   </release>
+   <release>
+     <version>
+       <release>1.0.10</release>
+       <api>1.0.0</api>
+     </version>
+     <stability>
+       <release>stable</release>
+       <api>stable</api>
+     </stability>
+     <license uri="http://www.symfony-project.com/license">MIT license</license>
+     <date>2009-03-12</date>
+     <license>MIT</license>
+     <notes>
+       * fabien: fixed typo
+     </notes>
+   </release>
+   <release>
+     <version>
+       <release>1.0.9</release>
+       <api>1.0.0</api>
+     </version>
+     <stability>
+       <release>stable</release>
+       <api>stable</api>
+     </stability>
+     <license uri="http://www.symfony-project.com/license">MIT license</license>
+     <date>2009-02-27</date>
+     <license>MIT</license>
+     <notes>
+       * fabien: fixed typo
+     </notes>
+   </release>
+   <release>
+     <version>
+       <release>1.0.8</release>
+       <api>1.0.0</api>
+     </version>
+     <stability>
+       <release>stable</release>
+       <api>stable</api>
+     </stability>
+     <license uri="http://www.symfony-project.com/license">MIT license</license>
+     <date>2009-02-27</date>
+     <license>MIT</license>
+     <notes>
+       * fabien: forced date format returned by the date picker (based on a patch from xdade - #5619)
+       * fabien: added JS date selection validity check (based on a patch from h0nIg - #4693)
+       * fabien: fixed date picker on IE7 (#4751)
+       * fabian: fixed javascript function names (#5261)
+       * fabien: replaced $() with jQuery() (#4999)
+     </notes>
+   </release>
+   <release>
+     <version>
+       <release>1.0.7</release>
+       <api>1.0.0</api>
+     </version>
+     <stability>
+       <release>stable</release>
+       <api>stable</api>
+     </stability>
+     <license uri="http://www.symfony-project.com/license">MIT license</license>
+     <date>2009-01-11</date>
+     <license>MIT</license>
+     <notes>
+       * fixed sfFormExtraPlugin Autocomplete getStyleSheets returns incorrect files
+     </notes>
+   </release>
    <release>
      <version>
        <release>1.0.5</release>

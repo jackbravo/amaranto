@@ -16,7 +16,7 @@
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWidgetFormJQueryDate.class.php 12875 2008-11-10 12:22:33Z fabien $
+ * @version    SVN: $Id: sfWidgetFormJQueryDate.class.php 16262 2009-03-12 14:02:33Z fabien $
  */
 class sfWidgetFormJQueryDate extends sfWidgetFormDate
 {
@@ -65,45 +65,68 @@ class sfWidgetFormJQueryDate extends sfWidgetFormDate
     $image = '';
     if (false !== $this->getOption('image'))
     {
-      $image = sprintf(', buttonImage: %s, buttonImageOnly: true', $this->getOption('image'));
+      $image = sprintf(', buttonImage: "%s", buttonImageOnly: true', $this->getOption('image'));
     }
 
     return parent::render($name, $value, $attributes, $errors).
            $this->renderTag('input', array('type' => 'hidden', 'size' => 10, 'id' => $id = $this->generateId($name).'_jquery_control', 'disabled' => 'disabled')).
            sprintf(<<<EOF
 <script type="text/javascript">
-  function %s_read_linked()
+  function wfd_%s_read_linked()
   {
-    \$("#%s").val(\$("#%s").val() + "/" + \$("#%s").val() + "/" + \$("#%s").val());
+    jQuery("#%s").val(jQuery("#%s").val() + "-" + jQuery("#%s").val() + "-" + jQuery("#%s").val());
 
     return {};
   }
 
-  function %s_update_linked(date)
+  function wfd_%s_update_linked(date)
   {
-    \$("#%s").val(date.substring(3, 5));
-    \$("#%s").val(date.substring(0, 2));
-    \$("#%s").val(date.substring(6, 10));
+    jQuery("#%s").val(date.substring(0, 4));
+    jQuery("#%s").val(date.substring(5, 7));
+    jQuery("#%s").val(date.substring(8));
   }
 
-  \$("#%s").datepicker(\$.extend({}, {
-    minDate:    new Date(%s, 1 - 1, 1),
-    maxDate:    new Date(%s, 12 - 1, 31),
-    beforeShow: %s_read_linked,
-    onSelect:   %s_update_linked,
-    showOn:     "both"
-    %s
-  }, \$.datepicker.regional["%s"], %s));
+  function wfd_%s_check_linked_days()
+  {
+    var daysInMonth = 32 - new Date(jQuery("#%s").val(), jQuery("#%s").val() - 1, 32).getDate();
+    jQuery("#%s option").attr("disabled", "");
+    jQuery("#%s option:gt(" + (%s) +")").attr("disabled", "disabled");
+
+    if (jQuery("#%s").val() > daysInMonth)
+    {
+      jQuery("#%s").val(daysInMonth);
+    }
+  }
+
+  jQuery(document).ready(function() {
+    jQuery("#%s").datepicker(jQuery.extend({}, {
+      minDate:    new Date(%s, 1 - 1, 1),
+      maxDate:    new Date(%s, 12 - 1, 31),
+      beforeShow: wfd_%s_read_linked,
+      onSelect:   wfd_%s_update_linked,
+      showOn:     "button"
+      %s
+    }, jQuery.datepicker.regional["%s"], %s, {dateFormat: "yy-mm-dd"}));
+  });
+
+  jQuery("#%s, #%s, #%s").change(wfd_%s_check_linked_days);
 </script>
 EOF
       ,
       $prefix, $id,
-      $this->generateId($name.'[day]'), $this->generateId($name.'[month]'), $this->generateId($name.'[year]'),
+      $this->generateId($name.'[year]'), $this->generateId($name.'[month]'), $this->generateId($name.'[day]'),
       $prefix,
-      $this->generateId($name.'[day]'), $this->generateId($name.'[month]'), $this->generateId($name.'[year]'),
+      $this->generateId($name.'[year]'), $this->generateId($name.'[month]'), $this->generateId($name.'[day]'),
+      $prefix,
+      $this->generateId($name.'[year]'), $this->generateId($name.'[month]'),
+      $this->generateId($name.'[day]'), $this->generateId($name.'[day]'),
+      ($this->getOption('can_be_empty') ? 'daysInMonth' : 'daysInMonth - 1'),
+      $this->generateId($name.'[day]'), $this->generateId($name.'[day]'),
       $id,
       min($this->getOption('years')), max($this->getOption('years')),
-      $prefix, $prefix, $image, $this->getOption('culture'), $this->getOption('config')
+      $prefix, $prefix, $image, $this->getOption('culture'), $this->getOption('config'),
+      $this->generateId($name.'[day]'), $this->generateId($name.'[month]'), $this->generateId($name.'[year]'),
+      $prefix
     );
   }
 }

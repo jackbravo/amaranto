@@ -21,7 +21,7 @@
  * @package    symfony
  * @subpackage widget
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfWidgetFormJQueryAutocompleter.class.php 12412 2008-10-29 14:19:06Z fabien $
+ * @version    SVN: $Id: sfWidgetFormJQueryAutocompleter.class.php 15839 2009-02-27 05:40:57Z fabien $
  */
 class sfWidgetFormJQueryAutocompleter extends sfWidgetFormInput
 {
@@ -69,18 +69,20 @@ class sfWidgetFormJQueryAutocompleter extends sfWidgetFormInput
            parent::render('autocomplete_'.$name, $visibleValue, $attributes, $errors).
            sprintf(<<<EOF
 <script type="text/javascript">
-  \$("#%s")
-  .autocomplete('%s', \$.extend({}, {
-    dataType: 'json',
-    parse:    function(data) {
-      var parsed = [];
-      for (key in data) {
-        parsed[parsed.length] = { data: [ data[key], key ], value: data[key], result: data[key] };
+  jQuery(document).ready(function() {
+    jQuery("#%s")
+    .autocomplete('%s', jQuery.extend({}, {
+      dataType: 'json',
+      parse:    function(data) {
+        var parsed = [];
+        for (key in data) {
+          parsed[parsed.length] = { data: [ data[key], key ], value: data[key], result: data[key] };
+        }
+        return parsed;
       }
-      return parsed;
-    }
-  }, %s))
-  .result(function(event, data) { \$("#%s").val(data[1]); });
+    }, %s))
+    .result(function(event, data) { jQuery("#%s").val(data[1]); });
+  });
 </script>
 EOF
       ,
@@ -98,7 +100,7 @@ EOF
    */
   public function getStylesheets()
   {
-    return array('/sfFormExtraPlugin/css/jquery.autocompleter.css' => 'print', '/sfFormExtraPlugin/css/jquery.foo.css' => 'all');
+    return array('/sfFormExtraPlugin/css/jquery.autocompleter.css' => 'all');
   }
 
   /**
