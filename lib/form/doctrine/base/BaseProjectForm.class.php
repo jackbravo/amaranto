@@ -15,8 +15,8 @@ class BaseProjectForm extends BaseFormDoctrine
       'id'          => new sfWidgetFormInputHidden(),
       'name'        => new sfWidgetFormInput(),
       'description' => new sfWidgetFormTextarea(),
-      'client_id'   => new sfWidgetFormDoctrineSelect(array('model' => 'Entity', 'add_empty' => true)),
-      'owner_id'    => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'client_id'   => new sfWidgetFormDoctrineChoice(array('model' => 'Entity', 'add_empty' => true)),
+      'owner_id'    => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'created_at'  => new sfWidgetFormDateTime(),
       'updated_at'  => new sfWidgetFormDateTime(),
     ));

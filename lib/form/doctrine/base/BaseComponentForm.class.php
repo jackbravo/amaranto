@@ -14,8 +14,8 @@ class BaseComponentForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
       'name'       => new sfWidgetFormInput(),
-      'project_id' => new sfWidgetFormDoctrineSelect(array('model' => 'Project', 'add_empty' => false)),
-      'owner_id'   => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'project_id' => new sfWidgetFormDoctrineChoice(array('model' => 'Project', 'add_empty' => false)),
+      'owner_id'   => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(

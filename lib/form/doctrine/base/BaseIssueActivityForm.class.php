@@ -13,10 +13,10 @@ class BaseIssueActivityForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'         => new sfWidgetFormInputHidden(),
-      'issue_id'   => new sfWidgetFormDoctrineSelect(array('model' => 'Issue', 'add_empty' => true)),
+      'issue_id'   => new sfWidgetFormDoctrineChoice(array('model' => 'Issue', 'add_empty' => true)),
       'verb'       => new sfWidgetFormInput(),
       'created_at' => new sfWidgetFormDateTime(),
-      'created_by' => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'created_by' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'body'       => new sfWidgetFormTextarea(),
       'changes'    => new sfWidgetFormTextarea(),
     ));

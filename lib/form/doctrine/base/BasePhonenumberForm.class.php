@@ -13,7 +13,7 @@ class BasePhonenumberForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'        => new sfWidgetFormInputHidden(),
-      'entity_id' => new sfWidgetFormDoctrineSelect(array('model' => 'Entity', 'add_empty' => true)),
+      'entity_id' => new sfWidgetFormDoctrineChoice(array('model' => 'Entity', 'add_empty' => true)),
       'number'    => new sfWidgetFormInput(),
       'type'      => new sfWidgetFormInput(),
     ));

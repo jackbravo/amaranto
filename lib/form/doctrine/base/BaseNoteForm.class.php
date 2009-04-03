@@ -13,13 +13,13 @@ class BaseNoteForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'                 => new sfWidgetFormInputHidden(),
-      'entity_id'          => new sfWidgetFormDoctrineSelect(array('model' => 'Entity', 'add_empty' => true)),
-      'project_id'         => new sfWidgetFormDoctrineSelect(array('model' => 'Project', 'add_empty' => true)),
+      'entity_id'          => new sfWidgetFormDoctrineChoice(array('model' => 'Entity', 'add_empty' => true)),
+      'project_id'         => new sfWidgetFormDoctrineChoice(array('model' => 'Project', 'add_empty' => true)),
       'body'               => new sfWidgetFormTextarea(),
       'created_at'         => new sfWidgetFormDateTime(),
       'updated_at'         => new sfWidgetFormDateTime(),
-      'created_by_user_id' => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
-      'updated_by_user_id' => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'created_by_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'updated_by_user_id' => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
     ));
 
     $this->setValidators(array(

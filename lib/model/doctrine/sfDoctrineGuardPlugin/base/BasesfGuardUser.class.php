@@ -14,7 +14,7 @@ abstract class BasesfGuardUser extends sfDoctrineRecord
         $this->hasColumn('salt', 'string', 128, array('type' => 'string', 'length' => '128'));
         $this->hasColumn('password', 'string', 128, array('type' => 'string', 'length' => '128'));
         $this->hasColumn('is_active', 'boolean', null, array('type' => 'boolean', 'default' => '1'));
-        $this->hasColumn('is_super_admin', 'boolean', null, array('type' => 'boolean', 'default' => 0));
+        $this->hasColumn('is_super_admin', 'boolean', null, array('type' => 'boolean', 'default' => false));
         $this->hasColumn('last_login', 'timestamp', null, array('type' => 'timestamp'));
 
 

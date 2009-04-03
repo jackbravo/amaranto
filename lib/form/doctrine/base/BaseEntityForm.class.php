@@ -17,7 +17,7 @@ class BaseEntityForm extends BaseFormDoctrine
       'code'        => new sfWidgetFormInput(),
       'type'        => new sfWidgetFormInput(),
       'user_id'     => new sfWidgetFormInput(),
-      'owner_id'    => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'owner_id'    => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'parent_id'   => new sfWidgetFormInput(),
       'description' => new sfWidgetFormTextarea(),
       'title'       => new sfWidgetFormInput(),

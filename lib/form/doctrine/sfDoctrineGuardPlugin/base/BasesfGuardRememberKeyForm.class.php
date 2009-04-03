@@ -13,7 +13,7 @@ class BasesfGuardRememberKeyForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'id'           => new sfWidgetFormInputHidden(),
-      'user_id'      => new sfWidgetFormDoctrineSelect(array('model' => 'sfGuardUser', 'add_empty' => true)),
+      'user_id'      => new sfWidgetFormDoctrineChoice(array('model' => 'sfGuardUser', 'add_empty' => true)),
       'remember_key' => new sfWidgetFormInput(),
       'ip_address'   => new sfWidgetFormInputHidden(),
       'created_at'   => new sfWidgetFormDateTime(),
