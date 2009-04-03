@@ -28,7 +28,8 @@ abstract class PluginsfGuardUser extends BasesfGuardUser
       $salt = md5(rand(100000, 999999).$this->getUsername());
       $this->setSalt($salt);
     }
-    if (!$algorithm = $this->getAlgorithm())
+    $modified = $this->getModified();
+    if ((!$algorithm = $this->getAlgorithm()) || (isset($modified['algorithm']) && $modified['algorithm'] == $this->getTable()->getDefaultValueOf('algorithm')))
     {
       $algorithm = sfConfig::get('app_sf_guard_plugin_algorithm_callable', 'sha1');
     }
@@ -118,13 +119,13 @@ abstract class PluginsfGuardUser extends BasesfGuardUser
   public function hasPermission($name)
   {
     $this->loadGroupsAndPermissions();
-    return isset($this->permissions[$name]);
+    return isset($this->allPermissions[$name]);
   }
 
   public function getPermissionNames()
   {
     $this->loadGroupsAndPermissions();
-    return array_keys($this->permissions);
+    return array_keys($this->allPermissions);
   }
 
   // merge of permission in a group + permissions
@@ -209,7 +210,7 @@ abstract class PluginsfGuardUser extends BasesfGuardUser
 
     if ($this->password !== $v)
     {
-      $this->password = $v;
+      $this->_set('password', $v);
     }
   }
 }
