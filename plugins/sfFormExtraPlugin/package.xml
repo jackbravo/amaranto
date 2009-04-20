@@ -22,9 +22,9 @@
   <email>kris.wallsmith@symfony-project.com</email>
   <active>yes</active>
  </developer>
- <date>2009-03-12</date>
+ <date>2009-04-10</date>
  <version>
-   <release>1.0.10</release>
+   <release>1.0.11</release>
    <api>1.0.0</api>
  </version>
  <stability>
@@ -37,7 +37,6 @@
    <dir name="/">
      <file role="data" name="README" />
      <file role="data" name="LICENSE" />
-     <file role="data" name="CHANGELOG" />
 
      <dir name="bin">
        <file role="data" name="prove.php" />
@@ -129,9 +128,10 @@
        <api>stable</api>
      </stability>
      <license uri="http://www.symfony-project.com/license">MIT license</license>
-     <date><!-- forthcoming --></date>
+     <date>2009-04-10</date>
      <license>MIT</license>
      <notes>
+       * fabien: removed the need to pass a class for sfWidgetFormTextareaTinyMCE (#4918, #5546, #4952)
        * Kris.Wallsmith: added sfWidgetFormSelectUSState
        * Kris.Wallsmith: added sfWidgetFormPropelChoiceGrouped
        * Kris.Wallsmith: added sfWidgetFormDoctrineChoiceGrouped
