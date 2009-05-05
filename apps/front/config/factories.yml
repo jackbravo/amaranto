@@ -30,6 +30,8 @@ all:
     param: 
       generate_shortest_url:            true 
       extra_parameters_as_query_string: true 
+      lazy_routes_deserialize:          true
+#      lookup_cache_dedicated_keys:      true
 
 #all:
 #  controller:
