@@ -57,14 +57,14 @@
     <h2>Teléfonos</h2>
     <ul id="phones">
       <?php foreach ($entity['Phonenumbers'] as $phone): ?>
-        <li><?php echo $phone['number'] ?></li>
+        <li><?php echo $phone['number'] ?> <small><?php echo $phone->getTypeName() ?></small></li>
       <?php endforeach; ?>
     </ul>
 
     <h2>Emails</h2>
     <ul id="emails">
       <?php foreach ($entity['Emails'] as $email): ?>
-        <li><?php echo $email['email'] ?></li>
+        <li><?php echo $email['email'] ?> <small><?php echo $email->getTypeName() ?></small></li>
       <?php endforeach; ?>
     </ul>
   </div>
