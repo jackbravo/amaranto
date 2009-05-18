@@ -1,5 +1,3 @@
-<?php include(sfConfig::get('sf_lib_dir').'/vendor/Markdown/markdown.php'); ?>
-
 <div class="issue-activities">
 <?php foreach ($activities as $activity): ?>
   <div class="issue-activity">
@@ -10,7 +8,10 @@
     <blockquote class="activity-changes">
       <?php echo simple_format_text($activity->changes) ?>
     </blockquote>
-    <?php echo Markdown($activity->body) ?>
+    <?php
+      $markdown = new Markdown(MARKDOWN::NOPANTS);
+      echo $markdown->parseToString($activity->body, MARKDOWN::NOPANTS)
+    ?>
   </div>
 <?php endforeach; ?>
 </div> <!-- /issue-history -->
