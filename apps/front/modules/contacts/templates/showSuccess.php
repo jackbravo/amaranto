@@ -67,6 +67,28 @@
         <li><?php echo $email['email'] ?> <small><?php echo $email->getTypeName() ?></small></li>
       <?php endforeach; ?>
     </ul>
+
+    <h2>Addresses</h2>
+    <ul id="addresses">
+      <?php foreach ($entity['Locations'] as $loc): ?>
+        <li>
+          <?php
+            if ($loc['street']) echo nl2br($loc['street']) . '<br>';
+            if ($loc['city']) echo $loc['city'];
+            if ($loc['state']) echo ', ' . $loc['state'];
+            if ($loc['postal_code']) echo ' ' . $loc['postal_code'];
+            if ($loc['country']) echo '<br>' . $loc['country'];
+          ?>
+          <small><?php echo $loc->getTypeName() ?></small>
+        </li>
+      <?php endforeach; ?>
+    </ul>
+
+    <h2>Notes</h2>
+    <?php
+      $markdown = new Markdown(MARKDOWN::NOPANTS);
+      echo $markdown->parseToString($entity['description'], MARKDOWN::NOPANTS);
+    ?>
   </div>
 
   <?php if ($entity->hasRelation('People')): ?>
