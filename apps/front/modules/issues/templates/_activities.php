@@ -8,10 +8,9 @@
     <blockquote class="activity-changes">
       <?php echo simple_format_text($activity->changes) ?>
     </blockquote>
-    <?php
-      $markdown = new Markdown(MARKDOWN::NOPANTS);
-      echo $markdown->parseToString($activity->body, MARKDOWN::NOPANTS)
-    ?>
+    <?php error_reporting(E_ALL) ?>
+    <?php echo Markdown::parseToString($activity->body, MARKDOWN::NOPANTS) ?>
+    <?php error_reporting(E_ALL|E_STRICT) ?>
   </div>
 <?php endforeach; ?>
 </div> <!-- /issue-history -->
