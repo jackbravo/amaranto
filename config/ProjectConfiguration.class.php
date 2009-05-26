@@ -23,5 +23,8 @@ class ProjectConfiguration extends sfProjectConfiguration
   public function setup()
   {
     $this->enableAllPluginsExcept(array('sfPropelPlugin', 'sfCompat10Plugin', 'sfProtoculousPlugin'));
+
+    // use Doctrine 1.1
+    sfConfig::set('sfDoctrinePlugin_doctrine_lib_path', sfConfig::get('sf_lib_dir') . '/vendor/doctrine/Doctrine.php');
   }
 }

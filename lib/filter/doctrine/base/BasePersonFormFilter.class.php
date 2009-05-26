@@ -22,8 +22,8 @@ class BasePersonFormFilter extends BaseFormFilterDoctrine
       'parent_id'   => new sfWidgetFormDoctrineChoice(array('model' => 'Company', 'add_empty' => true)),
       'description' => new sfWidgetFormFilterInput(),
       'title'       => new sfWidgetFormFilterInput(),
-      'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
-      'updated_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => true)),
+      'created_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
+      'updated_at'  => new sfWidgetFormFilterDate(array('from_date' => new sfWidgetFormDate(), 'to_date' => new sfWidgetFormDate(), 'with_empty' => false)),
     ));
 
     $this->setValidators(array(

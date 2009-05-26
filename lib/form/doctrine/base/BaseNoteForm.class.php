@@ -27,8 +27,8 @@ class BaseNoteForm extends BaseFormDoctrine
       'entity_id'          => new sfValidatorDoctrineChoice(array('model' => 'Entity', 'required' => false)),
       'project_id'         => new sfValidatorDoctrineChoice(array('model' => 'Project', 'required' => false)),
       'body'               => new sfValidatorString(array('max_length' => 2147483647, 'required' => false)),
-      'created_at'         => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'         => new sfValidatorDateTime(array('required' => false)),
+      'created_at'         => new sfValidatorDateTime(),
+      'updated_at'         => new sfValidatorDateTime(),
       'created_by_user_id' => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
       'updated_by_user_id' => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
     ));

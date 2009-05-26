@@ -27,8 +27,8 @@ class BaseProjectForm extends BaseFormDoctrine
       'description' => new sfValidatorString(array('max_length' => 2147483647, 'required' => false)),
       'client_id'   => new sfValidatorDoctrineChoice(array('model' => 'Entity', 'required' => false)),
       'owner_id'    => new sfValidatorDoctrineChoice(array('model' => 'sfGuardUser', 'required' => false)),
-      'created_at'  => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'  => new sfValidatorDateTime(array('required' => false)),
+      'created_at'  => new sfValidatorDateTime(),
+      'updated_at'  => new sfValidatorDateTime(),
     ));
 
     $this->widgetSchema->setNameFormat('project[%s]');

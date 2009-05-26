@@ -35,8 +35,8 @@ class BasePersonForm extends BaseFormDoctrine
       'parent_id'   => new sfValidatorDoctrineChoice(array('model' => 'Company', 'required' => false)),
       'description' => new sfValidatorString(array('max_length' => 2147483647, 'required' => false)),
       'title'       => new sfValidatorString(array('max_length' => 255, 'required' => false)),
-      'created_at'  => new sfValidatorDateTime(array('required' => false)),
-      'updated_at'  => new sfValidatorDateTime(array('required' => false)),
+      'created_at'  => new sfValidatorDateTime(),
+      'updated_at'  => new sfValidatorDateTime(),
     ));
 
     $this->validatorSchema->setPostValidator(
