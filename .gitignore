@@ -4,3 +4,4 @@ log
 *.swo
 *.svn*
 apps/*/config/app.yml
+data/sql/schema.sql
