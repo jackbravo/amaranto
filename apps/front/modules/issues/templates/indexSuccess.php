@@ -51,7 +51,7 @@ $(document).ready(function(){
   $total_remaining = 0;
   $total_estimated = 0;
   $total_elapsed = 0;
-  foreach ($pager->getResults('array') as $i => $issue) {
+  foreach ($pager->getResults(Doctrine_Core::HYDRATE_ARRAY) as $i => $issue) {
     if ($issue['curr_estimate']) {
       $remaining = $issue['curr_estimate'] - $issue['elapsed'];
       $remaining = $remaining < 0 ? 0 : $remaining;

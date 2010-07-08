@@ -14,7 +14,7 @@ class ProjectForm extends BaseProjectForm
     $this->widgetSchema['name']->setAttributes(array('size' => '40'));
     $this->widgetSchema['description'] = new sfWidgetFormTextarea();
 
-    $this->widgetSchema['client'] = new sfWidgetFormInput();
+    $this->widgetSchema['client'] = new sfWidgetFormInputText();
     $this->validatorSchema['client'] = new sfValidatorString(array(
       'max_length' => 255,
       'required' => false,

@@ -4,6 +4,8 @@
 
 <?php include_http_metas() ?>
 <?php include_metas() ?>
+<?php include_javascripts() ?>
+<?php include_stylesheets() ?>
 
 <title><?php echo $sf_response->getTitle() ?> | Amaranto</title>
 

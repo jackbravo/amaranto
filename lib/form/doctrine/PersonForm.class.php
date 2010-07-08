@@ -13,7 +13,7 @@ class PersonForm extends EntityForm
   {
     $this->widgetSchema->setNameFormat('person[%s]');
 
-    $this->widgetSchema['company'] = new sfWidgetFormInput();
+    $this->widgetSchema['company'] = new sfWidgetFormInputText();
     $this->validatorSchema['company'] = new sfValidatorString(array(
       'max_length' => 255,
       'required' => false,

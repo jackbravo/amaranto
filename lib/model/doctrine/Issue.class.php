@@ -54,6 +54,7 @@ class Issue extends BaseIssue
 
   public function setStatusId($status_id)
   {
+    $status_id = is_object($status_id) ? $status_id->id : $status_id;
     if ($status_id != $this->status_id) {
       if (StatusTable::isResolved($status_id)) {
         $this->setIsResolved(true);
