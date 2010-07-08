@@ -1,6 +1,6 @@
 <?php
 
-require_once '/usr/share/php5/symfony-1.3/lib/autoload/sfCoreAutoload.class.php';
+require_once '/usr/share/php5/symfony-1.4/lib/autoload/sfCoreAutoload.class.php';
 sfCoreAutoload::register();
 
 class ProjectConfiguration extends sfProjectConfiguration
@@ -22,6 +22,6 @@ class ProjectConfiguration extends sfProjectConfiguration
 
   public function setup()
   {
-    $this->enableAllPluginsExcept(array('sfPropelPlugin', 'sfCompat10Plugin', 'sfProtoculousPlugin'));
+    $this->enablePlugins(array('sfDoctrinePlugin', 'sfDoctrineGuardPlugin', 'sfFormExtraPlugin', 'simpleMailQueuePlugin'));
   }
 }

@@ -18,7 +18,7 @@ class LocationForm extends BaseLocationForm
 
     $this->widgetSchema['street'] = new sfWidgetFormTextarea();
     $this->widgetSchema['postal_code']->setAttributes(array('size' => '10'));
-    $this->widgetSchema['country'] = new sfWidgetFormI18nSelectCountry(array(
+    $this->widgetSchema['country'] = new sfWidgetFormI18nChoiceCountry(array(
       'culture' => 'es',
       'add_empty' => true,
     ));

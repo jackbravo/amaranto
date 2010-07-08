@@ -1,6 +1,6 @@
 <?php
 
-class axaiWidgetFormJQuerySelect extends sfWidgetFormDoctrineSelect
+class axaiWidgetFormJQuerySelect extends sfWidgetFormDoctrineChoice
 {
   protected function configure($options = array(), $attributes = array())
   {
