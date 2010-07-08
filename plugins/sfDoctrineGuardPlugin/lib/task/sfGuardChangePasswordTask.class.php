@@ -9,14 +9,14 @@
  */
 
 /**
- * Add a permission to a user.
+ * Promotes a user as a super administrator.
  *
  * @package    symfony
  * @subpackage task
- * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfGuardAddPermissionTask.class.php 23319 2009-10-25 12:22:23Z Kris.Wallsmith $
+ * @author     Hugo Hamon <hugo.hamon@sensio.com>
+ * @version    SVN: $Id: sfGuardChangePasswordTask.class.php 23319 2009-10-25 12:22:23Z Kris.Wallsmith $
  */
-class sfGuardAddPermissionTask extends sfBaseTask
+class sfGuardChangePasswordTask extends sfBaseTask
 {
   /**
    * @see sfTask
@@ -25,7 +25,7 @@ class sfGuardAddPermissionTask extends sfBaseTask
   {
     $this->addArguments(array(
       new sfCommandArgument('username', sfCommandArgument::REQUIRED, 'The user name'),
-      new sfCommandArgument('permission', sfCommandArgument::REQUIRED, 'The permission name'),
+      new sfCommandArgument('password', sfCommandArgument::REQUIRED, 'The new password'),
     ));
 
     $this->addOptions(array(
@@ -34,33 +34,37 @@ class sfGuardAddPermissionTask extends sfBaseTask
     ));
 
     $this->namespace = 'guard';
-    $this->name = 'add-permission';
-    $this->briefDescription = 'Adds a permission to a user';
+    $this->name = 'change-password';
+    $this->briefDescription = 'Changes the password of the user';
 
     $this->detailedDescription = <<<EOF
-The [guard:add-permission|INFO] task adds a permission to a user:
+The [guard:change-password|INFO] task allows to change a user's password:
 
-  [./symfony guard:add-permission fabien admin|INFO]
-
-The user and the permission must exist in the database.
+  [./symfony guard:change-password fabien changeme|INFO]
 EOF;
   }
 
   /**
-   * @see sfTask
+   * Executes the task.
+   *
+   * @param array $arguments An array of arguments
+   * @param array $options An array of options
+   * @throws sfException
    */
   protected function execute($arguments = array(), $options = array())
   {
     $databaseManager = new sfDatabaseManager($this->configuration);
 
     $user = Doctrine::getTable('sfGuardUser')->findOneByUsername($arguments['username']);
+
     if (!$user)
     {
-      throw new sfCommandException(sprintf('User "%s" does not exist.', $arguments['username']));
+      throw new sfException(sprintf('User identified by "%s" username does not exist or is not active.', $arguments['username']));
     }
 
-    $user->addPermissionByName($arguments['permission']);
+    $user->setPassword($arguments['password']);
+    $user->save();
 
-    $this->logSection('guard', sprintf('Add permission %s to user %s', $arguments['permission'], $arguments['username']));
+    $this->logSection('guard', sprintf('Password of user identified by "%s" has been changed', $arguments['username']));
   }
 }

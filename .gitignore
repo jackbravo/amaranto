@@ -7,3 +7,4 @@ apps/*/config/app.yml
 data/sql/schema.sql
 lib/*/doctrine/base/*
 lib/*/doctrine/*/base/*
+plugins/\.*

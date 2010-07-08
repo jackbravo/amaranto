@@ -13,7 +13,7 @@
  * @package    symfony
  * @subpackage plugin
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfGuardValidatorUser.class.php 7904 2008-03-15 13:18:36Z fabien $
+ * @version    SVN: $Id: sfGuardValidatorUser.class.php 23319 2009-10-25 12:22:23Z Kris.Wallsmith $
  */
 class sfGuardValidatorUser extends sfValidatorBase
 {
@@ -32,7 +32,7 @@ class sfGuardValidatorUser extends sfValidatorBase
     $password = isset($values[$this->getOption('password_field')]) ? $values[$this->getOption('password_field')] : '';
 
     // user exists?
-    if ($user = Doctrine::getTable('sfGuardUser')->findOneByUsername($username))
+    if ($username && $user = $this->getTable()->retrieveByUsername($username))
     {
       // password is ok?
       if ($user->getIsActive() && $user->checkPassword($password))
@@ -47,5 +47,10 @@ class sfGuardValidatorUser extends sfValidatorBase
     }
 
     throw new sfValidatorErrorSchema($this, array($this->getOption('username_field') => new sfValidatorError($this, 'invalid')));
+  }
+
+  protected function getTable()
+  {
+    return Doctrine::getTable('sfGuardUser');
   }
 }

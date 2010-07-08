@@ -14,9 +14,9 @@
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id$
+ * @version    SVN: $Id: sfGuardAddGroupTask.class.php 23319 2009-10-25 12:22:23Z Kris.Wallsmith $
  */
-class sfGuardAddGroupTask extends sfDoctrineBaseTask
+class sfGuardAddGroupTask extends sfBaseTask
 {
   /**
    * @see sfTask
@@ -31,7 +31,6 @@ class sfGuardAddGroupTask extends sfDoctrineBaseTask
     $this->addOptions(array(
       new sfCommandOption('application', null, sfCommandOption::PARAMETER_OPTIONAL, 'The application name', null),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
-      new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'propel'),
     ));
 
     $this->namespace = 'guard';

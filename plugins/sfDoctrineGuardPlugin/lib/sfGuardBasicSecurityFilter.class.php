@@ -14,12 +14,17 @@
  * @package    symfony
  * @subpackage plugin
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id$
+ * @version    SVN: $Id: sfGuardBasicSecurityFilter.class.php 23319 2009-10-25 12:22:23Z Kris.Wallsmith $
  * 
  * @deprecated Use {@link sfGuardRememberMeFilter} instead
  */
 class sfGuardBasicSecurityFilter extends sfBasicSecurityFilter
 {
+  /**
+   * Executes the filter chain.
+   *
+   * @param sfFilterChain $filterChain
+   */
   public function execute($filterChain)
   {
     $cookieName = sfConfig::get('app_sf_guard_plugin_remember_cookie_name', 'sfRemember');
@@ -35,8 +40,7 @@ class sfGuardBasicSecurityFilter extends sfBasicSecurityFilter
         $cookie = $this->context->getRequest()->getCookie($cookieName)
       )
       {
-        $q = Doctrine_Query::create()
-              ->from('sfGuardRememberKey r')
+        $q = Doctrine::getTable('sfGuardRememberKey')->createQuery('r')
               ->innerJoin('r.sfGuardUser u')
               ->where('r.remember_key = ?', $cookie);
 

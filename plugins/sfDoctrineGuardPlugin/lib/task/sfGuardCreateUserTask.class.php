@@ -14,9 +14,9 @@
  * @package    symfony
  * @subpackage task
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: sfGuardCreateUserTask.class.php 8109 2008-03-27 10:40:33Z fabien $
+ * @version    SVN: $Id: sfGuardCreateUserTask.class.php 23319 2009-10-25 12:22:23Z Kris.Wallsmith $
  */
-class sfGuardCreateUserTask extends sfDoctrineBaseTask
+class sfGuardCreateUserTask extends sfBaseTask
 {
   /**
    * @see sfTask
@@ -31,7 +31,6 @@ class sfGuardCreateUserTask extends sfDoctrineBaseTask
     $this->addOptions(array(
       new sfCommandOption('application', null, sfCommandOption::PARAMETER_OPTIONAL, 'The application name', null),
       new sfCommandOption('env', null, sfCommandOption::PARAMETER_REQUIRED, 'The environment', 'dev'),
-      new sfCommandOption('connection', null, sfCommandOption::PARAMETER_REQUIRED, 'The connection name', 'propel'),
     ));
 
     $this->namespace = 'guard';
@@ -41,7 +40,7 @@ class sfGuardCreateUserTask extends sfDoctrineBaseTask
     $this->detailedDescription = <<<EOF
 The [guard:create-user|INFO] task creates a user:
 
-  [./symfony guard:create-user fabien pa\$\$word|INFO]
+  [./symfony guard:create-user fabien password|INFO]
 EOF;
   }
 

@@ -13,7 +13,7 @@
  * @package    symfony
  * @subpackage plugin
  * @author     Fabien Potencier <fabien.potencier@symfony-project.com>
- * @version    SVN: $Id: BasesfGuardAuthActions.class.php 7745 2008-03-05 11:05:33Z fabien $
+ * @version    SVN: $Id: BasesfGuardAuthActions.class.php 23800 2009-11-11 23:30:50Z Kris.Wallsmith $
  */
 class BasesfGuardAuthActions extends sfActions
 {
@@ -77,12 +77,12 @@ class BasesfGuardAuthActions extends sfActions
     $this->redirect('' != $signoutUrl ? $signoutUrl : '@homepage');
   }
 
-  public function executeSecure()
+  public function executeSecure($request)
   {
     $this->getResponse()->setStatusCode(403);
   }
 
-  public function executePassword()
+  public function executePassword($request)
   {
     throw new sfException('This method is not yet implemented.');
   }
