@@ -38,3 +38,11 @@ Installation
     cd /your/projet/path
     php symfony doctrine:build-all-reload
 
+5. Apply your own configuration by creating your own app.yml and factories.yml
+   and then setting the application address (to be used when sending emails)
+   and your email address (to which all emails on dev environment will be sent).
+
+    cd apps/front/config/
+    cp apps/front/config/factories.yml.dist apps/front/config/factories.yml
+    cp apps/front/config/app.yml.dist apps/front/config/app.yml
+
