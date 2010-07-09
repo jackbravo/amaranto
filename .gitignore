@@ -4,6 +4,7 @@ log
 *.swo
 *.svn*
 apps/*/config/app.yml
+apps/front/config/factories.yml
 data/sql/schema.sql
 lib/*/doctrine/base/*
 lib/*/doctrine/*/base/*
