@@ -13,7 +13,17 @@ cli:
   response:
     class: sfConsoleResponse
 
+dev:
+  mailer:
+    param:
+      delivery_strategy: single_address
+      delivery_address: you@example.com
+
 test:
+  mailer:
+    param:
+      delivery_strategy: none
+
   storage:
     class: sfSessionTestStorage
     param:

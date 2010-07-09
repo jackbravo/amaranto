@@ -5,13 +5,8 @@ all:
 
   zend_lib_dir: /usr/share/php5/zf-lib-1.7
 
-  smtp:
-    ssl: tls
-    port: 587
-    auth: login
-    server: smtp.gmail.com
-    username: username@gmail.com
-    password: password
+  email:
+    address: app@example.com
 
   sf_guard_plugin:
     profile_class: Person

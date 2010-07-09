@@ -1,3 +1,0 @@
-[submodule "plugins/simpleMailQueuePlugin"]
-	path = plugins/simpleMailQueuePlugin
-	url = git://github.com/jackbravo/simpleMailQueuePlugin.git

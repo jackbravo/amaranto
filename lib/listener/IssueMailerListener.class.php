@@ -40,26 +40,9 @@ class IssueMailerListener extends Doctrine_Record_Listener
   // TODO: consider adding last_message as a field for the issue table
   public function sendIssue($issue, $to, $message)
   {
-    $routing = sfContext::getInstance()->getRouting();
-    $issue_url = $routing->generate('issues_show', $issue, true);
-
-    $mail = new MailQueue();
-    $mail->setSubject("Amaranto issue #{$issue->id}: {$issue->title}");
-    $mail->addTo($to);
-    $mail->setBody(<<<EOF
-{$message}:
-
-Id: {$issue->id}
-Title: {$issue->title}
-Project: {$issue->Project}
-Priority: {$issue->Priority}
-Opened by: {$issue->OpenedBy}
-
-You can see this issue at: $issue_url
-
-EOF
-);
-    $mail->save();
+    $msg = new IssueBaseMessage($issue, $message);
+    $msg->setTo($to);
+    sfContext::getInstance()->getMailer()->send($msg);
   }
 }
 
