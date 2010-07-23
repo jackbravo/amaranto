@@ -6,21 +6,4 @@ class myUser extends sfGuardSecurityUser
   {
     return $this->getAttribute('user_id', null, 'sfGuardSecurityUser');
   }
-
-  public function getPersonId()
-  {
-    return $this->getAttribute('person_id', null, 'sfGuardSecurityUser');
-  }
-
-  public function getEmail()
-  {
-    return $this->getAttribute('email', null, 'sfGuardSecurityUser');
-  }
-
-  public function signIn($user, $remember = false, $con = null)
-  {
-    $this->setAttribute('email', $user->getEmail(), 'sfGuardSecurityUser');
-    $this->setAttribute('person_id', $user->getProfile()->getId(), 'sfGuardSecurityUser');
-    parent::signIn($user, $remember, $con);
-  }
 }
