@@ -2,7 +2,6 @@ Project:
   base:
     id: 1
     name: Muestra
-    Client: axai
     Owner: joaquin
     description: |
       Este proyecto sirve de muestra para todos los proyectos de MoProSoft

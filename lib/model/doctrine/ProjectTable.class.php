@@ -13,15 +13,13 @@ class ProjectTable extends Doctrine_Table
   {
     $alias = $q->getRootAlias();
 
-    return $q->leftJoin("$alias.Client e")
-      ->leftJoin("$alias.Owner o")
+    return $q->leftJoin("$alias.Owner o")
       ->addOrderBy("$alias.name");
   }
 
   public function getShowQuery($parameters)
   {
     return $this->createQuery('p')
-      ->leftJoin('p.Client c')
       ->leftJoin('p.Owner o')
       ->addWhere('p.id = ?', $parameters['id'])
     ;

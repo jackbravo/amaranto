@@ -12,11 +12,6 @@ Project:
     client_id:      integer(4)
     owner_id:       integer
   relations:
-    Client:
-      local:        client_id
-      class:        Entity
-      foreignAlias: Projects
-      onDelete:     SET NULL
     Owner:
       local:        owner_id
       class:        sfGuardUser
@@ -34,9 +29,6 @@ Note:
     project_id:     integer(4)
     body:           string
   relations:
-    Entity:
-      foreignAlias: Notes
-      onDelete:     CASCADE
     Project:
       foreignAlias: Notes
       onDelete:     CASCADE

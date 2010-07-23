@@ -8,20 +8,6 @@
 <?php echo $form->renderHiddenFields() ?>
 
 <?php echo $form['name']->renderRow() ?>
-<?php echo $form['client']->renderRow() ?>
-<script type="text/javascript">
-  $("#project_client").autocomplete({
-    url: "<?php echo url_for("@contacts_ajax") ?>",
-    dataType: "json",
-    parse:    function(data) {
-      var parsed = [];
-      for (key in data) {
-        parsed[parsed.length] = { data: [ data[key], key ], value: data[key], result: data[key] };
-      }
-      return parsed;
-    }
-  });
-</script>
 <?php echo $form['owner_id']->renderRow() ?>
 <?php echo $form['description']->renderRow() ?>
 

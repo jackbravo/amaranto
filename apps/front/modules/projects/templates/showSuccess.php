@@ -11,9 +11,6 @@
   <?php if ($project['Owner']['id']): ?>
     Owner, <strong><?php echo $project['Owner'] ?></strong>
   <?php endif; ?>
-  <?php if ($project['Client']['id']): ?>
-    | for <?php echo link_to($project['Client'], 'contacts_show', $project['Client']) ?>
-  <?php endif; ?>
   </p>
 
   <?php echo Markdown($project['description']) ?>

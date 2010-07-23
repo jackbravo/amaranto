@@ -108,7 +108,7 @@ $(document).ready(function(){
 </div>
 </form>
 
-<?php include_partial('contacts/pager', array('pager' => $pager)) ?>
+<?php include_partial('projects/pager', array('pager' => $pager)) ?>
 
 <strong><a href="<?php echo url_for('issues_new') ?>">Create new issue</a></strong>
 

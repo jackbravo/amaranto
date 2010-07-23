@@ -27,9 +27,6 @@
         <?php if ($project['Owner']['id']): ?>
           <strong><?php echo $project['Owner'] ?></strong>
         <?php endif; ?>
-        <?php if ($project['Client']['id']): ?>
-          for <?php echo link_to($project['Client'], 'contacts_show', $project['Client']) ?>
-        <?php endif; ?>
       </td>
       <td><?php echo $project->getdescription() ?></td>
     </tr>
@@ -37,7 +34,7 @@
   </tbody>
 </table>
 
-<?php include_partial('contacts/pager', array('pager' => $pager)) ?>
+<?php include_partial('pager', array('pager' => $pager)) ?>
 
 </div> <!-- /grid_8 -->
 
