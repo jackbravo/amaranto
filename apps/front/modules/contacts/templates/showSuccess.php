@@ -1,4 +1,4 @@
-<?php use_helper('Text') ?>
+<?php include_once sfConfig::get('sf_lib_dir').'/vendor/Markdown/markdown.php' ?>
 <?php $sf_response->setTitle((string) $entity) ?>
 <div id="content" class="grid_8">
 
@@ -85,10 +85,7 @@
     </ul>
 
     <h2>Notes</h2>
-    <?php
-      $markdown = new Markdown(MARKDOWN::NOPANTS);
-      echo $markdown->parseToString($entity['description'], MARKDOWN::NOPANTS);
-    ?>
+    <?php echo Markdown($entity['description']) ?>
   </div>
 
   <?php if ($entity->hasRelation('People')): ?>

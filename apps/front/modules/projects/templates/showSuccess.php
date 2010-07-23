@@ -1,4 +1,4 @@
-<?php use_helper('Text') ?>
+<?php include_once sfConfig::get('sf_lib_dir').'/vendor/Markdown/markdown.php' ?>
 <?php $sf_response->setTitle((string) $project) ?>
 <div id="content" class="grid_8">
 
@@ -16,7 +16,7 @@
   <?php endif; ?>
   </p>
 
-  <?php echo simple_format_text($project['description']) ?>
+  <?php echo Markdown($project['description']) ?>
 
   <hr />
 

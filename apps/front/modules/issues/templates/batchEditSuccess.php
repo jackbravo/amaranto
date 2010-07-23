@@ -1,4 +1,3 @@
-<?php use_helper('Text') ?>
 <?php include_stylesheets_for_form($form) ?>
 <?php include_javascripts_for_form($form) ?>
 <script type="text/javascript">

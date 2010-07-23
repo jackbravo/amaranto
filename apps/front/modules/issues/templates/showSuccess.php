@@ -1,4 +1,3 @@
-<?php use_helper('Text') ?>
 <?php $sf_response->setTitle('Issue #' . $issue->id . ': ' . $issue->title) ?>
 <div class="grid_8">
 
