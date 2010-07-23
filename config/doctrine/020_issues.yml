@@ -8,7 +8,7 @@ Issue:
     project_id:     integer(4)
     component_id:   integer(4)
     milestone_id:   integer(4)
-    assigned_to:    integer(4)
+    assigned_to:    integer
 
     is_closed:
       type:         boolean
@@ -19,11 +19,11 @@ Issue:
       default:      false
       notnull:      true
     opened_at:      timestamp
-    opened_by:      integer(4)
+    opened_by:      integer
     resolved_at:    timestamp
-    resolved_by:    integer(4)
+    resolved_by:    integer
     closed_at:      timestamp
-    closed_by:      integer(4)
+    closed_by:      integer
 
     status_id:
       type:         integer(4)
@@ -85,7 +85,7 @@ IssueActivity:
     issue_id:       integer(4)
     verb:           string(128) # opened, edited, closed
     created_at:     timestamp
-    created_by:     integer(4)
+    created_by:     integer
     body:           string
     changes:        string # automatic description of the changes
   relations:
@@ -107,7 +107,7 @@ Component:
     project_id:
       type:         integer(4)
       notnull:      true
-    owner_id:       integer(4)
+    owner_id:       integer
   relations:
     Project:
       foreignAlias: Components

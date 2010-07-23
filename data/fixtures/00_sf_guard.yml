@@ -1,16 +1,19 @@
 sfGuardUser:
   admin:
     id:             1
+    email_address:  joaquin@axai.com.mx
     username:       admin
     password:       admin
     is_super_admin: true
 
   juan:
     id:             2
+    email_address:  joaquin+1@axai.com.mx
     username:       juan
     password:       caminante
   jack:
     id:             3
+    email_address:  joaquin+2@axai.com.mx
     username:       jack
     password:       daniels
 
@@ -26,10 +29,10 @@ sfGuardGroup:
 
 sfGuardGroupPermission:
   sggp_admin:
-    sfGuardGroup:       sgg_admin
-    sfGuardPermission:  sgp_admin
+    Group:       sgg_admin
+    Permission:  sgp_admin
 
 sfGuardUserGroup:
   sgug_admin:
-    sfGuardGroup:       sgg_admin
-    sfGuardUser:        admin
+    Group:       sgg_admin
+    User:        admin

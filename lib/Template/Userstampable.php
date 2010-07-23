@@ -14,14 +14,14 @@ class Userstampable extends Doctrine_Template
     'created' => array(
       'name'     => 'created_by_user_id',
       'type'     => 'integer',
-      'length'   => '4',
+      'length'   => '5',
       'options'  => array(),
       'disabled' => false,
     ),
     'updated' => array(
       'name'    => 'updated_by_user_id',
       'type'    => 'integer',
-      'length'  => '4',
+      'length'  => '5',
       'options' => array(),
       'disabled' => false,
     )

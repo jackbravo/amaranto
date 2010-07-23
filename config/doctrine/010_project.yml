@@ -10,7 +10,7 @@ Project:
       notnull:      true
     description:    string
     client_id:      integer(4)
-    owner_id:       integer(4)
+    owner_id:       integer
   relations:
     Client:
       local:        client_id
