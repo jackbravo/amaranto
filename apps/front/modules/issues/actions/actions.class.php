@@ -127,7 +127,7 @@ class issuesActions extends sfActions
       $this->redirect('@issues');
     }
 
-    $validator = new sfValidatorDoctrineChoiceMany(array('model' => 'Issue'));
+    $validator = new sfValidatorDoctrineChoice(array('model' => 'Issue', 'multiple' => true));
     try
     {
       // validate ids
