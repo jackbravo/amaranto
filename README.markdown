@@ -2,12 +2,6 @@ Requirements
 ============
 
 - PHP >= 5.2
-- Markdown pecl extension
-
-If you got this through git you need to init and update its submodules:
-
-    git submodule init
-    git submodule update
 
 And you need to manually create a log directory on your project root folder
 and make sure it is writable by the webserver. On ubuntu:
@@ -23,7 +17,7 @@ Installation
 1. Install symfony in the correct location. One way to do this is
 
     cd /usr/share/php5
-    sudo svn co http://svn.symfony-project.com/branches/1.3 symfony-1.3
+    sudo svn co http://svn.symfony-project.com/branches/1.4 symfony-1.4
 
 2. Verify the symlink on web/sf is correct
 
