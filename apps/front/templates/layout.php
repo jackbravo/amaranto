@@ -33,7 +33,6 @@ $('#ajax-loader').ajaxStart(function(){
     <ul>
     <?php
       $links = array(
-        'contacts' => array('label' => 'Contacts'),
         'projects' => array('label' => 'Projects'),
         'issues' => array('label' => 'Issues'),
         'sf_guard_user' => array('label' => 'Users', 'perm' => 'admin'),
