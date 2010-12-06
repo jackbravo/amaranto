@@ -40,3 +40,7 @@ Installation
     cp apps/front/config/factories.yml.dist apps/front/config/factories.yml
     cp apps/front/config/app.yml.dist apps/front/config/app.yml
 
+6. Send emails with the following command on the cron:
+
+    */5 * * * * /usr/bin/php /path/to/amaranto/symfony mail:send-mails --env="prod" 100
+
