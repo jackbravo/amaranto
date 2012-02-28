@@ -5,15 +5,15 @@
 <div id="filters" class="tabs">
   <?php
     $links = array(
-      'all' => '@projects_filter?_reset=1',
-      'mine' => '@projects_filter?_mine=1',
+      array('label' => 'all', 'route' => '@projects_filter', 'query' => '_reset=1'),
+      array('label' => 'mine', 'route' => '@projects_filter', 'query' => '_mine=1'),
     );
 
-    foreach ($links as $name => $route)
+    foreach ($links as $route)
     {
       $current = $sf_user->getAttribute('projects_filter_name', 'all');
-      $class = $current == $name ? 'active' : '';
-      echo '&nbsp' . link_to(__($name), $route, array('class' => $class));
+      $class = $current == $route['label'] ? 'active' : '';
+      echo '&nbsp' . link_to(__($route['label']), $route['route'], array('class' => $class, 'query_string' => $route['query']));
     }
   ?>
 </div>
